@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Collections | Northwall Compliance Group</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            onyx: '#050505',
+            royal: '#0A1F2E',
+            glass: 'rgba(255, 255, 255, 0.4)'
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], glam: ['Playfair Display', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-vessel {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    .side-cart {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-in { animation: slideIn 0.5s ease forwards; }
+  </style>
+</head>
+
+<body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
+    
+    <a href="index.html" class="flex items-center space-x-3 group shrink-0">
+      <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
+
+    </a>
+
+    <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
+      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
+      <a href="binders.html" class="text-onyx">Products</a>
+      <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
+      <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-5 md:gap-8">
+      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+        <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
+          <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <span class="hidden md:block text-[9px] font-black uppercase tracking-widest text-gray-400">Account</span>
+      </button>
+
+      <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
+        <span class="text-xl">🛒</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </button>
+
+      <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
+        <span class="w-6 h-[2px] bg-onyx"></span>
+        <span class="w-4 h-[2px] bg-onyx ml-auto"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 z-[500] hidden opacity-0 transition-opacity duration-300">
+  <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <div id="mobilePanel" class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col">
+    
+    <div class="p-8 flex justify-between items-center border-b border-gray-100">
+      <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600"></span>
+      <button onclick="toggleMobileMenu(false)" class="text-3xl font-light text-onyx">&times;</button>
+    </div>
+
+    <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
+      <a href="index.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Home</span>
+      </a>
+      <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Products</span>
+      </a>
+      <a href="whoweserve.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
+      </a>
+
+      <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
+      </a>
+    </nav>
+
+    <div class="p-8 border-t border-gray-100">
+      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
+        Request System Quote
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * REFINED SIDEBAR LOGIC
+ * High performance, zero-conflict script.
+ */
+function toggleMobileMenu(open) {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const panel = document.getElementById('mobilePanel');
+  
+  if (open) {
+    overlay.classList.remove('hidden');
+    // Force a browser reflow
+    void overlay.offsetWidth; 
+    overlay.classList.add('opacity-100');
+    panel.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  } else {
+    panel.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = ''; 
+    }, 500);
+  }
+}
+</script>
+
+
+<style>
+  /* Ensuring smooth transitions for the Billion Dollar feel */
+  #mobileMenuOverlay a {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+  <div id="cartOverlay" class="fixed inset-0 bg-onyx/20 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleCart(false)" class="absolute inset-0"></div>
+    <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
+      <div class="p-8 flex justify-between items-center border-b border-gray-100">
+        <h3 class="text-2xl font-glam">Your cart</h3>
+        <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
+      </div>
+      <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
+      <div class="p-8 bg-white border-t border-gray-100 space-y-4">
+        <div class="flex justify-between text-xs font-black uppercase tracking-widest">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+
+
+  <main class="relative z-10 pt-44">
+    
+    <section class="max-w-[1400px] mx-auto px-6 mb-32 hero-glow">
+
+      <div class="max-w-4xl mx-auto glass-vessel rounded-[3rem] p-10 md:p-16 space-y-8 text-lg md:text-xl font-light leading-relaxed text-gray-700">
+        <p>We built Northwall because the threats facing Minnesota assisted living facilities are rarely addressed in full. Because they are rarely ever shown the entire risk landscape, facilities run the risk of citations, lawsuits, and staff turnover. Risk isn’t just clinical, it’s operational, structural, legal, cultural, and human. Northwall was created to give directors, owners, and staff a complete map, a hardened defense system, and a way to stay ready.</p>
+        <p>Northwall is a shield against MDH tags, DHS audits, resident complaints, high staff turn-over, MAARC reports, and catastrophic oversights. It’s a rigorously built, detail-heavy system that translates statutes into structure, policies into protection, and documentation into iron-clad protection. Every page, tab and training is built for real-world scrutiny — from strict surveyors to court subpoenas.</p>
+        <p>After more than five years serving as a director across high-risk assisted living settings, I saw the gaps no policy manual ever addressed, the moments where paperwork failed, staff froze, or facility leadership stood alone. Northwall is the result: a system built from inside the pressure, not above it. A wall shaped by the exact failures I had to absorb, correct, and survive.</p>
+      </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 mb-40">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-6xl font-glam text-onyx">Meet the Founder</h2>
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 mt-4">An ALD Director with survey experience.</p>
+      </div>
+
+      <div class="glass-vessel rounded-[4rem] p-12 md:p-20 group relative overflow-hidden">
+        <div class="flex flex-col md:flex-row items-center gap-16">
+            <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl relative z-10">
+                <img src="images/IMG_4850.jpeg" alt="Said Haille" class="w-full h-full object-cover">
+            </div>
+            <div class="space-y-6 flex-1 text-center md:text-left relative z-10">
+                <p class="text-xl font-light text-gray-500 leading-relaxed italic">I have lived through MDH surveys, some smooth, some brutal. That’s why I wrote from experience. From my director experience with colabration from health care workers and compliance advisors, I have walked the halls you walk and shared your experiences.</p>
+                
+                <div class="pt-8 border-t border-gray-100">
+                    <h3 class="text-3xl font-glam text-onyx mb-1">Said Haille</h3>
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-yellow-600 mb-6">Founder & Licensed Assisted Living Director</p>
+                    <p class="text-sm font-medium text-gray-700 leading-relaxed italic mb-6">“I don’t just sell binders. I use them, for my own facilities, my own license, and my own audits.”</p>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold text-gray-400 uppercase tracking-widest list-none">
+                        <li class="flex items-center gap-2"><span class=""></span> Multiple licensed 18–65 & 55–65 homes</li>
+                        <li class="flex items-center gap-2"><span class=""></span> Multiple MDH surveys completed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-[1400px] mx-auto px-6 mb-40 relative">
+        <div class="text-center mb-24 relative">
+            <h2 class="text-4xl md:text-7xl font-glam text-onyx mb-6 tracking-tighter">What Makes Northwall Different</h2>
+            <p class="text-lg md:text-xl text-gray-400 font-light tracking-wide">Built from tags. Refined by real surveys. Trusted in high-risk settings.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="glass-vessel group relative rounded-[3rem] p-12 overflow-hidden shadow-sm transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="h-12 w-12 rounded-2xl bg-onyx flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-glam text-onyx tracking-tight">Survey-Built Architecture</h3>
+                </div>
+                <p class="text-gray-500 text-sm md:text-base leading-relaxed font-light">Every policy, form, and plan is reverse-engineered from real MDH tags and citations.</p>
+            </div>
+
+            <div class="glass-vessel group relative rounded-[3rem] p-12 overflow-hidden shadow-sm transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="h-12 w-12 rounded-2xl bg-onyx flex items-center justify-center text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-glam text-onyx tracking-tight">Sustainable by Design</h3>
+                </div>
+                <p class="text-gray-500 text-sm md:text-base leading-relaxed font-light">Optimized for monochrome ink, easy tab systems, and year-to-year updates without reprinting the entire thing.</p>
+            </div>
+        </div>
+
+        <div class="mt-24 glass-vessel rounded-[3.5rem] p-10 md:p-24 relative overflow-hidden">
+            <h3 class="text-center text-3xl md:text-5xl font-glam mb-20 text-onyx tracking-tight">How We Build Each Binder</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
+                <div class="group relative pt-12">
+                    <div class="space-y-6">
+                        <h5 class="text-[11px] font-black uppercase tracking-[0.4em] text-blue-600">Citation Mapping</h5>
+                        <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-light text-left">We start with real tag language and reverse-engineer each section from past survey failures.</p>
+                    </div>
+                </div>
+                <div class="group relative pt-12">
+                    <div class="space-y-6">
+                        <h5 class="text-[11px] font-black uppercase tracking-[0.4em] text-blue-600">Setting Alignment</h5>
+                        <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-light text-left">Every document is adjusted to your population, setting size.</p>
+                    </div>
+                </div>
+                <div class="group relative pt-12">
+                    <div class="space-y-6">
+                        <h5 class="text-[11px] font-black uppercase tracking-[0.4em] text-blue-600">Surveyor Lens Test</h5>
+                        <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-light text-left">Before shipping, we do a page-by-page review: “Would this pass with the strictest MDH inspector?”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1400px] mx-auto px-6 mb-32 text-center relative overflow-hidden">
+        <h2 class="text-4xl md:text-6xl font-glam text-onyx mb-6">The Values That Build Every Binder.</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-500 font-light mb-20 leading-relaxed text-balance">Every document we build is shaped by these values, because you’re not just trusting us with paper. You’re trusting us with your license.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left relative z-10">
+            <div class="glass-vessel rounded-[2rem] p-8 space-y-6 group hover:border-blue-600/30 transition-all duration-700">
+                <div class="h-12 w-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="text-sm font-black uppercase tracking-[0.3em] text-onyx">Integrity</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">Every line we write reflects real expectations and statutory compliance</p>
+                </div>
+            </div>
+
+            <div class="glass-vessel rounded-[2rem] p-8 space-y-6 group hover:border-blue-600/30 transition-all duration-700">
+                <div class="h-12 w-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="text-sm font-black uppercase tracking-[0.3em] text-onyx">Accuracy</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">We cite real statutes. We triple check requirements. Every tool we give you matches your program.</p>
+                </div>
+            </div>
+
+            <div class="glass-vessel rounded-[2rem] p-8 space-y-6 group hover:border-blue-600/30 transition-all duration-700">
+                <div class="h-12 w-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="text-sm font-black uppercase tracking-[0.3em] text-onyx">Transparency</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">No hidden fees. No locked templates. You see what you’re buying, and you own it once you do.</p>
+                </div>
+            </div>
+
+            <div class="glass-vessel rounded-[2rem] p-8 space-y-6 group hover:border-blue-600/30 transition-all duration-700">
+                <div class="h-12 w-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="text-sm font-black uppercase tracking-[0.3em] text-onyx">Data Respect</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">We never resell, reuse, or share your documents or info.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative mt-24">
+            <p class="italic text-2xl md:text-3xl font-glam text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                "If it's not safe for our clients, our license, or our conscience, it doesn't make it into the binder."
+            </p>
+        </div>
+    </section>
+  </main>
+
+<footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
+  
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-800/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-[1600px] mx-auto relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+      
+      <div class="lg:col-span-5 space-y-10">
+        <div class="flex items-center space-x-4">
+          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90">
+          <div class="text-white">
+            <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
+            <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
+          </div>
+        </div>
+        <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">
+          The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.
+        </p>
+
+      </div>
+
+      <div class="lg:col-span-3 space-y-10">
+        <ul class="space-y-4">
+          <li><a href="index.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Home</a></li>
+          <li><a href="whoweserve.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
+          <li><a href="products.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4 space-y-10">
+        <div class="space-y-6">
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+          </div>
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="space-y-2">
+        <div class="flex flex-wrap gap-6 text-[9px] font-black uppercase tracking-[0.3em] text-white/40">
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Privacy Policy</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
+        </div>
+      </div>
+      
+
+
+    </div>
+
+    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">
+© 2026 Northwall Compliance Group LLC. Built in MN.    </p>
+  </div>
+
+  <a href="quote.html"
+     class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+    </span>
+    Request Quote
+  </a>
+</footer>
+
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
+
+    function addToCart(name, price, img) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) { cart[index].qty += 1; } 
+      else { cart.push({ name, price, img, qty: 1 }); }
+      saveCart();
+      toggleCart(true);
+    }
+
+    function removeOne(name) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) {
+        if (cart[index].qty > 1) { cart[index].qty -= 1; } 
+        else { cart.splice(index, 1); }
+      }
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('northwall_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function toggleCart(open) {
+      const overlay = document.getElementById('cartOverlay');
+      const sideCart = document.getElementById('sideCart');
+      if (open) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          sideCart.classList.remove('translate-x-full');
+        }, 10);
+      } else {
+        sideCart.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => overlay.classList.add('hidden'), 500);
+      }
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartContent');
+      const badge = document.getElementById('cartBadge');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      container.innerHTML = cart.length === 0 ? '<p class="text-xs text-gray-400 text-center pt-20">Your cart is empty.</p>' : '';
+      let total = 0;
+      let count = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        container.innerHTML += `
+          <div class="flex gap-6 animate-in">
+            <div class="h-20 w-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 shrink-0"><img src="${item.img}" class="h-full w-auto"></div>
+            <div class="flex-1">
+              <h4 class="text-sm font-glam mb-1">${item.name}</h4>
+              <div class="flex items-center gap-4">
+                 <button onclick="removeOne('${item.name}')" class="text-gray-300 hover:text-onyx">-</button>
+                 <span class="text-xs font-bold">${item.qty}</span>
+                 <button onclick="addToCart('${item.name}', ${item.price}, '${item.img}')" class="text-gray-300 hover:text-onyx">+</button>
+                 <span class="text-[10px] ml-auto font-black">$${(item.price * item.qty).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+      });
+      badge.innerText = count;
+      subtotalEl.innerText = `$${total.toFixed(2)}`;
+    }
+    window.onload = renderCart;
+  </script>
+  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+  <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+  
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+    
+    <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+        <div>
+          <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+        </div>
+      </div>
+      <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+      
+      <section>
+        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
+              <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
+            </div>
+            <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
+            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+        <nav class="space-y-2">
+          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
+            <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
+            <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+
+          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
+            <span class="text-xs font-bold">Sign Out</span>
+          </a>
+        </nav>
+      </section>
+
+    </div>
+
+    <div class="p-10 border-t border-gray-100">
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+        <span class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400">Active Secure Session</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // DASHBOARD TOGGLE LOGIC
+  function toggleDashboard(open) {
+    const overlay = document.getElementById('userDashboard');
+    const panel = document.getElementById('dashboardPanel');
+    
+    if (open) {
+      overlay.classList.remove('hidden');
+      setTimeout(() => {
+        overlay.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    } else {
+      panel.classList.add('translate-x-full');
+      overlay.classList.remove('opacity-100');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 500);
+    }
+  }
+
+  // Update your User Icon to trigger this:
+  // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+</script>
+
+
+
+</body>
+</html>

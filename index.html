@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northwall Compliance Group LLC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            onyx: '#050505',
+            royal: '#0A1F2E',
+            glass: 'rgba(255, 255, 255, 0.4)'
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], glam: ['Playfair Display', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-vessel {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    .side-cart {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-in { animation: slideIn 0.5s ease forwards; }
+  </style>
+</head>
+
+<body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
+    
+    <a href="index.html" class="flex items-center space-x-3 group shrink-0">
+      <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
+
+    </a>
+
+    <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
+      <a href="binders.html" class="text-onyx">Collections</a>
+      <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
+      <a href="about.html" class="hover:text-onyx transition-all">About</a>
+      <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-5 md:gap-8">
+      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+        <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
+          <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <span class="hidden md:block text-[9px] font-black uppercase tracking-widest text-gray-400">Account</span>
+      </button>
+
+      <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
+        <span class="text-xl">🛒</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </button>
+
+      <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
+        <span class="w-6 h-[2px] bg-onyx"></span>
+        <span class="w-4 h-[2px] bg-onyx ml-auto"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 z-[500] hidden opacity-0 transition-opacity duration-300">
+  <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <div id="mobilePanel" class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col">
+    
+    <div class="p-8 flex justify-between items-center border-b border-gray-100">
+      <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600"></span>
+      <button onclick="toggleMobileMenu(false)" class="text-3xl font-light text-onyx">&times;</button>
+    </div>
+
+    <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
+
+      <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Products</span>
+      </a>
+      <a href="whoweserve.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
+      </a>
+      <a href="about.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">About</span>
+      </a>
+      <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
+      </a>
+    </nav>
+
+    <div class="p-8 border-t border-gray-100">
+      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * REFINED SIDEBAR LOGIC
+ * High performance, zero-conflict script.
+ */
+function toggleMobileMenu(open) {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const panel = document.getElementById('mobilePanel');
+  
+  if (open) {
+    overlay.classList.remove('hidden');
+    // Force a browser reflow
+    void overlay.offsetWidth; 
+    overlay.classList.add('opacity-100');
+    panel.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  } else {
+    panel.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = ''; 
+    }, 500);
+  }
+}
+</script>
+
+
+<style>
+  /* Ensuring smooth transitions for the Billion Dollar feel */
+  #mobileMenuOverlay a {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+  <div id="cartOverlay" class="fixed inset-0 bg-onyx/20 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleCart(false)" class="absolute inset-0"></div>
+    <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
+      <div class="p-8 flex justify-between items-center border-b border-gray-100">
+        <h3 class="text-2xl font-glam">Your Cart</h3>
+        <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
+      </div>
+      <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
+      <div class="p-8 bg-white border-t border-gray-100 space-y-4">
+        <div class="flex justify-between text-xs font-black uppercase tracking-widest">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+<main>
+<main>
+<section class="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden bg-[#F8F9FA]">
+  
+  <div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80%] h-[60%] bg-blue-100/40 rounded-full blur-[160px] pointer-events-none"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 w-full">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-0">
+      
+      <div class="w-full lg:w-[550px] text-center lg:text-left space-y-12 order-2 lg:order-1">
+
+
+        <div class="space-y-4">
+          <h1 class="text-6xl md:text-[7.5rem] font-glam tracking-tighter leading-[0.8] text-onyx">
+            Surveyor <br/>
+            <span class="text-blue-600 italic">Proof.</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-400 font-medium uppercase tracking-[0.3em] pl-1">Infrastructure for Elite Care</p>
+        </div>
+
+        <p class="text-xl text-gray-500 font-light leading-relaxed max-w-lg mx-auto lg:mx-0 border-l border-gray-200 pl-8">
+          The gold standard in Minnesota compliance. Architected for zero-tag targets and total operational readiness.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center pt-4">
+          <a href="binders.html" class="group relative px-10 py-5 bg-onyx text-white rounded-xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] active:scale-95">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <span class="relative text-[10px] font-black uppercase tracking-[0.4em]">Begin Acquisition</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-[650px] order-1 lg:order-2 flex justify-center items-center perspective-monolith">
+        <div class="relative w-full aspect-[4/5] max-w-[420px]" id="shuffleStack">
+          
+          <div class="shuffle-card glass-vessel">
+            <img src="images/emp.png" alt="Emergency Prep">
+
+          </div>
+
+          <div class="shuffle-card glass-vessel">
+            <img src="images/poilcy.png" alt="Policy & Procedure">
+
+          </div>
+
+          <div class="shuffle-card glass-vessel">
+            <img src="images/st.png" alt="Staff Training">
+
+          </div>
+
+          <div class="shuffle-card glass-vessel">
+            <img src="images/temp.png" alt="MDH Templates">
+
+          </div>
+
+          <div class="shuffle-card glass-vessel">
+            <img src="images/fok.png" alt="Opening Kit">
+
+          </div>
+
+          <div class="shuffle-card glass-vessel active-bundle">
+            <img src="images/poilcy.png" alt="Northwall Bundle">
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .perspective-monolith { perspective: 2500px; }
+
+  #shuffleStack {
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .shuffle-card {
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+    border-radius: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.05);
+  }
+
+  .shuffle-card img {
+    width: 85%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+  }
+
+  .card-meta {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .card-meta .tag {
+    font-[900] text-[8px] uppercase tracking-[0.4em] opacity-40;
+  }
+
+  .card-meta .label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #050505;
+  }
+
+  /* Stack Positions */
+  .pos-0 { z-index: 50; transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
+  .pos-1 { z-index: 40; transform: translate3d(20px, -20px, -50px) rotate(2deg); opacity: 0.6; }
+  .pos-2 { z-index: 30; transform: translate3d(40px, -40px, -100px) rotate(4deg); opacity: 0.3; }
+  .pos-3 { z-index: 20; transform: translate3d(60px, -60px, -150px) rotate(6deg); opacity: 0.1; }
+  .pos-out { z-index: 60; transform: translate3d(-100%, 20%, 100px) rotate(-15deg); opacity: 0; }
+  .pos-hidden { opacity: 0; z-index: 10; transform: translate3d(80px, -80px, -200px); }
+</style>
+
+<script>
+  /**
+   * AUTOMATIC CARD SHUFFLE LOGIC
+   */
+  function startShuffle() {
+    const cards = Array.from(document.querySelectorAll('.shuffle-card'));
+    let currentIndex = 0;
+
+    function updatePositions() {
+      cards.forEach((card, i) => {
+        card.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-out', 'pos-hidden');
+        
+        // Logical relative index
+        const relIndex = (i - currentIndex + cards.length) % cards.length;
+
+        if (relIndex === 0) {
+          card.classList.add('pos-0');
+        } else if (relIndex === 1) {
+          card.classList.add('pos-1');
+        } else if (relIndex === 2) {
+          card.classList.add('pos-2');
+        } else if (relIndex === 3) {
+          card.classList.add('pos-3');
+        } else if (relIndex === cards.length - 1) {
+          card.classList.add('pos-out');
+        } else {
+          card.classList.add('pos-hidden');
+        }
+      });
+
+      currentIndex = (currentIndex + 1) % cards.length;
+    }
+
+    // Initial positioning
+    updatePositions();
+    
+    // Interval for automatic shuffle (3 seconds)
+    setInterval(updatePositions, 3500);
+  }
+
+  document.addEventListener('DOMContentLoaded', startShuffle);
+</script>
+
+
+
+<section class="relative py-24 px-6 md:px-12 bg-white overflow-hidden">
+  
+  <div class="absolute top-0 -left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-0 -right-20 w-96 h-96 bg-slate-200/50 rounded-full blur-[120px]"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    
+    <div class="mb-20 text-center">
+      <h2 class="text-xs uppercase tracking-[0.5em] text-blue-600 font-black mb-4">The Collection</h2>
+      <p class="text-4xl md:text-5xl font-glam text-gray-900">Premium Compliance Tiers</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <div role="button" 
+           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
+           onclick="toggleTier('tier1')">
+        
+        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-blue-100 to-gray-200 opacity-50"></div>
+        
+        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+          
+          <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/40 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
+
+          <span class="text-[10px] font-black tracking-widest text-blue-500 uppercase block mb-8">Edition 01</span>
+          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Core Policies</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Foundation of Licensing."</p>
+          
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span> Emergency Prep
+            </li>
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span> Policy Manual
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-2">
+            <span class="h-px w-8 bg-gray-900"></span>
+            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
+          </div>
+
+          <div id="tier1-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
+            <h4 class="text-sm font-black uppercase text-blue-600 mb-4 tracking-widest">Document Suite 01</h4>
+            <ul class="space-y-3 text-xs font-bold text-gray-700">
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>144G Surveyor Phrasing</span> <span>Included</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>80+ Editable Policies</span> <span>Word Doc</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Utility Redundancy</span> <span>Ready</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div role="button" 
+           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
+           onclick="toggleTier('tier2')">
+        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-blue-200 to-indigo-100 opacity-50"></div>
+        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+          
+          <span class="text-[10px] font-black tracking-widest text-indigo-500 uppercase block mb-8">Edition 02</span>
+          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Smart Logic</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Operational Brain."</p>
+          
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span> MDH Templates
+            </li>
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span> Startup Kits
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-2">
+            <span class="h-px w-8 bg-gray-900"></span>
+            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
+          </div>
+
+          <div id="tier2-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
+            <h4 class="text-sm font-black uppercase text-indigo-600 mb-4 tracking-widest">Efficiency Suite 02</h4>
+            <ul class="space-y-3 text-xs font-bold text-gray-700">
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Staff Knowledge Tools</span> <span>Digital</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Onboarding Kits</span> <span>Pro</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Audit-Ready Logs</span> <span>Automated</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div role="button" 
+           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
+           onclick="toggleTier('tier3')">
+        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-slate-300 to-blue-200 opacity-50"></div>
+        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+          
+          <span class="text-[10px] font-black tracking-widest text-slate-600 uppercase block mb-8">Edition 03</span>
+          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Advanced Survey</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Citation Shield."</p>
+          
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-slate-800 shadow-[0_0_10px_#1e293b]"></span> Mock Surveys
+            </li>
+            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
+              <span class="flex h-2 w-2 rounded-full bg-slate-800 shadow-[0_0_10px_#1e293b]"></span> Engineer Kits
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-2">
+            <span class="h-px w-8 bg-gray-900"></span>
+            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
+          </div>
+
+          <div id="tier3-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
+            <h4 class="text-sm font-black uppercase text-slate-800 mb-4 tracking-widest">Strategy Suite 03</h4>
+            <ul class="space-y-3 text-xs font-bold text-gray-700">
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Full Drill Scripts</span> <span>included</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Mechanical Walkthroughs</span> <span>Pro</span></li>
+              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Tag Prevention Maps</span> <span>Critical</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up {
+    animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .glass-card:hover .relative {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+</style>
+
+<script>
+  function toggleTier(tierId) {
+    const details = document.getElementById(tierId + '-details');
+    // Toggle the hidden class
+    if (details.classList.contains('hidden')) {
+      details.classList.remove('hidden');
+    } else {
+      details.classList.add('hidden');
+    }
+  }
+</script>
+
+
+
+<!-- SECTION 3: SOCIAL PROOF -->
+<section id="social-proof" class="relative bg-white py-24 px-6 overflow-hidden">
+  
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-50/50 rounded-full blur-[120px] -z-10"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    
+    <div class="text-center mb-20">
+      <h2 class="text-[10px] uppercase tracking-[0.6em] text-blue-600 font-black mb-4">Proven Excellence</h2>
+      <h3 class="text-4xl md:text-6xl font-glam text-gray-900 leading-tight tracking-tighter">
+        We Worry. <br/> <span class="text-gray-400 italic">So You Don't Have to.</span>
+      </h3>
+    </div>
+
+    <div class="relative group mb-20 max-w-4xl mx-auto">
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      
+      <div class="relative bg-white/40 backdrop-blur-3xl border border-white/80 rounded-[2.5rem] p-10 md:p-16 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] overflow-hidden">
+        <div class="absolute top-6 left-10 text-8xl font-serif text-blue-600/10 select-none">“</div>
+        
+        <p class="relative text-2xl md:text-4xl font-glam italic text-gray-900 leading-tight mb-8">
+          “We passed our MDH survey with <span class="text-blue-600">no tags.</span> The binder was flawless. I’d never use anything else.”
+        </p>
+        
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-gradient-to-br from-gray-900 to-gray-600 flex items-center justify-center text-white font-bold text-xs shadow-lg">LD</div>
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-gray-900">Licensed Director</p>
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Minnesota Health Systems</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      
+      <div class="glass-tile group">
+        <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">“Our nurse said it was the cleanest emergency plan she’s seen in 15 years.”</p>
+        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+      </div>
+
+      <div class="glass-tile group">
+        <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">“Every section was exactly where the reviewer expected it to be. Precision work.”</p>
+        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+      </div>
+
+      <div class="glass-tile group">
+        <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">“Northwall made our audit feel easy. The peace of mind is worth every penny.”</p>
+        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <div class="inline-flex flex-col items-center">
+        <div class="flex gap-1 mb-3">
+          <span class="text-yellow-500 text-xl">★</span>
+          <span class="text-yellow-500 text-xl">★</span>
+          <span class="text-yellow-500 text-xl">★</span>
+          <span class="text-yellow-500 text-xl">★</span>
+          <span class="text-yellow-500 text-xl text-opacity-50">★</span>
+        </div>
+        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-900">
+          Rated <span class="text-blue-600">4.9</span> By Licensed Directors and RNs
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .glass-tile {
+    @apply bg-white/30 backdrop-blur-xl border border-white/60 p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.02)] transition-all duration-500;
+  }
+  
+  .glass-tile:hover {
+    @apply -translate-y-2 bg-white/50 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-white;
+  }
+
+  /* Optional smooth text balance */
+  .font-glam {
+    font-family: 'Playfair Display', serif;
+    text-wrap: balance;
+  }
+</style>
+
+
+<section class="relative py-0 px-6 overflow-hidden bg-white">
+  
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-100/30 rounded-full blur-[100px] -z-10"></div>
+
+  <div class="max-w-4xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+      
+      <a href="binders.html" 
+         class="group relative w-full md:w-auto px-10 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(30,58,138,0.2)]">
+        <div class="absolute inset-0 bg-blue-600/90 backdrop-blur-md transition-all group-hover:bg-blue-700"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/20 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
+        
+        <span class="relative flex items-center justify-center gap-3 text-white font-black uppercase tracking-[0.2em] text-sm">
+          Explore Binders 
+          <span class="text-lg transition-transform duration-300 group-hover:translate-x-2">→</span>
+        </span>
+      </a>
+
+      <a href="quote.html" 
+         class="group relative w-full md:w-auto px-10 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(5,150,105,0.2)]">
+        <div class="absolute inset-0 bg-emerald-600/90 backdrop-blur-md transition-all group-hover:bg-emerald-700 border border-white/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/20 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
+        
+        <span class="relative flex items-center justify-center gap-3 text-white font-black uppercase tracking-[0.2em] text-sm">
+          Request Custom Quote
+          <span class="text-lg transition-transform duration-300 group-hover:translate-x-2">→</span>
+        </span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+</section>
+<section id="accountPrompt" class="relative py-24 px-6 overflow-hidden bg-white">
+  
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-50/60 rounded-full blur-[120px] -z-10"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-100/60 rounded-full blur-[120px] -z-10"></div>
+
+  <div class="max-w-5xl mx-auto relative">
+    
+    <div class="relative backdrop-blur-3xl bg-white/40 border border-white/80 rounded-[3rem] p-12 md:p-20 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] overflow-hidden text-center group">
+      
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/40 rounded-full blur-3xl transition-transform duration-1000 group-hover:scale-150"></div>
+
+      <div class="inline-flex items-center justify-center w-16 h-16 mb-8 rounded-2xl bg-white shadow-sm border border-gray-100 text-2xl">
+        🔐
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-glam text-gray-900 mb-6 tracking-tighter">
+Already Have a Northwall Account?
+     </h2>
+      
+      <p class="text-sm md:text-base text-gray-500 font-medium max-w-xl mx-auto mb-12 leading-relaxed tracking-wide">
+Log in to save your quiz results, binder preferences, and track your order history.       </p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-6 relative z-10">
+        
+        <a href="login.html" 
+           class="group relative w-full sm:w-64 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
+          <div class="absolute inset-0 bg-gray-900 transition-all group-hover:bg-black"></div>
+          <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/10 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
+          
+          <span class="relative text-xs font-black uppercase tracking-[0.3em] text-white">
+            Login
+          </span>
+        </a>
+
+        <a href="createlogin.html" 
+           class="group relative w-full sm:w-64 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)]">
+          <div class="absolute inset-0 bg-white/60 backdrop-blur-md border border-white/80"></div>
+          <div class="absolute inset-0 bg-gray-50/0 group-hover:bg-gray-50/100 transition-colors"></div>
+          
+          <span class="relative text-xs font-black uppercase tracking-[0.3em] text-gray-900">
+            Create Account
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    
+<section id="quiz" class="relative py-24 px-6 overflow-hidden bg-white">
+  
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-50/40 rounded-full blur-[120px] -z-10"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <div class="mb-12">
+      <h2 class="text-xs uppercase tracking-[0.5em] text-blue-600 font-black mb-4">Product Finder Quiz</h2>
+      <h3 class="text-4xl md:text-5xl font-glam text-gray-900 leading-tight">Identify Your <span class="italic text-gray-400">Compliance Gap.</span></h3>
+    </div>
+    
+    <div id="quizStarter">
+      <button onclick="showQuiz()" class="group relative px-12 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1">
+        <div class="absolute inset-0 bg-gray-900 group-hover:bg-black transition-colors"></div>
+        <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/10 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
+        <span class="relative text-xs font-black uppercase tracking-[0.3em] text-white">Begin Diagnostic →</span>
+      </button>
+    </div>
+    
+    <form id="binderQuiz" class="hidden opacity-0 scale-95 transition-all duration-1000 transform space-y-12 text-left bg-white/40 backdrop-blur-3xl border border-white/80 p-8 md:p-16 rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)]">
+      
+      <div class="space-y-6">
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100 pb-2">1. License Structure</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="glass-option">
+            <input type="radio" name="license" value="18-65" class="hidden peer">
+            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold tracking-wide">
+              18-65
+            </div>
+          </label>
+          <label class="glass-option">
+            <input type="radio" name="license" value="55+" class="hidden peer">
+            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold tracking-wide">
+              55+
+            </div>
+          </label>
+        </div>
+      </div>
+      
+      <div class="space-y-6">
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100 pb-2">2. Citation History</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <label class="glass-option">
+            <input type="radio" name="citations" value="Yes" class="hidden peer">
+            <div class="peer-checked:bg-blue-600 peer-checked:text-white transition-all duration-300 p-5 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-xs font-black uppercase tracking-widest text-center">Yes</div>
+          </label>
+          <label class="glass-option">
+            <input type="radio" name="citations" value="No" class="hidden peer">
+            <div class="peer-checked:bg-blue-600 peer-checked:text-white transition-all duration-300 p-5 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-xs font-black uppercase tracking-widest text-center">No</div>
+          </label>
+          <label class="glass-option">
+            <input type="radio" name="citations" value="NotSure" class="hidden peer">
+            <div class="peer-checked:bg-blue-600 peer-checked:text-white transition-all duration-300 p-5 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-xs font-black uppercase tracking-widest text-center">Not Sure</div>
+          </label>
+        </div>
+      </div>
+      
+      <div class="space-y-6">
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100 pb-2">3. Area Of Need</h3>
+        <div class="space-y-3">
+          <label class="glass-option block">
+            <input type="radio" name="weakness" value="Emergency" class="hidden peer">
+            <div class="peer-checked:border-blue-600 peer-checked:bg-blue-50/50 transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold flex justify-between items-center">
+              <span>Emergency Plans & Drills</span>
+              <span class="text-blue-600 opacity-0 peer-checked:opacity-100">✔</span>
+            </div>
+          </label>
+          <label class="glass-option block">
+            <input type="radio" name="weakness" value="Policies" class="hidden peer">
+            <div class="peer-checked:border-blue-600 peer-checked:bg-blue-50/50 transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold flex justify-between items-center">
+              <span>Policies & Procedures</span>
+              <span class="text-blue-600 opacity-0 peer-checked:opacity-100">✔</span>
+            </div>
+          </label>
+          <label class="glass-option block">
+            <input type="radio" name="weakness" value="Both" class="hidden peer">
+            <div class="peer-checked:border-blue-600 peer-checked:bg-blue-50/50 transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold flex justify-between items-center">
+              <span>Comprehensive Coverage (Both Areas)</span>
+              <span class="text-blue-600 opacity-0 peer-checked:opacity-100">✔</span>
+            </div>
+          </label>
+        </div>
+      </div>
+      
+      <div class="text-center pt-8">
+        <button type="submit" class="w-full md:w-auto px-16 py-5 bg-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-black transition-all shadow-xl">
+          Generate Match
+        </button>
+      </div>
+    </form>
+    
+    <div id="quizResult" class="hidden mt-12 animate-slide-up text-center bg-white border border-blue-100 p-12 md:p-16 rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(59,130,246,0.15)] max-w-2xl mx-auto overflow-hidden relative">
+      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400"></div>
+      
+      <h4 class="text-xs font-black uppercase tracking-[0.4em] text-blue-600 mb-6">Recommended Selection</h4>
+      <p id="resultText" class="text-2xl md:text-3xl font-glam text-gray-900 mb-10 leading-tight"></p>
+      
+      <a id="resultLink" href="#" class="inline-flex items-center gap-4 px-10 py-5 bg-blue-600 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all shadow-lg">
+        Explore Inside <span class="text-lg">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .glass-option:hover div {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  }
+</style>
+
+</main>
+<footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
+  
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-800/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-[1600px] mx-auto relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+      
+      <div class="lg:col-span-5 space-y-10">
+        <div class="flex items-center space-x-4">
+          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90">
+          <div class="text-white">
+            <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
+            <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
+          </div>
+        </div>
+        <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">
+          The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.
+        </p>
+
+      </div>
+
+      <div class="lg:col-span-3 space-y-10">
+        <ul class="space-y-4">
+          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="whoweserve.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4 space-y-10">
+        <div class="space-y-6">
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+          </div>
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="space-y-2">
+        <div class="flex flex-wrap gap-6 text-[9px] font-black uppercase tracking-[0.3em] text-white/40">
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Privacy Policy</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
+        </div>
+      </div>
+      
+
+
+    </div>
+
+    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">
+© 2026 Northwall Compliance Group LLC. Built in MN.    </p>
+  </div>
+
+  <a href="quote.html"
+     class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+    </span>
+    Request Quote
+  </a>
+</footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
+
+    function addToCart(name, price, img) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) { cart[index].qty += 1; } 
+      else { cart.push({ name, price, img, qty: 1 }); }
+      saveCart();
+      toggleCart(true);
+    }
+
+    function removeOne(name) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) {
+        if (cart[index].qty > 1) { cart[index].qty -= 1; } 
+        else { cart.splice(index, 1); }
+      }
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('northwall_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function toggleCart(open) {
+      const overlay = document.getElementById('cartOverlay');
+      const sideCart = document.getElementById('sideCart');
+      if (open) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          sideCart.classList.remove('translate-x-full');
+        }, 10);
+      } else {
+        sideCart.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => overlay.classList.add('hidden'), 500);
+      }
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartContent');
+      const badge = document.getElementById('cartBadge');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      container.innerHTML = cart.length === 0 ? '<p class="text-xs text-gray-400 text-center pt-20">Your Cart is empty.</p>' : '';
+      let total = 0;
+      let count = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        container.innerHTML += `
+          <div class="flex gap-6 animate-in">
+            <div class="h-20 w-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 shrink-0"><img src="${item.img}" class="h-full w-auto"></div>
+            <div class="flex-1">
+              <h4 class="text-sm font-glam mb-1">${item.name}</h4>
+              <div class="flex items-center gap-4">
+                 <button onclick="removeOne('${item.name}')" class="text-gray-300 hover:text-onyx">-</button>
+                 <span class="text-xs font-bold">${item.qty}</span>
+                 <button onclick="addToCart('${item.name}', ${item.price}, '${item.img}')" class="text-gray-300 hover:text-onyx">+</button>
+                 <span class="text-[10px] ml-auto font-black">$${(item.price * item.qty).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+      });
+      badge.innerText = count;
+      subtotalEl.innerText = `$${total.toFixed(2)}`;
+    }
+    window.onload = renderCart;
+  </script>
+  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+  <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+  
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+    
+    <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+        <div>
+          <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+        </div>
+      </div>
+      <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+      
+      <section>
+        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
+              <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
+            </div>
+            <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
+            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+        <nav class="space-y-2">
+          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
+            <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
+            <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+
+          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
+            <span class="text-xs font-bold">Sign Out</span>
+          </a>
+        </nav>
+      </section>
+
+    </div>
+
+    <div class="p-10 border-t border-gray-100">
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+        <span class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400">Active Secure Session</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // DASHBOARD TOGGLE LOGIC
+  function toggleDashboard(open) {
+    const overlay = document.getElementById('userDashboard');
+    const panel = document.getElementById('dashboardPanel');
+    
+    if (open) {
+      overlay.classList.remove('hidden');
+      setTimeout(() => {
+        overlay.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    } else {
+      panel.classList.add('translate-x-full');
+      overlay.classList.remove('opacity-100');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 500);
+    }
+  }
+
+  // Update your User Icon to trigger this:
+  // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+</script>
+  <div id="legalModal" class="fixed inset-0 z-[1000] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4 md:p-10">
+  <div onclick="toggleLegal(false)" class="absolute inset-0 bg-onyx/60 backdrop-blur-xl"></div>
+  
+  <div class="relative w-full max-w-5xl max-h-[90vh] bg-white/90 backdrop-blur-2xl rounded-[3rem] shadow-[0_50px_100px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden border border-white translate-y-10 transition-transform duration-500" id="legalContent">
+    
+    <div class="p-8 md:p-12 border-b border-gray-100 flex justify-between items-center bg-white/50">
+      <div>
+        <h1 class="text-2xl md:text-4xl font-glam text-onyx">Legal & Security Policy</h1>
+      </div>
+      <button onclick="toggleLegal(false)" class="h-12 w-12 rounded-full border border-gray-200 flex items-center justify-center text-2xl hover:bg-onyx hover:text-white transition-all">&times;</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-8 md:p-20 custom-scroll text-gray-800 leading-relaxed text-[17px]">
+      
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Terms of Service</h2>
+        <p>By accessing or using any services, documents, training, or content offered by Northwall Compliance Group LLC (“Northwall”), you agree to these Terms of Service. These terms govern all purchases, communications, and website use.</p>
+        
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>Northwall reserves the right to update or modify these terms.</li>
+          <li>All materials sold are for use by the purchasing facility and may not be redistributed, resold, or shared without explicit written permission.</li>
+        </ul>
+      </section>
+      
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Privacy Policy</h2>
+        <p>Your privacy is extremely important to us. This policy outlines how Northwall collects, uses, and protects your data when you interact with our website or request quotes.</p>
+        
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>We collect basic information (name, facility, email, services) through our quote form strictly for internal use in generating custom pricing and service alignment.</li>
+          <li>We do not sell, rent, or share your information with third parties.</li>
+          <li>All submissions are transmitted securely via SSL encryption. Optional uploads (e.g., MDH tag letters) are deleted after use and not stored long-term.</li>
+          <li>Your information may be retained for follow-up, invoice documentation, or licensing verification, in compliance with applicable business and health regulations.</li>
+          <li>You may request deletion of your data at any time by emailing
+          <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
+        </ul>
+      </section>
+      
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Refund Policy</h2>
+        <p>Due to the nature of our intellectual property and the custom-built nature of our binders, all sales are final. However, Northwall offers fairness and integrity in every transaction.</p>
+        
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>No refunds will be issued once a PDF binder or physical binder has been delivered or downloaded.</li>
+          <li>If a document error occurs due to our team (e.g., outdated or incorrect info, mislabeling), we will correct and resend free of charge within 5 business days.</li>
+          <li>In rare cases of duplicate charges or proven billing errors, refunds will be reviewed upon written request within 7 days of purchase.</li>
+          <li>All disputes must be submitted in writing to <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
+        </ul>
+      </section>
+
+      <div class="pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
+        <img src="images/logo.png" class="h-10 grayscale mb-4">
+        <p class="text-[8px] font-black uppercase tracking-[1em]">Verified Policy Document 2026</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleLegal(open) {
+    const modal = document.getElementById('legalModal');
+    const content = document.getElementById('legalContent');
+    
+    if (open) {
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.add('opacity-100');
+        content.classList.remove('translate-y-10');
+      }, 10);
+      document.body.style.overflow = 'hidden'; // Lock background scroll
+    } else {
+      modal.classList.remove('opacity-100');
+      content.classList.add('translate-y-10');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Unlock scroll
+      }, 500);
+    }
+  }
+ 
+</script>
+
+<script>
+  function showQuiz() {
+  const starter = document.getElementById('quizStarter');
+  const quiz = document.getElementById('binderQuiz');
+  
+  starter.classList.add('hidden');
+  quiz.classList.remove('hidden');
+  
+  // Trigger fade-in
+  setTimeout(() => {
+    quiz.classList.remove('opacity-0', 'scale-95');
+    quiz.classList.add('opacity-100', 'scale-100');
+    quiz.scrollIntoView({ behavior: 'smooth' });
+  }, 10);
+}
+
+document.getElementById('binderQuiz').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const license = document.querySelector('input[name="license"]:checked')?.value;
+  const citations = document.querySelector('input[name="citations"]:checked')?.value;
+  const weakness = document.querySelector('input[name="weakness"]:checked')?.value;
+  
+  const resultBox = document.getElementById('quizResult');
+  const resultText = document.getElementById('resultText');
+  const resultLink = document.getElementById('resultLink');
+  
+  let text = '';
+  let link = '';
+  
+  if (weakness === 'Both') {
+    text = "The Northwall Bundle is your best option. It includes both Emergency + Policy binders.";
+    link = 'quote.html';
+  } else if (weakness === 'Emergency') {
+    text = "You should prioritize the Emergency Preparedness Binder. It's surveyor-approved and includes drills, checklists, and more.";
+    link = 'quote.html';
+  } else if (weakness === 'Policies') {
+    text = "We recommend starting with the Policy & Procedure Binder. It covers MDH-aligned P&Ps and editable Word docs.";
+    link = 'quote.html';
+  } else {
+    text = "Please complete all questions to get a recommendation.";
+    link = '#quiz';
+  }
+  
+  resultText.textContent = text;
+  resultLink.href = link;
+  resultBox.classList.remove('hidden');
+  resultBox.scrollIntoView({ behavior: 'smooth' });
+});
+
+const images = [
+  'images/hero.png',
+  'images/emp.png',
+  'images/poilcy.png',
+  'images/sample1.jpg',
+  'images/sample2.jpg'
+];
+// Appear after scrolling 60%
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('floatingTestimonial');
+  if (window.scrollY > window.innerHeight * 0.6) {
+    el.classList.remove('hidden');
+  } else {
+    el.classList.add('hidden');
+  }
+});
+
+
+function toggleTier(tierId) {
+  const modal = document.getElementById('tierModal');
+  const title = document.getElementById('tierModalTitle');
+  const content = document.getElementById('tierModalContent');
+  
+  const detail = document.getElementById(`${tierId}-details`);
+  if (!detail) return;
+  
+  // Copy the content and title from the card
+  const cardTitle = detail.parentElement.querySelector('h3').textContent;
+  const cardDetails = detail.innerHTML;
+  
+  // Fill modal
+  title.textContent = cardTitle;
+  content.innerHTML = cardDetails;
+  
+  // Show modal
+  modal.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden'); // prevent background scroll
+}
+
+function closeTierModal() {
+  document.getElementById('tierModal').classList.add('hidden');
+  document.body.classList.remove('overflow-hidden');
+}
+
+// Outside click listener (only fires when modal is open)
+document.getElementById('tierModal').addEventListener('click', function(e) {
+  if (e.target.id === 'tierModal') {
+    closeTierModal();
+  }
+});
+</script>
+
+
+
+<style>
+  /* Clean scrollbar for the legal window */
+  .custom-scroll::-webkit-scrollbar { width: 4px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #050505; border-radius: 10px; }
+</style>
+
+
+</body>
+</html>

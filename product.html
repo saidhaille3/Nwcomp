@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Collections | Northwall Compliance Group</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            onyx: '#050505',
+            royal: '#0A1F2E',
+            glass: 'rgba(255, 255, 255, 0.4)'
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], glam: ['Playfair Display', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-vessel {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    .side-cart {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-in { animation: slideIn 0.5s ease forwards; }
+  </style>
+</head>
+
+<body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
+    
+    <a href="index.html" class="flex items-center space-x-3 group shrink-0">
+      <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
+
+
+    </a>
+
+    <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
+      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
+      <a href="binders.html" class="text-onyx">Products</a>
+      <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
+      <a href="about.html" class="hover:text-onyx transition-all">About</a>
+      <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-5 md:gap-8">
+      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+        <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
+          <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <span class="hidden md:block text-[9px] font-black uppercase tracking-widest text-gray-400">Account</span>
+      </button>
+
+      <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
+        <span class="text-xl">🛒</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </button>
+
+      <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
+        <span class="w-6 h-[2px] bg-onyx"></span>
+        <span class="w-4 h-[2px] bg-onyx ml-auto"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 z-[500] hidden opacity-0 transition-opacity duration-300">
+  <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <div id="mobilePanel" class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col">
+    
+    <div class="p-8 flex justify-between items-center border-b border-gray-100">
+      <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600"></span>
+      <button onclick="toggleMobileMenu(false)" class="text-3xl font-light text-onyx">&times;</button>
+    </div>
+
+    <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
+      <a href="index.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Home</span>
+      </a>
+      <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx  transition-all">Products</span>
+      </a>
+      <a href="whoweserve.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Who We Serve</span>
+      </a>
+      <a href="about.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover: transition-all">About</span>
+      </a>
+      <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Contact</span>
+      </a>
+    </nav>
+
+    <div class="p-8 border-t border-gray-100">
+      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * REFINED SIDEBAR LOGIC
+ * High performance, zero-conflict script.
+ */
+function toggleMobileMenu(open) {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const panel = document.getElementById('mobilePanel');
+  
+  if (open) {
+    overlay.classList.remove('hidden');
+    // Force a browser reflow
+    void overlay.offsetWidth; 
+    overlay.classList.add('opacity-100');
+    panel.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  } else {
+    panel.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = ''; 
+    }, 500);
+  }
+}
+</script>
+
+
+<style>
+  /* Ensuring smooth transitions for the Billion Dollar feel */
+  #mobileMenuOverlay a {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+  <div id="cartOverlay" class="fixed inset-0 bg-onyx/20 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleCart(false)" class="absolute inset-0"></div>
+    <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
+      <div class="p-8 flex justify-between items-center border-b border-gray-100">
+        <h3 class="text-2xl font-glam">Your Cart</h3>
+        <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
+      </div>
+      <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
+      <div class="p-8 bg-white border-t border-gray-100 space-y-4">
+        <div class="flex justify-between text-xs font-black uppercase tracking-widest">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Billionaire Glass Physics - High Refraction */
+    .glass-vessel {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 1);
+      box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08);
+    }
+    .spec-line { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+    .float-binder { animation: subtle-float 8s ease-in-out infinite; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #050505; border-radius: 10px; }
+    
+    .text-silk {
+      background: linear-gradient(45deg, #050505 30%, #4b5563 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+
+
+
+<main class="relative pt-32 lg:pt-48 pb-32 px-6 max-w-[1600px] mx-auto overflow-visible">
+  
+  <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+    
+    <div class="w-full lg:w-5/12 lg:sticky lg:top-40 self-start">
+      <div class="glass-vessel rounded-[4rem] p-8 md:p-16 aspect-square lg:aspect-[4/5] flex items-center justify-center relative overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]"></div>
+        <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-slate-200/50 rounded-full blur-[120px]"></div>
+        
+        <div class="relative z-10 float-binder w-full flex justify-center">
+          <img id="productImage" src="" class="h-[280px] md:h-[500px] w-auto filter drop-shadow-[0_60px_100px_rgba(0,0,0,0.25)] object-contain" alt="Binder Preview">
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-7/12 space-y-20">
+      
+      <section class="space-y-10">
+<div class="flex flex-wrap items-center gap-5">
+  <span id="productCategory" class="px-6 py-2 bg-blue-600 text-white text-[9px] font-black uppercase tracking-[0.4em] rounded-full shadow-lg shadow-blue-900/10"></span>
+</div>
+
+        <h1 id="productTitle" class="text-6xl md:text-[7rem] font-glam tracking-tighter leading-[0.85] text-silk"></h1>
+        <p id="productDescription" class="text-xl md:text-2xl text-gray-500 font-light leading-relaxed max-w-3xl border-l-2 border-blue-50 pl-8"></p>
+      </section>
+
+      <section class="glass-vessel rounded-[3.5rem] p-10 md:p-14 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-8 opacity-[0.03]">
+            <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9l-7-7zm0 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        </div>
+        <h3 class="text-[10px] font-black uppercase tracking-[0.6em] text-blue-600 mb-14">Specifications</h3>
+        <div class="grid grid-cols-1 gap-10">
+          <div class="spec-line pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
+            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">License Alignment</span>
+            <span id="specLicense" class="text-xl font-glam  text-onyx"></span>
+          </div>
+          <div class="spec-line pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
+            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Regulatory Focus</span>
+            <span id="specFocus" class="text-xl font-glam  text-onyx"></span>
+          </div>
+          <div class="spec-line pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
+            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Type</span>
+            <span class="text-xl font-glam  text-onyx">Physical</span>
+          </div>
+          <div class="spec-line pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
+             <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Compliance Window</span>
+             <span class="text-xl font-glam  text-onyx">12-Month Updates Included</span>
+          </div>
+        </div>
+      </section>
+
+<div class="flex flex-col md:flex-row items-stretch md:items-center gap-6 pt-10">
+    <div class="text-7xl font-glam text-onyx tracking-tighter shrink-0" id="productPrice"></div>
+    
+    <div class="flex-1 flex flex-col sm:flex-row gap-4">
+        <button id="addBtn" class="flex-1 py-7 border-2 border-onyx text-onyx text-[10px] font-black uppercase tracking-[0.5em] rounded-2xl transition-all hover:bg-onyx hover:text-white active:scale-95">
+            Add to Cart
+        </button>
+
+        <button id="buyNowBtn" class="flex-1 py-7 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.5em] rounded-2xl transition-all hover:bg-blue-700 hover:shadow-[0_20px_50px_rgba(37,99,235,0.3)] hover:-translate-y-1 active:scale-95 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            Buy Now
+        </button>
+    </div>
+</div>
+
+<script>
+    /**
+     * ELITE TRANSACTION LOGIC
+     */
+    function initProductActions() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id') || 'bundle';
+        const data = products[id];
+
+        if (data) {
+            // ADD TO CART LOGIC
+            document.getElementById('addBtn').onclick = () => {
+                if(typeof addToCart === 'function') {
+                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+                }
+            };
+
+            // BUY NOW LOGIC (Adds to cart + Direct Redirect)
+            document.getElementById('buyNowBtn').onclick = () => {
+                if(typeof addToCart === 'function') {
+                    // Force add to cart
+                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+                    // Immediate Handoff to Checkout
+                    window.location.href = "checkout.html";
+                }
+            };
+        }
+    }
+
+    // Call this inside your existing window.onload
+    const originalInit = window.onload;
+    window.onload = () => {
+        if(originalInit) originalInit();
+        initProductActions();
+    };
+</script>
+
+
+      <div class="pt-16 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="flex gap-6 items-start">
+          <div class="h-14 w-14 rounded-2xl bg-white shadow-xl flex items-center justify-center text-blue-600 shrink-0 border border-gray-50">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-black uppercase tracking-[0.3em] mb-2 text-onyx">Surveyor Shield</h4>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">Engineered to pass MDH & DHS inspections with absolute zero-tag targets.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="h-14 w-14 rounded-2xl bg-white shadow-xl flex items-center justify-center text-blue-600 shrink-0 border border-gray-50">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-black uppercase tracking-[0.3em] mb-2 text-onyx">Secure Logistics</h4>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">Confidential courier shipping and encrypted digital handoff included.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+    const products = {
+        emergency: {
+            title: "Emergency <br/><span class='text-gray-300  font-normal'>Prep</span>",
+            category: "Foundational 01",
+            model: "NW-EP-100",
+            price: 225,
+            img: "images/emp.png",
+            desc: "The life-safety cornerstone. Integrated fire safety, relocation logistics, and crisis command structures built for high-stakes compliance.",
+            license: "144G Residential",
+            focus: "Life Safety & Disaster Mitigation"
+        },
+        policy: {
+            title: "Policy & <br/><span class='text-gray-300  font-normal'>Procedure</span>",
+            category: "Standard 02",
+            model: "NW-PP-200",
+            price: 250,
+            img: "images/poilcy.png",
+            desc: "Your facility's operational constitution. Rigorously mapped to MN statutes to transform complex law into seamless staff workflow.",
+            license: "144G Assisted Living",
+            focus: "Operational Statutory Governance"
+        },
+        bundle: {
+            title: "Northwall <br/><span class='text-gray-300  font-normal'>Bundle</span>",
+            category: "Executive Bundle",
+            price: 500,
+            img: "images/poilcy.png",
+            desc: "The complete institutional defense suite. Every manual, every form, and every emergency protocol unified into a single high-performance system.",
+            license: "Master Portfolio Set",
+            focus: "MDH Audit"
+        },
+        training: {
+            title: "Staff <br/><span class='text-gray-300 font-normal'>Training</span>",
+            category: "Educational 03",
+            price: 75,
+            img: "images/st.png",
+            desc: "Competencies, quizzes, and test templates to ensure team compliance.",
+            license: "144G Training Standards",
+            focus: "Staff Competency Verification"
+        },
+        templates: {
+            title: "MDH <br/><span class='text-gray-300  font-normal'>Templates</span>",
+            category: "Operational 04",
+            price: 50,
+            img: "images/temp.png",
+            desc: "MDH compliant templates for daily logs and data collection.",
+            license: "Form & Documentation",
+            focus: "Operational Documentation"
+        },
+        kit: {
+            title: "Facility Opening <br/><span class='text-gray-300  font-normal'>Kit</span>",
+            category: "Strategic 05",
+            price: 50,
+            img: "images/fok.png",
+            desc: "MDH engineering checklists and all legally required facility postings.",
+            license: "Facility Launch Bundle",
+            focus: "Startup Compliance"
+        }
+    };
+
+    function initProductPage() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        
+        // Debug: log what we're getting
+        console.log('URL ID parameter:', id);
+        console.log('Trimmed ID:', id ? id.trim() : 'null');
+        
+        // Trim whitespace from the ID
+        const cleanId = id ? id.trim() : 'bundle';
+        const data = products[cleanId];
+
+        console.log('Looking for product:', cleanId);
+        console.log('Product data found:', data);
+
+        if (data) {
+            document.getElementById('productTitle').innerHTML = data.title;
+            document.getElementById('productCategory').innerText = data.category;
+            document.getElementById('productPrice').innerText = `$${data.price}.00`;
+            document.getElementById('productImage').src = data.img;
+            document.getElementById('productDescription').innerText = data.desc;
+            document.getElementById('specLicense').innerText = data.license;
+            document.getElementById('specFocus').innerText = data.focus;
+        } else {
+            console.error('Product not found for ID:', cleanId);
+            console.log('Available products:', Object.keys(products));
+        }
+    }
+
+    function initProductActions() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const cleanId = id ? id.trim() : 'bundle';
+        const data = products[cleanId];
+
+        if (data) {
+            // ADD TO CART LOGIC
+            document.getElementById('addBtn').onclick = () => {
+                if(typeof addToCart === 'function') {
+                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+                }
+            };
+
+            // BUY NOW LOGIC
+            document.getElementById('buyNowBtn').onclick = () => {
+                if(typeof addToCart === 'function') {
+                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+                    window.location.href = "checkout.html";
+                }
+            };
+        }
+    }
+
+    // Initialize everything when page loads
+    window.addEventListener('DOMContentLoaded', function() {
+        initProductPage();
+        initProductActions();
+        if(typeof renderCart === 'function') {
+            renderCart();
+        }
+    });
+</script>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
+    
+    function addToCart(name, price, img) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) { cart[index].qty += 1; }
+      else { cart.push({ name, price, img, qty: 1 }); }
+      saveCart();
+      toggleCart(true);
+    }
+    
+    function removeOne(name) {
+      const index = cart.findIndex(item => item.name === name);
+      if (index > -1) {
+        if (cart[index].qty > 1) { cart[index].qty -= 1; }
+        else { cart.splice(index, 1); }
+      }
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem('northwall_cart', JSON.stringify(cart));
+      renderCart();
+    }
+    
+    function toggleCart(open) {
+      const overlay = document.getElementById('cartOverlay');
+      const sideCart = document.getElementById('sideCart');
+      if (open) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          sideCart.classList.remove('translate-x-full');
+        }, 10);
+      } else {
+        sideCart.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => overlay.classList.add('hidden'), 500);
+      }
+    }
+    
+    function renderCart() {
+      const container = document.getElementById('cartContent');
+      const badge = document.getElementById('cartBadge');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      container.innerHTML = cart.length === 0 ? '<p class="text-xs text-gray-400 text-center pt-20">Your cart is empty.</p>' : '';
+      let total = 0;
+      let count = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+        container.innerHTML += `
+          <div class="flex gap-6 animate-in">
+            <div class="h-20 w-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 shrink-0"><img src="${item.img}" class="h-full w-auto"></div>
+            <div class="flex-1">
+              <h4 class="text-sm font-glam mb-1">${item.name}</h4>
+              <div class="flex items-center gap-4">
+                 <button onclick="removeOne('${item.name}')" class="text-gray-300 hover:text-onyx">-</button>
+                 <span class="text-xs font-bold">${item.qty}</span>
+                 <button onclick="addToCart('${item.name}', ${item.price}, '${item.img}')" class="text-gray-300 hover:text-onyx">+</button>
+                 <span class="text-[10px] ml-auto font-black">$${(item.price * item.qty).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+      });
+      badge.innerText = count;
+      subtotalEl.innerText = `$${total.toFixed(2)}`;
+    }
+    window.onload = renderCart;
+  </script>
+  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+    
+    <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+      
+      <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+          <div>
+            <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
+            <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+          </div>
+        </div>
+        <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+      </div>
+      
+      <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+        
+        <section>
+          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
+          <div class="space-y-4">
+            <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
+              <div class="flex justify-between items-start mb-4">
+                <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
+                <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
+              </div>
+              <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
+              <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
+            </div>
+          </div>
+        </section>
+        
+        <section>
+          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+          <nav class="space-y-2">
+            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
+              <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
+              <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
+
+            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
+              <span class="text-xs font-bold">Sign Out</span>
+            </a>
+          </nav>
+        </section>
+        
+      </div>
+      
+      <div class="p-10 border-t border-gray-100">
+        <div class="flex items-center gap-3">
+          <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+          <span class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400">Active Secure Session</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // DASHBOARD TOGGLE LOGIC
+    function toggleDashboard(open) {
+      const overlay = document.getElementById('userDashboard');
+      const panel = document.getElementById('dashboardPanel');
+      
+      if (open) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          panel.classList.remove('translate-x-full');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      } else {
+        panel.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }, 500);
+      }
+    }
+    
+    // Update your User Icon to trigger this:
+    // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+  </script>
+</body>
+</html>

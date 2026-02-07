@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northwall Compliance Group LLC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            onyx: '#050505',
+            royal: '#0A1F2E',
+            glass: 'rgba(255, 255, 255, 0.4)'
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], glam: ['Playfair Display', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-vessel {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    .side-cart {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-in { animation: slideIn 0.5s ease forwards; }
+  </style>
+</head>
+  <style>
+    /* High-Refractive Glassmorphism */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.05);
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Architectural Map Styling */
+#mnMap {
+  filter: none !important;
+  /* Removes the black and white effect */
+  border-radius: 2rem;
+  z-index: 10 !important;
+}
+
+    /* Custom Table Styling */
+    .table-blur {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Billionaire-tier scrollbars */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #0A1F2E; border-radius: 10px; }
+  </style>
+
+<body class="bg-[#F8F9FA] text-royal font-sans antialiased overflow-x-hidden">
+<header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
+    
+    <a href="index.html" class="flex items-center space-x-3 group shrink-0">
+      <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
+
+    </a>
+
+    <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
+      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
+      <a href="binders.html" class="text-onyx">Collections</a>
+      <a href="about.html" class="hover:text-onyx transition-all">About</a>
+      <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-5 md:gap-8">
+      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+        <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
+          <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <span class="hidden md:block text-[9px] font-black uppercase tracking-widest text-gray-400">Account</span>
+      </button>
+
+      <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
+        <span class="text-xl">🛒</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </button>
+
+      <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
+        <span class="w-6 h-[2px] bg-onyx"></span>
+        <span class="w-4 h-[2px] bg-onyx ml-auto"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 z-[500] hidden opacity-0 transition-opacity duration-300">
+  <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <div id="mobilePanel" class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col">
+    
+    <div class="p-8 flex justify-between items-center border-b border-gray-100">
+      <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600"></span>
+      <button onclick="toggleMobileMenu(false)" class="text-3xl font-light text-onyx">&times;</button>
+    </div>
+
+    <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
+      <a href="index.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Home</span>
+      </a>
+      <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Products</span>
+      </a>
+
+      <a href="about.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">About</span>
+      </a>
+      <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
+      </a>
+    </nav>
+
+    <div class="p-8 border-t border-gray-100">
+      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * REFINED SIDEBAR LOGIC
+ * High performance, zero-conflict script.
+ */
+function toggleMobileMenu(open) {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const panel = document.getElementById('mobilePanel');
+  
+  if (open) {
+    overlay.classList.remove('hidden');
+    // Force a browser reflow
+    void overlay.offsetWidth; 
+    overlay.classList.add('opacity-100');
+    panel.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  } else {
+    panel.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = ''; 
+    }, 500);
+  }
+}
+</script>
+
+
+<style>
+  /* Ensuring smooth transitions for the Billion Dollar feel */
+  #mobileMenuOverlay a {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+  <div id="cartOverlay" class="fixed inset-0 bg-onyx/20 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleCart(false)" class="absolute inset-0"></div>
+    <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
+      <div class="p-8 flex justify-between items-center border-b border-gray-100">
+        <h3 class="text-2xl font-glam">Your Cart</h3>
+        <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
+      </div>
+      <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
+      <div class="p-8 bg-white border-t border-gray-100 space-y-4">
+        <div class="flex justify-between text-xs font-black uppercase tracking-widest">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+<main class="relative pt-44">
+  <div class="absolute top-0 right-0 w-1/2 h-screen bg-blue-50/50 -z-10 blur-[120px] rounded-full"></div>
+
+  <section class="px-6 mb-32">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 space-y-6">
+        <h1 class="text-4xl md:text-7xl font-glam tracking-tighter leading-tight">Serving 23+ <br/><span class="italic text-gray-400">Counties in Minnesota</span></h1>
+        <p class="text-xl font-light text-gray-500 max-w-2xl mx-auto">From the Twin Cities metro to greater Minnesota, our binders are helping providers statewide.</p>
+        <div class="inline-block px-8 py-3 bg-white border border-gray-100 rounded-full shadow-sm">
+          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">Including: Hennepin, Ramsey, Anoka, Dakota, Olmsted, Scott, Washington, Blue Earth, Stearns, and more.</p>
+        </div>
+      </div>
+      
+      <div class="glass-panel rounded-[3rem] p-4 md:p-8">
+        <div id="mnMap" class="w-full h-[600px] shadow-2xl"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit" class="px-6 mb-32">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-[10px] font-black uppercase tracking-[0.8em] text-blue-600 mb-6">Capability Matrix</h2>
+        <h2 class="text-4xl md:text-6xl font-glam tracking-tighter">Service Fit Breakdown</h2>
+      </div>
+
+      <div class="glass-panel rounded-[3rem] overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left">
+            <thead>
+              <tr class="bg-onyx text-white">
+                <th class="px-10 py-8 text-[11px] font-black uppercase tracking-[0.5em]">Service Area</th>
+                <th class="px-10 py-8 text-[11px] font-black uppercase tracking-[0.5em]">What We Deliver</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Medication Management</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">Delegation-ready protocols, PRN follow-ups, med error logs</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Behavioral Support</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">MDH compliant documentation, charting templates, progress logs</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Emergency Preparedness</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">Drill logs, Go Bag checklists, staff call trees, relocation sheets</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Policy Manual</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">MDH complaint manuals for full facility protection</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Documentation</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">Tag-proof language, nicely layered and detailed templates</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Delegated Clinical Tasks</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">RN script blocks, insulin flows, vitals templates, setup protocols</td>
+              </tr>
+              <tr class="hover:bg-blue-50/30 transition-colors">
+                <td class="px-10 py-10 font-bold text-onyx tracking-tight">Staff Training</td>
+                <td class="px-10 py-10 text-gray-500 font-medium">Training documets, MDH-aligned competencies and quizzing with analytics</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 mb-32">
+    <div class="max-w-4xl mx-auto glass-panel rounded-[3rem] p-12 md:p-24 text-center border-2 border-blue-100/50">
+      <h2 class="text-3xl md:text-5xl font-glam tracking-tighter mb-8">Not sure which license <br/><span class="italic text-gray-400">you fall under?</span></h2>
+      <p class="text-lg font-light text-gray-500 mb-12">Or want to ask if we’ve worked with a program like yours?</p>
+      <a href="contact.html" class="inline-block py-6 px-12 bg-onyx text-white text-[11px] font-black uppercase tracking-[0.5em] rounded-2xl shadow-2xl hover:bg-blue-600 transition-all hover:-translate-y-1">→ Talk to a Compliance Consultant</a>
+    </div>
+  </section>
+</main>
+
+<footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
+  
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-800/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-[1600px] mx-auto relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+      
+      <div class="lg:col-span-5 space-y-10">
+        <div class="flex items-center space-x-4">
+          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90">
+          <div class="text-white">
+            <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
+            <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
+          </div>
+        </div>
+        <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">
+          The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.
+        </p>
+
+      </div>
+
+      <div class="lg:col-span-3 space-y-10">
+        <ul class="space-y-4">
+          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">About Us</a></li>
+
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4 space-y-10">
+        <div class="space-y-6">
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+          </div>
+          <div class="group">
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
+            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="space-y-2">
+        <div class="flex flex-wrap gap-6 text-[9px] font-black uppercase tracking-[0.3em] text-white/40">
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Privacy Policy</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
+<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
+        </div>
+      </div>
+      
+
+
+    </div>
+
+    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">
+© 2026 Northwall Compliance Group LLC. Built in MN.    </p>
+  </div>
+
+  <a href="quote.html"
+     class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+    </span>
+    Request Quote
+  </a>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // NAV LOGIC
+
+
+  // MAP LOGIC
+  const map = L.map('mnMap', { scrollWheelZoom: false, zoomControl: false }).setView([46.0, -94.0], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(map);
+  
+  const serviceCounties = [
+    { name: "Hennepin", coords: [44.9778, -93.2650] }, { name: "Ramsey", coords: [44.9537, -93.0900] },
+    { name: "Anoka", coords: [45.2333, -93.3333] }, { name: "Dakota", coords: [44.7319, -93.1232] },
+    { name: "Olmsted", coords: [44.0221, -92.4668] }, { name: "Scott", coords: [44.6446, -93.5400] },
+    { name: "Washington", coords: [44.9495, -92.8996] }, { name: "Blue Earth", coords: [44.0570, -94.0154] },
+    { name: "Stearns", coords: [45.5646, -94.3185] }, { name: "Carver", coords: [44.8285, -93.6067] },
+    { name: "Wright", coords: [45.1704, -93.9878] }, { name: "Rice", coords: [44.2995, -93.3384] },
+    { name: "Sherburne", coords: [45.4366, -93.7290] }, { name: "St. Louis", coords: [47.5139, -92.5396] },
+    { name: "Goodhue", coords: [44.4027, -92.7129] }, { name: "Freeborn", coords: [43.6654, -93.3689] },
+    { name: "Mower", coords: [43.6680, -92.9746] }, { name: "Benton", coords: [45.6636, -93.9911] },
+    { name: "Chisago", coords: [45.5046, -92.9071] }, { name: "Isanti", coords: [45.5539, -93.2636] },
+    { name: "Itasca", coords: [47.4450, -93.5680] }, { name: "Kandiyohi", coords: [45.1511, -95.0150] },
+    { name: "Otter Tail", coords: [46.4354, -95.7083] }
+  ];
+  
+  serviceCounties.forEach(county => {
+    L.circleMarker(county.coords, {
+      radius: 8,
+      fillColor: "#1A73E8",
+      color: "#ffffff",
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1
+    }).addTo(map).bindPopup(`<strong>${county.name} County</strong><br>Served by Northwall`);
+  });
+</script>
+  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+    
+    <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+      
+      <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+          <div>
+            <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
+            <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+          </div>
+        </div>
+        <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+      </div>
+      
+      <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+        
+        <section>
+          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
+          <div class="space-y-4">
+            <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
+              <div class="flex justify-between items-start mb-4">
+                <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
+                <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
+              </div>
+              <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
+              <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
+            </div>
+          </div>
+        </section>
+        
+        <section>
+          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+          <nav class="space-y-2">
+            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
+              <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
+              <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            
+            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
+              <span class="text-xs font-bold">Sign Out</span>
+            </a>
+          </nav>
+        </section>
+        
+      </div>
+      
+      
+    </div>
+  </div>
+  </div>
+  
+  <script>
+    // DASHBOARD TOGGLE LOGIC
+    function toggleDashboard(open) {
+      const overlay = document.getElementById('userDashboard');
+      const panel = document.getElementById('dashboardPanel');
+      
+      if (open) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          panel.classList.remove('translate-x-full');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      } else {
+        panel.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }, 500);
+      }
+    }
+    
+    // Update your User Icon to trigger this:
+    // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+  </script>
+</body>
+</html>
