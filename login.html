@@ -78,7 +78,7 @@
       <form id="loginForm" class="space-y-8">
         <div class="space-y-3">
           <label class="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 ml-2">Email</label>
-          <input type="email" required placeholder="username or email" class="carved-input w-full rounded-2xl px-6 py-5 text-sm outline-none placeholder:text-white/10 font-medium">
+          <input type="email" id="loginEmail" required placeholder="username or email" class="carved-input w-full rounded-2xl px-6 py-5 text-sm outline-none placeholder:text-white/10 font-medium">
         </div>
 
         <div class="space-y-3">
@@ -111,11 +111,11 @@
 
       <div id="statusArea" class="mt-10 flex items-center justify-center gap-4 opacity-0 transition-opacity duration-500">
          <div class="h-2 w-2 bg-blue-500 rounded-full animate-pulse"></div>
-         <span class="text-[9px] font-black uppercase tracking-[0.4em] text-blue-500">Verification in Progress</span>
+         <span id="statusText" class="text-[9px] font-black uppercase tracking-[0.4em] text-blue-500">Verification in Progress</span>
       </div>
 
       <div class="mt-8 text-center">
-        <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white transition-all">New User? <span class="text-blue-500">Create Account</span></a>
+        <a href="createlogin.html" class="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white transition-all">New User? <span class="text-blue-500">Create Account</span></a>
       </div>
 
     </div>
@@ -123,27 +123,48 @@
     <p class="text-center mt-10 text-[8px] font-black uppercase tracking-[0.8em] text-white/10">Northwall Compliance © 2026 · SSL Encrypted</p>
   </div>
 
-  <script>
-    // Functional Eye Toggle
-    function togglePass() {
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Functional Eye Toggle (Global)
+    window.togglePass = function() {
       const field = document.getElementById('passwordField');
       field.type = field.type === 'password' ? 'text' : 'password';
     }
 
-    // Deep Login Simulation
+    // Firebase Login Logic
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const status = document.getElementById('statusArea');
-      const btn = e.target.querySelector('button');
       
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('passwordField').value;
+      const status = document.getElementById('statusArea');
+      const statusText = document.getElementById('statusText');
+      const btn = e.target.querySelector('button[type="submit"]');
+      
+      // Visual feedback
       status.style.opacity = '1';
       btn.style.opacity = '0.5';
-      btn.style.pointerEvents = 'none';
-      btn.innerText = 'AUTHENTICATING...';
+      btn.disabled = true;
+      const originalBtnText = btn.innerHTML;
+      btn.querySelector('span').innerText = 'AUTHENTICATING...';
 
-      setTimeout(() => {
-        window.location.href = "dashboard.html"; // Simulated redirect
-      }, 2400);
+      // Firebase Sign In
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          statusText.innerText = "ACCESS GRANTED";
+          setTimeout(() => {
+            window.location.href = "index.html"; 
+          }, 800);
+        })
+        .catch((error) => {
+          status.style.opacity = '0';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+          btn.querySelector('span').innerText = 'LOGIN';
+          alert("Login Failed: " + error.message);
+        });
     });
   </script>
 
