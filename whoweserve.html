@@ -86,16 +86,16 @@
       <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
 
     </a>
-
     <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
-      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
-      <a href="binders.html" class="text-onyx">Collections</a>
+      <a href="index.html" class="text-onyx">Home</a>
+      <a href="binders.html" class="text-onyx">Products</a>
+      <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
       <a href="about.html" class="hover:text-onyx transition-all">About</a>
       <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
     </nav>
 
     <div class="flex items-center gap-5 md:gap-8">
-      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+<button id="accountBtn" onclick="handleAccountClick()" class="group flex items-center gap-2 focus:outline-none">
         <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
           <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </div>
@@ -104,7 +104,7 @@
 
       <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
         <span class="text-xl">🛒</span>
-        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
       </button>
 
       <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
@@ -126,28 +126,84 @@
     </div>
 
     <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
-      <a href="index.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Home</span>
-      </a>
-      <a href="binders.html" class="flex flex-col">
+            <a href="index.html" class="flex flex-col">
+              <span class="text-3xl font-glam  transition-all">Home</span>
+            </a>
+
+            <a href="binders.html" class="flex flex-col">
         <span class="text-3xl font-glam  transition-all">Products</span>
       </a>
-
+      <a href="whoweserve.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
+      </a>
       <a href="about.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">About</span>
       </a>
       <a href="contact.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
       </a>
+            <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
+      </a>
     </nav>
 
-    <div class="p-8 border-t border-gray-100">
-      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
-        Request Quote
-      </a>
-    </div>
+
   </div>
 </div>
+
+<script>
+/**
+ * REFINED SIDEBAR LOGIC
+ * High performance, zero-conflict script.
+ */
+function toggleMobileMenu(open) {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const panel = document.getElementById('mobilePanel');
+  
+  if (open) {
+    overlay.classList.remove('hidden');
+    // Force a browser reflow
+    void overlay.offsetWidth; 
+    overlay.classList.add('opacity-100');
+    panel.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  } else {
+    panel.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = ''; 
+    }, 500);
+  }
+}
+</script>
+
+
+<style>
+  /* Ensuring smooth transitions for the Billion Dollar feel */
+  #mobileMenuOverlay a {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+  <div id="cartOverlay" class="fixed inset-0 bg-onyx/20 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500">
+    <div onclick="toggleCart(false)" class="absolute inset-0"></div>
+    <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
+      <div class="p-8 flex justify-between items-center border-b border-gray-100">
+        <h3 class="text-2xl font-glam">Your Cart</h3>
+        <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
+      </div>
+      <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
+      <div class="p-8 bg-white border-t border-gray-100 space-y-4">
+        <div class="flex justify-between text-xs font-black uppercase tracking-widest">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <a href="checkout.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
 
 <script>
 /**
@@ -390,84 +446,116 @@ function toggleMobileMenu(open) {
     }).addTo(map).bindPopup(`<strong>${county.name} County</strong><br>Served by Northwall`);
   });
 </script>
-  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
-    <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+<div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+  <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+  
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 flex flex-col">
     
-    <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
-      
-      <div class="p-10 border-b border-gray-100 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-          <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
-          <div>
-            <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
-            <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
-          </div>
+    <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div id="userInit" class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl uppercase">U</div>
+        <div>
+          <h3 id="userEmail" class="text-xl font-glam text-onyx">Loading...</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Active Member</p>
         </div>
-        <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
       </div>
-      
-      <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
-        
-        <section>
-          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
-          <div class="space-y-4">
-            <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
-              <div class="flex justify-between items-start mb-4">
-                <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
-                <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
-              </div>
-              <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
-              <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
-            </div>
-          </div>
-        </section>
-        
-        <section>
-          <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
-          <nav class="space-y-2">
-            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
-              <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
-              <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            
-            <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
-              <span class="text-xs font-bold">Sign Out</span>
-            </a>
-          </nav>
-        </section>
-        
-      </div>
-      
+      <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+      <section>
+        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+        <nav class="space-y-2">
+          <a href="javascript:void(0)" onclick="logout()" class="flex justify-between items-center p-6 rounded-2xl bg-red-50/30 border border-red-100 hover:bg-red-50 transition-all group">
+            <span class="text-xs font-black uppercase tracking-widest text-red-500">Sign Out</span>
+            <svg class="w-4 h-4 text-red-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </a>
+        </nav>
+      </section>
       
     </div>
   </div>
-  </div>
-  
-  <script>
-    // DASHBOARD TOGGLE LOGIC
-    function toggleDashboard(open) {
-      const overlay = document.getElementById('userDashboard');
-      const panel = document.getElementById('dashboardPanel');
-      
-      if (open) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => {
-          overlay.classList.add('opacity-100');
-          panel.classList.remove('translate-x-full');
-        }, 10);
-        document.body.style.overflow = 'hidden';
-      } else {
-        panel.classList.add('translate-x-full');
-        overlay.classList.remove('opacity-100');
-        setTimeout(() => {
-          overlay.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-        }, 500);
-      }
-    }
+</div>
+</div>
+
+<script>
+  // DASHBOARD TOGGLE LOGIC
+  function toggleDashboard(open) {
+    const overlay = document.getElementById('userDashboard');
+    const panel = document.getElementById('dashboardPanel');
     
-    // Update your User Icon to trigger this:
-    // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
-  </script>
+    if (open) {
+      overlay.classList.remove('hidden');
+      // This small delay ensures the blur and slide happen smoothly
+      setTimeout(() => {
+        overlay.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    } else {
+      panel.classList.add('translate-x-full');
+      overlay.classList.remove('opacity-100');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 500);
+    }
+  }
+  
+  
+  // Update your User Icon to trigger this:
+  // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+</script>
+
+
+
+
+
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  
+  // Track state globally in the script
+  let currentUser = null;
+  
+  onAuthStateChanged(auth, (user) => {
+    const accountPrompt = document.getElementById('accountPrompt');
+    currentUser = user;
+    
+    if (user) {
+      // 1. User is logged in: Hide the "Already have an account" section
+      if (accountPrompt) accountPrompt.style.display = 'none';
+      
+      // 2. Setup Dashboard Info
+      const userName = user.displayName || user.email;
+      document.getElementById('userEmail').innerText = userName;
+      document.getElementById('userInit').innerText = userName.charAt(0).toUpperCase();
+    } else {
+      // 3. User is logged out: Show the prompt section again
+      if (accountPrompt) accountPrompt.style.display = 'block';
+    }
+  });
+  
+  // Global function to handle the icon click
+  window.handleAccountClick = function() {
+    if (currentUser) {
+      // If logged in, show the side dashboard
+      toggleDashboard(true);
+    } else {
+      // If not logged in, go to login page
+      window.location.href = "login.html";
+    }
+  }
+  
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = "index.html"; // Redirect to home after logout
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+    });
+  }
+</script>
 </body>
 </html>
