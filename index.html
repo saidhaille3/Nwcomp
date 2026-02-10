@@ -69,7 +69,7 @@
 
       <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
         <span class="text-xl">🛒</span>
-        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
       </button>
 
       <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
@@ -95,6 +95,9 @@
       <a href="binders.html" class="flex flex-col">
         <span class="text-3xl font-glam  transition-all">Products</span>
       </a>
+            <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Products</span>
+      </a>
       <a href="whoweserve.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
       </a>
@@ -103,6 +106,9 @@
       </a>
       <a href="contact.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
+      </a>
+            <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
       </a>
     </nav>
 
@@ -182,7 +188,7 @@ function toggleMobileMenu(open) {
         <div class="space-y-4">
           <h1 class="text-6xl md:text-[7.5rem] font-glam tracking-tighter leading-[0.8] text-onyx">
             Surveyor <br/>
-            <span class="text-blue-600 italic">Proof.</span>
+            <span class="text-yellow-600 italic">Proof.</span>
           </h1>
           <p class="text-lg md:text-xl text-gray-400 font-medium uppercase tracking-[0.3em] pl-1">Infrastructure for Elite Care</p>
         </div>
@@ -342,6 +348,9 @@ function toggleMobileMenu(open) {
 
   document.addEventListener('DOMContentLoaded', startShuffle);
 </script>
+
+
+
 <section id="academy-terminal" class="relative min-h-screen bg-[#050505] py-24 px-6 overflow-hidden selection:bg-blue-500/30 font-sans">
   
   <div class="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-blue-900/10 rounded-full blur-[160px] pointer-events-none"></div>
@@ -349,21 +358,34 @@ function toggleMobileMenu(open) {
 
   <div class="max-w-[1400px] mx-auto relative z-10">
     
-    <div class="flex justify-center xl:justify-start mb-12 animate-fade-in">
-      <div class="relative group">
-        <div class="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
-        <div class="relative w-full max-w-[320px] md:max-w-[600px] transition-all duration-1000 hover:scale-[1.01]">
-          <img src="images/nwa1.png" alt="Northwall Academy" class="w-full h-auto opacity-95 group-hover:opacity-100 transition-all duration-700 drop-shadow-[0_0_50px_rgba(59,130,246,0.2)]">
-        </div>
+    
+    
+    
+    
+  
+<div class="flex justify-center xl:justify-start mb-12">
+  <div class="relative group">
+    <div class="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full duration-1000"></div>
+    
+    <div class="relative inline-block p-1 rounded-xl bg-gradient-to-br from-gray-300 via-gray-100 to-gray-300 shadow-[0_0_20px_rgba(192,192,192,0.2)]">
+      <div class="w-full max-w-[200px] md:max-w-[350px]">
+        <img src="images/na2.png" alt="Northwall Academy" class="w-full h-auto">
       </div>
     </div>
+  </div>
+</div>
+
+
 
     <div class="flex flex-col xl:flex-row justify-between items-start gap-12 mb-24">
-      <p class="text-2xl md:text-3xl text-white/40 font-light leading-snug max-w-2xl border-l border-white/10 pl-8">
-        The compliance standard for staff training in Minnesota.
-      </p>
+      <div class="space-y-6 max-w-2xl">
+        <h2 class="text-3xl md:text-5xl font-glam text-white leading-tight">Performance Intelligence for the
+ <br/><span class="text-yellow-500 not-italic uppercase tracking-tighter">Statutory Elite.
+</span></h2>
+
+      </div>
       <div class="hidden xl:block pt-4 text-right">
-        <div class="text-[9px] font-black text-white/10 uppercase tracking-[0.8em] [writing-mode:vertical-rl] transform rotate-180">MN REGULATORY COMPLIANCE</div>
+        <div class="text-[9px] font-black text-white/10 uppercase tracking-[0.8em] [writing-mode:vertical-rl] transform rotate-180">STAFF MASTERY SYSTEM™</div>
       </div>
     </div>
 
@@ -379,13 +401,14 @@ function toggleMobileMenu(open) {
             </div>
             <span class="text-[8px] font-black text-white/20 uppercase tracking-widest">MDH Required</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-glam text-white mb-6 italic">Required Dementia Care</h2>
-          <p class="text-white/40 text-sm mb-8 leading-relaxed max-w-sm">Statutory alignment for 10 training domains. Trauma-informed and audit-proof curricula.</p>
-          <div class="h-[1px] w-full bg-white/5 mb-8"></div>
-          <div class="flex justify-between text-[9px] font-black text-white/40 uppercase tracking-widest">
-            <span>Memory Care</span>
-            <span class="text-blue-500">Certified</span>
-          </div>
+          <h2 class="text-3xl md:text-4xl font-glam text-white mb-6 ">Dementia Care </h2>
+          <p class="text-white/40 text-sm mb-8 leading-relaxed max-w-sm">Staff learn to recognize dementia behaviors and respond with dignity and safety. Fully 144G.41 compliant and survey-ready.</span></p>
+                      <div class="h-[1px] w-full bg-white/5 mb-8"></div>
+            <div class="flex justify-between text-[9px] font-black text-white/40 uppercase tracking-widest">
+              <span>Transcripts</span>
+              <span class="text-yellow-500">Certification</span>
+            </div>
+
         </div>
       </div>
 
@@ -399,37 +422,57 @@ function toggleMobileMenu(open) {
             </div>
             <span class="text-[8px] font-black text-white/20 uppercase tracking-widest">MDH Required</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-glam text-white mb-6 italic">Mental Health Training</h2>
-          <p class="text-white/40 text-sm mb-8 leading-relaxed max-w-sm">Behavioral de-escalation protocols and crisis prevention frameworks.</p>
-          <div class="h-[1px] w-full bg-white/5 mb-8"></div>
-          <div class="flex justify-between text-[9px] font-black text-white/40 uppercase tracking-widest">
-            <span>Crisis Management</span>
-            <span class="text-blue-500">Certified</span>
-          </div>
+          <h2 class="text-3xl md:text-4xl font-glam text-white mb-6 ">Mental Health Training </h2>
+          <p class="text-white/40 text-sm mb-8 leading-relaxed max-w-sm">Staff learn to support common mental health needs and de-escalation protocols. </p>
+                      <div class="h-[1px] w-full bg-white/5 mb-8"></div>
+                      <div class="flex justify-between text-[9px] font-black text-white/40 uppercase tracking-widest">
+                        <span>Transcripts</span>
+                        <span class="text-yellow-500">Certification</span>
+                      </div>
         </div>
       </div>
 
     </div>
 
-    <div class="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.01] p-12 md:p-20 text-center">
-      <div class="max-w-xl mx-auto space-y-12">
+    <div class="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.01] p-12 md:p-20 text-center group">
+      <div class="max-w-2xl mx-auto space-y-12">
         <div class="space-y-4">
-          <h4 class="text-[9px] font-black text-blue-500 uppercase tracking-[0.8em]">Subscription Access</h4>
+          <h4 class="text-[9px] font-black text-blue-500 uppercase tracking-[0.8em]">Enrollment</h4>
           <div class="flex items-center justify-center gap-4">
-            <span class="text-7xl md:text-9xl font-glam text-white">$50</span>
-            <div class="text-left">
+            <div class="text-right">
+              <span class="block text-[8px] font-black text-white/30 uppercase tracking-widest">Starting at</span>
+              <span class="text-7xl md:text-9xl font-glam text-white">$50</span>
+            </div>
+            <div class="text-left pt-6">
               <span class="block text-2xl font-glam text-white/20 italic">/ mo</span>
-              <span class="block text-[8px] font-black text-white/30 uppercase tracking-widest">Per Facility</span>
             </div>
           </div>
         </div>
 
-        <div class="pt-4">
-          <a href="#" class="group relative inline-flex items-center justify-center px-12 py-5 border border-white/20 text-white rounded-xl overflow-hidden transition-all duration-500 hover:border-blue-500/50 active:scale-95 shadow-2xl">
+        <div class="pt-4 space-y-10">
+          <a href="services.html" class="group relative inline-flex items-center justify-center px-16 py-6 bg-white text-black rounded-2xl overflow-hidden transition-all duration-500 hover:bg-blue-600 hover:text-white active:scale-95 shadow-2xl">
             <div class="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-            <span class="relative z-10 text-[10px] font-black uppercase tracking-[0.5em] group-hover:text-white transition-colors">Enroll Facility</span>
+            <span class="relative z-10 text-[10px] font-black uppercase tracking-[0.5em] transition-colors">Explore The Academy</span>
           </a>
-          <p class="mt-6 text-[8px] font-black text-white/10 uppercase tracking-[0.4em]">One subscription · Unlimited Staff</p>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-40 group-hover:opacity-100 transition-all duration-1000">
+             <div class="text-center">
+               <span class="block text-white font-black text-[10px] uppercase tracking-widest">Scoreboards</span>
+               <span class="text-[7px] text-blue-500 font-bold uppercase">Live Intel</span>
+             </div>
+             <div class="text-center">
+               <span class="block text-white font-black text-[10px] uppercase tracking-widest">Red-Flags</span>
+               <span class="text-[7px] text-blue-500 font-bold uppercase">Detection</span>
+             </div>
+             <div class="text-center">
+               <span class="block text-white font-black text-[10px] uppercase tracking-widest">Report Cards</span>
+               <span class="text-[7px] text-blue-500 font-bold uppercase">Clinical Grade</span>
+             </div>
+             <div class="text-center">
+               <span class="block text-white font-black text-[10px] uppercase tracking-widest">Service Delivery Mastery</span>
+               <span class="text-[7px] text-blue-500 font-bold uppercase">Trained. Tracked. Covered.</span>
+             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -443,163 +486,13 @@ function toggleMobileMenu(open) {
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
   }
+  
 </style>
 
 
 
-<section class="relative py-24 px-6 md:px-12 bg-white overflow-hidden">
-  
-  <div class="absolute top-0 -left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-0 -right-20 w-96 h-96 bg-slate-200/50 rounded-full blur-[120px]"></div>
 
-  <div class="max-w-7xl mx-auto relative z-10">
-    
-    <div class="mb-20 text-center">
-      <h2 class="text-xs uppercase tracking-[0.5em] text-blue-600 font-black mb-4">The Collection</h2>
-      <p class="text-4xl md:text-5xl font-glam text-gray-900">Premium Compliance Tiers</p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-      <div role="button" 
-           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
-           onclick="toggleTier('tier1')">
-        
-        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-blue-100 to-gray-200 opacity-50"></div>
-        
-        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
-          
-          <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/40 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
-
-          <span class="text-[10px] font-black tracking-widest text-blue-500 uppercase block mb-8">Edition 01</span>
-          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Core Policies</h3>
-          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Foundation of Licensing."</p>
-          
-          <ul class="space-y-4 mb-10">
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span> Emergency Prep
-            </li>
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span> Policy Manual
-            </li>
-          </ul>
-
-          <div class="flex items-center gap-2">
-            <span class="h-px w-8 bg-gray-900"></span>
-            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
-          </div>
-
-          <div id="tier1-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
-            <h4 class="text-sm font-black uppercase text-blue-600 mb-4 tracking-widest">Document Suite 01</h4>
-            <ul class="space-y-3 text-xs font-bold text-gray-700">
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>144G Surveyor Phrasing</span> <span>Included</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>80+ Editable Policies</span> <span>Word Doc</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Utility Redundancy</span> <span>Ready</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div role="button" 
-           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
-           onclick="toggleTier('tier2')">
-        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-blue-200 to-indigo-100 opacity-50"></div>
-        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
-          
-          <span class="text-[10px] font-black tracking-widest text-indigo-500 uppercase block mb-8">Edition 02</span>
-          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Smart Logic</h3>
-          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Operational Brain."</p>
-          
-          <ul class="space-y-4 mb-10">
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span> MDH Templates
-            </li>
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span> Startup Kits
-            </li>
-          </ul>
-
-          <div class="flex items-center gap-2">
-            <span class="h-px w-8 bg-gray-900"></span>
-            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
-          </div>
-
-          <div id="tier2-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
-            <h4 class="text-sm font-black uppercase text-indigo-600 mb-4 tracking-widest">Efficiency Suite 02</h4>
-            <ul class="space-y-3 text-xs font-bold text-gray-700">
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Staff Knowledge Tools</span> <span>Digital</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Onboarding Kits</span> <span>Pro</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Audit-Ready Logs</span> <span>Automated</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div role="button" 
-           class="glass-card group relative p-1 transition-all duration-700 hover:-translate-y-3"
-           onclick="toggleTier('tier3')">
-        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white via-slate-300 to-blue-200 opacity-50"></div>
-        <div class="relative h-full bg-white/40 backdrop-blur-2xl backdrop-saturate-150 rounded-[1.9rem] p-10 border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.04)] overflow-hidden">
-          
-          <span class="text-[10px] font-black tracking-widest text-slate-600 uppercase block mb-8">Edition 03</span>
-          <h3 class="text-3xl font-glam text-gray-900 mb-6 tracking-tight">Advanced Survey</h3>
-          <p class="text-sm text-gray-600 leading-relaxed mb-8 font-medium italic">"The Citation Shield."</p>
-          
-          <ul class="space-y-4 mb-10">
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-slate-800 shadow-[0_0_10px_#1e293b]"></span> Mock Surveys
-            </li>
-            <li class="flex items-center gap-3 text-xs font-bold text-gray-800 uppercase tracking-tighter">
-              <span class="flex h-2 w-2 rounded-full bg-slate-800 shadow-[0_0_10px_#1e293b]"></span> Engineer Kits
-            </li>
-          </ul>
-
-          <div class="flex items-center gap-2">
-            <span class="h-px w-8 bg-gray-900"></span>
-            <span class="text-[10px] font-black uppercase tracking-widest text-gray-900">View Manifest</span>
-          </div>
-
-          <div id="tier3-details" class="hidden animate-slide-up mt-8 p-6 bg-white/60 rounded-2xl border border-white/80 shadow-inner">
-            <h4 class="text-sm font-black uppercase text-slate-800 mb-4 tracking-widest">Strategy Suite 03</h4>
-            <ul class="space-y-3 text-xs font-bold text-gray-700">
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Full Drill Scripts</span> <span>included</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Mechanical Walkthroughs</span> <span>Pro</span></li>
-              <li class="flex justify-between border-b border-gray-100 pb-2"><span>Tag Prevention Maps</span> <span>Critical</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<style>
-  @keyframes slide-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-slide-up {
-    animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  
-  .glass-card:hover .relative {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.9);
-  }
-</style>
-
-<script>
-  function toggleTier(tierId) {
-    const details = document.getElementById(tierId + '-details');
-    // Toggle the hidden class
-    if (details.classList.contains('hidden')) {
-      details.classList.remove('hidden');
-    } else {
-      details.classList.add('hidden');
-    }
-  }
-</script>
 
 
 
@@ -611,7 +504,6 @@ function toggleMobileMenu(open) {
   <div class="max-w-6xl mx-auto relative z-10">
     
     <div class="text-center mb-20">
-      <h2 class="text-[10px] uppercase tracking-[0.6em] text-blue-600 font-black mb-4">Proven Excellence</h2>
       <h3 class="text-4xl md:text-6xl font-glam text-gray-900 leading-tight tracking-tighter">
         We Worry. <br/> <span class="text-gray-400 italic">So You Don't Have to.</span>
       </h3>
@@ -628,7 +520,7 @@ function toggleMobileMenu(open) {
         </p>
         
         <div class="flex items-center gap-4">
-          <div class="h-12 w-12 rounded-full bg-gradient-to-br from-gray-900 to-gray-600 flex items-center justify-center text-white font-bold text-xs shadow-lg">LD</div>
+          <div class="h-12 w-12 rounded-full bg-gradient-to-br from-gray-900 to-gray-600 flex items-center justify-center text-white font- text-xs shadow-lg">LD</div>
           <div>
             <p class="text-xs font-black uppercase tracking-widest text-gray-900">Licensed Director</p>
             <p class="text-[10px] text-gray-400 uppercase tracking-widest">Minnesota Health Systems</p>
@@ -689,9 +581,303 @@ function toggleMobileMenu(open) {
     text-wrap: balance;
   }
 </style>
+<section id="tiers" class="relative py-32 px-6 overflow-hidden bg-[#0A0A0A]">
+  
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="max-w-[1400px] mx-auto relative z-10">
+    
+    <div class="mb-24 text-center lg:text-left space-y-6">
+      <h3 class="text-6xl md:text-[6.5rem] font-glam tracking-tighter text-white leading-none">
+        Product <span class="italic text-white/20"><div>Tiers.</span></div>
+      </h3>
+      <div class="flex items-center gap-6">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      
+      <!-- FOUNDATION CARD -->
+      <div class="flip-card group">
+        <div class="flip-card-inner">
+          <!-- FRONT -->
+          <div class="flip-card-front metal-brushed-front p-12 flex flex-col justify-between border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] relative">
+            <div class="flex justify-between items-start">
+              <div class="h-16 w-16 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-white shadow-2xl">
+                <svg class="w-8 h-8 opacity-80" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m4 0h1m-5 4h1m4 0h1m-5 4h1m4 0h1m-5 4h1m4 0h1"/></svg>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <h4 class="text-5xl font-glam italic text-white leading-none">Foundation</h4>
+              <p class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-blue-400">Core Compliance</p>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex justify-between items-center">
+               <div class="flex items-center gap-4">
+                 <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                 <span class="font-mono text-[9px] font-bold uppercase tracking-widest text-white/40">Baseline Shield</span>
+               </div>
+               
+               <!-- Flip Icon -->
+               <button onclick="flipCard(this)" class="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all group/flip">
+                 <svg class="w-4 h-4 text-white/60 group-hover/flip:text-white transition-all group-hover/flip:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                 </svg>
+               </button>
+            </div>
+          </div>
+          
+          <!-- BACK -->
+          <div class="flip-card-back bg-[#1a1a2e] p-12 flex flex-col justify-between border border-white/10 shadow-3xl relative">
+            <div class="space-y-8 flex-1">
+              <div class="flex justify-between items-center border-b border-white/5 pb-6">
+                <span class="font-mono text-[8px] font-bold text-white/40 uppercase tracking-widest">144G Aligned</span>
+              </div>
+              <ul class="space-y-5">
+                <li class="feature-row-upgraded"><span>Emergency Plan</span><span class="row-tag">Facility Tailored</span></li>
+                <li class="feature-row-upgraded"><span>Policy Manual</span><span class="row-tag">80+ Policies</span></li>
+                <li class="feature-row-upgraded"><span>144G Phrasing</span><span class="row-tag">Verified</span></li>
+                <li class="feature-row-upgraded"><span>Life-cycle
+</span><span class="row-tag">Legislative Updates
+</span></li>
+              </ul>
+            </div>
+            <div class="space-y-4 mt-8">
+              <a href="quote.html" class="block w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-xl font-black text-[11px] uppercase tracking-widest text-center shadow-lg hover:shadow-xl transition-all">
+                SELECT TIER
+              </a>
+              
+              <!-- Flip Back Icon -->
+              <button onclick="flipCard(this)" class="w-full py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 group/flip">
+                <svg class="w-4 h-4 text-white/60 group-hover/flip:text-white transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="text-[9px] font-bold uppercase tracking-widest text-white/60 group-hover/flip:text-white">Flip Back</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPERATION CARD -->
+      <div class="flip-card group">
+        <div class="flip-card-inner">
+          <!-- FRONT -->
+          <div class="flip-card-front glass-refractive-front p-12 flex flex-col justify-between border border-white/20 shadow-[0_30px_100px_rgba(0,0,0,0.8)] relative">
+            <div class="flex justify-between items-start">
+              <div class="h-16 w-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <h4 class="text-5xl font-glam italic text-white leading-none">Operation</h4>
+              <p class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-blue-400">Workforce System</p>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex justify-between items-center">
+               <div class="flex items-center gap-4">
+                 <div class="flex gap-1.5">
+                   <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                   <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                   
+                 </div>
+                 <span class="font-mono text-[9px] font-bold uppercase tracking-widest text-white/40">Elite Defensive</span>
+
+               </div>
+               
+               <!-- Flip Icon -->
+               <button onclick="flipCard(this)" class="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all group/flip">
+                 <svg class="w-4 h-4 text-white/60 group-hover/flip:text-white transition-all group-hover/flip:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                 </svg>
+               </button>
+            </div>
+          </div>
+          
+          <!-- BACK -->
+          <div class="flip-card-back bg-[#1a1a2e] p-12 flex flex-col justify-between border border-white/20 shadow-3xl relative">
+            <div class="space-y-8 flex-1">
+              <div class="flex justify-between items-center border-b border-white/5 pb-6">
+                <span class="font-mono text-[8px] font-bold text-white/40 uppercase tracking-widest">MDH Ready</span>
+              </div>
+              <ul class="space-y-5">
+                <li class="feature-row-upgraded"><span>Onboarding</span><span class="row-tag-blue">Compliance Kits</span></li>
+                <li class="feature-row-upgraded"><span>Templates</span><span class="row-tag-blue">Clean Layout</span></li>
+                <li class="feature-row-upgraded"><span>Staff</span><span class="row-tag-blue">Training Packets</span></li>
+                <li class="feature-row-upgraded"><span>Manual Documentation</span><span class="row-tag-blue">Logs</span></li>
+              </ul>
+            </div>
+            <div class="space-y-4 mt-8">
+              
+              <a href="quote.html" class="block w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-xl font-black text-[11px] uppercase tracking-widest text-center shadow-lg hover:shadow-xl transition-all">
+                SELECT TIER
+              </a>
+              
+              <!-- Flip Back Icon -->
+              <button onclick="flipCard(this)" class="w-full py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 group/flip">
+                <svg class="w-4 h-4 text-white/60 group-hover/flip:text-white transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="text-[9px] font-bold uppercase tracking-widest text-white/60 group-hover/flip:text-white">Flip Back</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIREWALL CARD -->
+      <div class="flip-card group">
+        <div class="flip-card-inner">
+          <!-- FRONT -->
+          <div class="flip-card-front firewall-crystal-front p-12 flex flex-col justify-between border border-blue-500/30 shadow-[0_40px_120px_-20px_rgba(37,99,235,0.3)] overflow-hidden relative">
+            <div class="absolute top-0 right-0 p-6">
+            </div>
+            <div class="flex justify-between items-start">
+              <div class="h-16 w-16 rounded-2xl bg-black border border-blue-500/50 flex items-center justify-center text-white shadow-2xl">
+                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <h4 class="text-5xl font-glam italic text-blue-500 leading-none shadow-blue-900">Firewall</h4>
+              <p class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-white">Audit Shield</p>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex justify-between items-center">
+               <div class="flex items-center gap-4">
+                 <div class="flex gap-1.5">
+                   <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                   <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                   <div class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                 </div>
+                 <span class="font-mono text-[9px] font-bold uppercase tracking-widest text-white/40">Elite Defensive</span>
+               </div>
+               
+               <!-- Flip Icon -->
+               <button onclick="flipCard(this)" class="h-10 w-10 rounded-full border border-blue-500/30 flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 transition-all group/flip">
+                 <svg class="w-4 h-4 text-blue-500/60 group-hover/flip:text-blue-500 transition-all group-hover/flip:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                 </svg>
+               </button>
+            </div>
+          </div>
+          
+          <!-- BACK -->
+          <div class="flip-card-back bg-[#1a1a2e] p-12 flex flex-col justify-between border border-blue-600/50 shadow-3xl relative">
+            <div class="space-y-8 flex-1">
+              <div class="flex justify-between items-center border-b border-white/5 pb-6">
+              </div>
+              <ul class="space-y-5">
+                <li class="feature-row-upgraded"><span>Mock Surveys</span><span class="row-tag-elite">Strict Lense</span></li>
+                <li class="feature-row-upgraded"><span>Drill Scripts</span><span class="row-tag-elite">Pro Grade</span></li>
+                <li class="feature-row-upgraded"><span>Pre Licensing</span><span class="row-tag-elite">Walk-through & Mapping</span></li>
+                <li class="feature-row-upgraded"><span>Tag Prevention</span><span class="row-tag-elite">Active Maps</span></li>
+              </ul>
+            </div>
+            <div class="space-y-4 mt-8">
+              <a href="quote.html" class="block w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-xl font-black text-[11px] uppercase tracking-widest text-center shadow-lg hover:shadow-xl transition-all">
+SELECT TIER              </a>
+              
+              <!-- Flip Back Icon -->
+              <button onclick="flipCard(this)" class="w-full py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-2 group/flip">
+                <svg class="w-4 h-4 text-white/60 group-hover/flip:text-white transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="text-[9px] font-bold uppercase tracking-widest text-white/60 group-hover/flip:text-white">Flip Back</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base Structure - FIXED FOR STABLE FLIP */
+  .flip-card { 
+    height: 600px; 
+    position: relative;
+  }
+  
+  .flip-card-inner {
+    position: relative; 
+    width: 100%; 
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card.is-flipped .flip-card-inner { 
+    transform: rotateY(180deg); 
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute; 
+    width: 100%; 
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 2rem;
+    top: 0;
+    left: 0;
+  }
+  
+  .flip-card-back { 
+    transform: rotateY(180deg); 
+  }
+
+  /* METAL BRUSHED FINISH */
+  .metal-brushed-front {
+    background: linear-gradient(135deg, #1A1A1A 0%, #111 50%, #050505 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .metal-brushed-front::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
+  }
+
+  /* REFRACTIVE GLASS FINISH */
+  .glass-refractive-front {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.7) 0%, rgba(20, 20, 20, 0.8) 100%);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+  }
+
+  /* CRYSTAL OBSIDIAN FINISH */
+  .firewall-crystal-front {
+    background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent), #000;
+    position: relative;
+  }
+
+  /* FONT UPGRADES */
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  .feature-row-upgraded {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6);
+  }
+
+  /* ROW TAGS */
+  .row-tag { @apply font-mono text-[9px] font-bold uppercase px-3 py-1 bg-white/5 text-white/50 rounded-md tracking-widest; }
+  .row-tag-blue { @apply font-mono text-[9px] font-bold uppercase px-3 py-1 bg-blue-500/20 text-blue-400 rounded-md tracking-widest; }
+  .row-tag-elite { @apply font-mono text-[9px] font-bold uppercase px-3 py-1 bg-white/10 text-white rounded-md tracking-widest; }
+</style>
+
+<script>
+function flipCard(button) {
+  // Find the parent flip-card element
+  const card = button.closest('.flip-card');
+  if (card) {
+    card.classList.toggle('is-flipped');
+  }
+}
+</script>
 
 
-<section class="relative py-0 px-6 overflow-hidden bg-white">
+
+
+<section class="relative py-16 px-6 overflow-hidden bg-white">
   
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-100/30 rounded-full blur-[100px] -z-10"></div>
 
@@ -792,7 +978,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
       <button onclick="showQuiz()" class="group relative px-12 py-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1">
         <div class="absolute inset-0 bg-gray-900 group-hover:bg-black transition-colors"></div>
         <div class="absolute -top-[100%] left-0 w-full h-full bg-gradient-to-b from-transparent via-white/10 to-transparent skew-y-12 transition-all duration-1000 group-hover:top-[100%]"></div>
-        <span class="relative text-xs font-black uppercase tracking-[0.3em] text-white">Begin Diagnostic →</span>
+        <span class="relative text-xs font-black uppercase tracking-[0.3em] text-white">Begin Quiz →</span>
       </button>
     </div>
     
@@ -803,13 +989,13 @@ Log in to save your quiz results, binder preferences, and track your order histo
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <label class="glass-option">
             <input type="radio" name="license" value="18-65" class="hidden peer">
-            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold tracking-wide">
+            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font- tracking-wide">
               18-65
             </div>
           </label>
           <label class="glass-option">
             <input type="radio" name="license" value="55+" class="hidden peer">
-            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font-bold tracking-wide">
+            <div class="peer-checked:bg-gray-900 peer-checked:text-white transition-all duration-300 p-6 rounded-2xl border border-gray-100 bg-white/50 cursor-pointer text-sm font- tracking-wide">
               55+
             </div>
           </label>
@@ -915,8 +1101,8 @@ Log in to save your quiz results, binder preferences, and track your order histo
 
       <div class="lg:col-span-3 space-y-10">
         <ul class="space-y-4">
-          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
-          <li><a href="whoweserve.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
+          <li><a href="binders.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="whoweserve.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
         </ul>
       </div>
 
@@ -924,11 +1110,11 @@ Log in to save your quiz results, binder preferences, and track your order histo
         <div class="space-y-6">
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
           </div>
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
           </div>
         </div>
       </div>
@@ -955,7 +1141,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
      class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
     </span>
     Request Quote
   </a>
@@ -1031,61 +1217,40 @@ Log in to save your quiz results, binder preferences, and track your order histo
     }
     window.onload = renderCart;
   </script>
-  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+
+  
+<div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
   <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
   
-  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 flex flex-col">
     
     <div class="p-10 border-b border-gray-100 flex justify-between items-center">
       <div class="flex items-center gap-4">
-        <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+        <div id="userInit" class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl uppercase">U</div>
         <div>
-          <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
-          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+          <h3 id="userEmail" class="text-xl font-glam text-onyx">Loading...</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Active Member</p>
         </div>
       </div>
       <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
     </div>
 
     <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
-      
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
-        <div class="space-y-4">
-          <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-4">
-              <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
-              <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
-            </div>
-            <p class="text-sm font-glam text-onyx">Northwall Bundle -- 144G Edition</p>
-            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
-          </div>
-        </div>
-      </section>
+<section>
+  <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+  <nav class="space-y-2">
+    <a href="javascript:void(0)" onclick="logout()" class="flex justify-between items-center p-6 rounded-2xl bg-red-50/30 border border-red-100 hover:bg-red-50 transition-all group">
+      <span class="text-xs font-black uppercase tracking-widest text-red-500">Sign Out</span>
+      <svg class="w-4 h-4 text-red-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+    </a>
+  </nav>
+</section>
 
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
-        <nav class="space-y-2">
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
-            <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
-            <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
-            <span class="text-xs font-bold">Sign Out</span>
-          </a>
-        </nav>
-      </section>
-
-    </div>
-
-    <div class="p-10 border-t border-gray-100">
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-        <span class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400">Active Secure Session</span>
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -1096,6 +1261,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
     
     if (open) {
       overlay.classList.remove('hidden');
+      // This small delay ensures the blur and slide happen smoothly
       setTimeout(() => {
         overlay.classList.add('opacity-100');
         panel.classList.remove('translate-x-full');
@@ -1110,6 +1276,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
       }, 500);
     }
   }
+
 
   // Update your User Icon to trigger this:
   // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
@@ -1148,7 +1315,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
           <li>All submissions are transmitted securely via SSL encryption. Optional uploads (e.g., MDH tag letters) are deleted after use and not stored long-term.</li>
           <li>Your information may be retained for follow-up, invoice documentation, or licensing verification, in compliance with applicable business and health regulations.</li>
           <li>You may request deletion of your data at any time by emailing
-          <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
+          <a href="mailto:northwallcompliance@gmail.com" class="">northwallcompliance@gmail.com</a>.</li>
         </ul>
       </section>
       
@@ -1160,13 +1327,12 @@ Log in to save your quiz results, binder preferences, and track your order histo
           <li>No refunds will be issued once a PDF binder or physical binder has been delivered or downloaded.</li>
           <li>If a document error occurs due to our team (e.g., outdated or incorrect info, mislabeling), we will correct and resend free of charge within 5 business days.</li>
           <li>In rare cases of duplicate charges or proven billing errors, refunds will be reviewed upon written request within 7 days of purchase.</li>
-          <li>All disputes must be submitted in writing to <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
+          <li>All disputes must be submitted in writing to <a href="mailto:northwallcompliance@gmail.com" class="">northwallcompliance@gmail.com</a>.</li>
         </ul>
       </section>
 
       <div class="pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
         <img src="images/logo.png" class="h-10 grayscale mb-4">
-        <p class="text-[8px] font-black uppercase tracking-[1em]">Verified Policy Document 2026</p>
       </div>
     </div>
   </div>
@@ -1297,6 +1463,36 @@ document.getElementById('tierModal').addEventListener('click', function(e) {
   }
 });
 </script>
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // Gatekeeper: Redirect if not logged in
+  onAuthStateChanged(auth, (user) => {
+    const overlay = document.getElementById('userDashboard');
+    if (user) {
+      // Look for the displayName. If it doesn't exist yet, use the email.
+      const userName = user.displayName || user.email;
+      
+      document.getElementById('userEmail').innerText = userName;
+      document.getElementById('userInit').innerText = userName.charAt(0).toUpperCase();
+    } else {
+      overlay.classList.add('hidden'); 
+      window.location.href = "login.html";
+    }
+  });
+
+
+  // The Logout Function
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = "login.html";
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+    });
+  }
+</script>
+
 
 
 
