@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northwall Compliance Group LLC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  
   <script>
     tailwind.config = {
       theme: {
@@ -48,7 +53,7 @@
   <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
     
     <a href="index.html" class="flex items-center space-x-3 group shrink-0">
-      <img src="images/logo.png" class="h-10 w-auto" alt="Logo" loading="lazy">
+      <img src="images/logo.png" class="h-10 w-auto" alt="Logo" fetchpriority="high">
 
     </a>
 
@@ -206,32 +211,32 @@ function toggleMobileMenu(open) {
         <div class="relative w-full aspect-[4/5] max-w-[420px]" id="shuffleStack">
           
           <div class="shuffle-card glass-vessel">
-            <img src="images/emp.png" alt="Emergency Prep" loading="lazy">
+            <img src="images/emp.png" alt="Emergency Prep" fetchpriority="high">
 
           </div>
 
           <div class="shuffle-card glass-vessel">
-            <img src="images/poilcy.png" alt="Policy & Procedure" loading="lazy">
+            <img src="images/poilcy.png" alt="Policy & Procedure" fetchpriority="high">
 
           </div>
 
           <div class="shuffle-card glass-vessel">
-            <img src="images/st.png" alt="Staff Training" loading="lazy">
+            <img src="images/st.png" alt="Staff Training" fetchpriority="high">
 
           </div>
 
           <div class="shuffle-card glass-vessel">
-            <img src="images/temp.png" alt="MDH Templates" loading="lazy">
+            <img src="images/temp.png" alt="MDH Templates" fetchpriority="high">
 
           </div>
 
           <div class="shuffle-card glass-vessel">
-            <img src="images/fok.png" alt="Opening Kit" loading="lazy">
+            <img src="images/fok.png" alt="Opening Kit" fetchpriority="high">
 
           </div>
 
           <div class="shuffle-card glass-vessel active-bundle">
-            <img src="images/poilcy.png" alt="Northwall Bundle" loading="lazy">
+            <img src="images/poilcy.png" alt="Northwall Bundle" fetchpriority="high">
 
           </div>
 
@@ -366,7 +371,7 @@ function toggleMobileMenu(open) {
     
     <div class="relative inline-block p-1 rounded-xl bg-gradient-to-br from-gray-300 via-gray-100 to-gray-300 shadow-[0_0_20px_rgba(192,192,192,0.2)]">
       <div class="w-full max-w-[200px] md:max-w-[350px]">
-        <img src="images/na2.png" alt="Northwall Academy" loading="lazy" class="w-full h-auto">
+        <img src="images/na2.png" alt="Northwall Academy" fetchpriority="high" class="w-full h-auto">
       </div>
     </div>
   </div>
@@ -1084,7 +1089,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
       
       <div class="lg:col-span-5 space-y-10">
         <div class="flex items-center space-x-4">
-          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90" loading="lazy">
+          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90" fetchpriority="high">
           <div class="text-white">
             <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
             <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
@@ -1329,7 +1334,7 @@ Log in to save your quiz results, binder preferences, and track your order histo
       </section>
 
       <div class="pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
-        <img src="images/logo.png" class="h-10 grayscale mb-4" loading="lazy" >
+        <img src="images/logo.png" class="h-10 grayscale mb-4" fetchpriority="high" >
       </div>
     </div>
   </div>
