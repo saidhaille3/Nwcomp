@@ -20,53 +20,6 @@
     }
   </script>
   <style>
-      /* High-Refractive Obsidian Glass */
-    .vault-card {
-      background: #050505;
-      backdrop-filter: blur(50px) saturate(210%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 60px 120px -20px rgba(0,0,0,0.4);
-    }
-    
-    .carved-input {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
-      color: white;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    .carved-input:focus {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: #3b82f6;
-      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(59, 130, 246, 0.15);
-      transform: scale(1.005);
-    }
-
-    .custom-check {
-      appearance: none;
-      width: 1.25rem;
-      height: 1.25rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 4px;
-      background: rgba(255,255,255,0.05);
-      display: inline-block;
-      vertical-align: middle;
-      position: relative;
-      cursor: pointer;
-    }
-    .custom-check:checked { background: #1A73E8; border-color: #1A73E8; }
-    .custom-check:checked::after {
-      content: '✓';
-      position: absolute; color: white; font-size: 12px;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-    }
-
-    .text-silk {
-      background: linear-gradient(45deg, #050505 30%, #4b5563 70%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
     .glass-vessel {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(25px) saturate(180%);
@@ -87,8 +40,8 @@
     .animate-in { animation: slideIn 0.5s ease forwards; }
   </style>
 </head>
-<body class="bg-[#F8F9FA] text-onyx font-sans antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
+<body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
 
 <header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
@@ -97,17 +50,16 @@
       <img src="images/logo.png" class="h-10 w-auto" alt="Logo">
 
     </a>
-
     <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
-      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
-      <a href="binders.html" class="text-onyx">Collections</a>
+      <a href="index.html" class="text-onyx">Home</a>
+      <a href="binders.html" class="text-onyx">Products</a>
       <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
       <a href="about.html" class="hover:text-onyx transition-all">About</a>
       <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
     </nav>
 
     <div class="flex items-center gap-5 md:gap-8">
-      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+<button id="accountBtn" onclick="handleAccountClick()" class="group flex items-center gap-2 focus:outline-none">
         <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
           <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </div>
@@ -116,7 +68,7 @@
 
       <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
         <span class="text-xl">🛒</span>
-        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
       </button>
 
       <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
@@ -138,10 +90,11 @@
     </div>
 
     <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
-      <a href="index.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Home</span>
-      </a>
-      <a href="binders.html" class="flex flex-col">
+            <a href="index.html" class="flex flex-col">
+              <span class="text-3xl font-glam  transition-all">Home</span>
+            </a>
+
+            <a href="binders.html" class="flex flex-col">
         <span class="text-3xl font-glam  transition-all">Products</span>
       </a>
       <a href="whoweserve.html" class="flex flex-col">
@@ -153,13 +106,12 @@
       <a href="contact.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
       </a>
+            <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
+      </a>
     </nav>
 
-    <div class="p-8 border-t border-gray-100">
-      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
-        Request  Quote
-      </a>
-    </div>
+
   </div>
 </div>
 
@@ -216,6 +168,56 @@ function toggleMobileMenu(open) {
       </div>
     </div>
   </div>
+  <style>
+      /* High-Refractive Obsidian Glass */
+    .vault-card {
+      background: #050505;
+      backdrop-filter: blur(50px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 60px 120px -20px rgba(0,0,0,0.4);
+    }
+    
+    .carved-input {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+      color: white;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .carved-input:focus {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: #3b82f6;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(59, 130, 246, 0.15);
+      transform: scale(1.005);
+    }
+
+    .custom-check {
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      cursor: pointer;
+    }
+    .custom-check:checked { background: #1A73E8; border-color: #1A73E8; }
+    .custom-check:checked::after {
+      content: '✓';
+      position: absolute; color: white; font-size: 12px;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+
+    .text-silk {
+      background: linear-gradient(45deg, #050505 30%, #4b5563 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+
 
 
 
@@ -363,6 +365,8 @@ function toggleMobileMenu(open) {
       </form>
     </div>
   </main>
+
+  
 <footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
   
   <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -374,23 +378,22 @@ function toggleMobileMenu(open) {
       
       <div class="lg:col-span-5 space-y-10">
         <div class="flex items-center space-x-4">
-          <img src="images/logo.png" alt="Northwall Logo" class="h-12  invert opacity-90">
-
+          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90">
+          <div class="text-white">
+            <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
+            <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
+          </div>
         </div>
         <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">
           The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.
         </p>
-        <div class="flex gap-6">
-           <a href="#" class="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-all">LinkedIn —</a>
-           <a href="#" class="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-all">Instagram —</a>
-        </div>
+
       </div>
 
       <div class="lg:col-span-3 space-y-10">
         <ul class="space-y-4">
-          <li><a href="index.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Home</a></li>
-          <li><a href="binders.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Collections</a></li>
-          <li><a href="whoweserve.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
+          <li><a href="binders.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="whoweserve.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
         </ul>
       </div>
 
@@ -398,11 +401,11 @@ function toggleMobileMenu(open) {
         <div class="space-y-6">
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
           </div>
           <div class="group">
-            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Email</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
           </div>
         </div>
       </div>
@@ -415,39 +418,157 @@ function toggleMobileMenu(open) {
 <a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
 <a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
         </div>
-        <p class="text-[9px] text-white/20 uppercase tracking-widest">© 2026 Northwall Compliance Group LLC. Built in MN.</p>
       </div>
       
 
 
+    </div>
+
+    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">
+© 2026 Northwall Compliance Group LLC. Built in MN.    </p>
+  </div>
+
 
 </footer>
 
+  
+<div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+  <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
+  
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 flex flex-col">
+    
+    <div class="p-10 border-b border-gray-100 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <div id="userInit" class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl uppercase">U</div>
+        <div>
+          <h3 id="userEmail" class="text-xl font-glam text-onyx">Loading...</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Active Member</p>
+        </div>
+      </div>
+      <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
+<section>
+  <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+  <nav class="space-y-2">
+    <a href="javascript:void(0)" onclick="logout()" class="flex justify-between items-center p-6 rounded-2xl bg-red-50/30 border border-red-100 hover:bg-red-50 transition-all group">
+      <span class="text-xs font-black uppercase tracking-widest text-red-500">Sign Out</span>
+      <svg class="w-4 h-4 text-red-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+    </a>
+  </nav>
+</section>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  // DASHBOARD TOGGLE LOGIC
+  function toggleDashboard(open) {
+    const overlay = document.getElementById('userDashboard');
+    const panel = document.getElementById('dashboardPanel');
+    
+    if (open) {
+      overlay.classList.remove('hidden');
+      // This small delay ensures the blur and slide happen smoothly
+      setTimeout(() => {
+        overlay.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    } else {
+      panel.classList.add('translate-x-full');
+      overlay.classList.remove('opacity-100');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 500);
+    }
+  }
+
+
+  // Update your User Icon to trigger this:
+  // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
+</script>
+
+
+
+
+
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // Track state globally in the script
+  let currentUser = null;
+
+  onAuthStateChanged(auth, (user) => {
+    const accountPrompt = document.getElementById('accountPrompt');
+    currentUser = user;
+
+    if (user) {
+      // 1. User is logged in: Hide the "Already have an account" section
+      if (accountPrompt) accountPrompt.style.display = 'none';
+
+      // 2. Setup Dashboard Info
+      const userName = user.displayName || user.email;
+      document.getElementById('userEmail').innerText = userName;
+      document.getElementById('userInit').innerText = userName.charAt(0).toUpperCase();
+    } else {
+      // 3. User is logged out: Show the prompt section again
+      if (accountPrompt) accountPrompt.style.display = 'block';
+    }
+  });
+
+  // Global function to handle the icon click
+  window.handleAccountClick = function() {
+    if (currentUser) {
+      // If logged in, show the side dashboard
+      toggleDashboard(true);
+    } else {
+      // If not logged in, go to login page
+      window.location.href = "login.html";
+    }
+  }
+
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = "index.html"; // Redirect to home after logout
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+    });
+  }
+</script>
+
   <script>
     let cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
-
+    
     function addToCart(name, price, img) {
       const index = cart.findIndex(item => item.name === name);
-      if (index > -1) { cart[index].qty += 1; } 
+      if (index > -1) { cart[index].qty += 1; }
       else { cart.push({ name, price, img, qty: 1 }); }
       saveCart();
       toggleCart(true);
     }
-
+    
     function removeOne(name) {
       const index = cart.findIndex(item => item.name === name);
       if (index > -1) {
-        if (cart[index].qty > 1) { cart[index].qty -= 1; } 
+        if (cart[index].qty > 1) { cart[index].qty -= 1; }
         else { cart.splice(index, 1); }
       }
       saveCart();
     }
-
+    
     function saveCart() {
       localStorage.setItem('northwall_cart', JSON.stringify(cart));
       renderCart();
     }
-
+    
     function toggleCart(open) {
       const overlay = document.getElementById('cartOverlay');
       const sideCart = document.getElementById('sideCart');
@@ -463,7 +584,7 @@ function toggleMobileMenu(open) {
         setTimeout(() => overlay.classList.add('hidden'), 500);
       }
     }
-
+    
     function renderCart() {
       const container = document.getElementById('cartContent');
       const badge = document.getElementById('cartBadge');
@@ -493,165 +614,8 @@ function toggleMobileMenu(open) {
     }
     window.onload = renderCart;
   </script>
-  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
-  <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
-  
-  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
-    
-    <div class="p-10 border-b border-gray-100 flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
-        <div>
-          <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
-          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
-        </div>
-      </div>
-      <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
-    </div>
-
-    <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
-      
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
-        <div class="space-y-4">
-          <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-4">
-              <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
-              <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
-            </div>
-            <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
-            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
-        <nav class="space-y-2">
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
-            <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
-            <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
-            <span class="text-xs font-bold">Sign Out</span>
-          </a>
-        </nav>
-      </section>
-
-    </div>
 
 
-    </div>
-  </div>
-</div>
-
-<script>
-  // DASHBOARD TOGGLE LOGIC
-  function toggleDashboard(open) {
-    const overlay = document.getElementById('userDashboard');
-    const panel = document.getElementById('dashboardPanel');
-    
-    if (open) {
-      overlay.classList.remove('hidden');
-      setTimeout(() => {
-        overlay.classList.add('opacity-100');
-        panel.classList.remove('translate-x-full');
-      }, 10);
-      document.body.style.overflow = 'hidden';
-    } else {
-      panel.classList.add('translate-x-full');
-      overlay.classList.remove('opacity-100');
-      setTimeout(() => {
-        overlay.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }, 500);
-    }
-  }
-
-  // Update your User Icon to trigger this:
-  // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
-</script>
-  <div id="legalModal" class="fixed inset-0 z-[1000] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4 md:p-10">
-  <div onclick="toggleLegal(false)" class="absolute inset-0 bg-onyx/60 backdrop-blur-xl"></div>
-  
-  <div class="relative w-full max-w-5xl max-h-[90vh] bg-white/90 backdrop-blur-2xl rounded-[3rem] shadow-[0_50px_100px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden border border-white translate-y-10 transition-transform duration-500" id="legalContent">
-    
-    <div class="p-8 md:p-12 border-b border-gray-100 flex justify-between items-center bg-white/50">
-      <div>
-        <h1 class="text-2xl md:text-4xl font-glam text-onyx">Legal & Security Policy</h1>
-      </div>
-      <button onclick="toggleLegal(false)" class="h-12 w-12 rounded-full border border-gray-200 flex items-center justify-center text-2xl hover:bg-onyx hover:text-white transition-all">&times;</button>
-    </div>
-
-    <div class="flex-1 overflow-y-auto p-8 md:p-20 custom-scroll text-gray-800 leading-relaxed text-[17px]">
-      
-      <section class="mb-14">
-        <h2 class="text-2xl font-semibold text-onyx mb-4">Terms of Service</h2>
-        <p>By accessing or using any services, documents, training, or content offered by Northwall Compliance Group LLC (“Northwall”), you agree to these Terms of Service. These terms govern all purchases, communications, and website use.</p>
-        
-        <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Northwall reserves the right to update or modify these terms.</li>
-          <li>All materials sold are for use by the purchasing facility and may not be redistributed, resold, or shared without explicit written permission.</li>
-        </ul>
-      </section>
-      
-      <section class="mb-14">
-        <h2 class="text-2xl font-semibold text-onyx mb-4">Privacy Policy</h2>
-        <p>Your privacy is extremely important to us. This policy outlines how Northwall collects, uses, and protects your data when you interact with our website or request quotes.</p>
-        
-        <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>We collect basic information (name, facility, email, services) through our quote form strictly for internal use in generating custom pricing and service alignment.</li>
-          <li>We do not sell, rent, or share your information with third parties.</li>
-          <li>All submissions are transmitted securely via SSL encryption. Optional uploads (e.g., MDH tag letters) are deleted after use and not stored long-term.</li>
-          <li>Your information may be retained for follow-up, invoice documentation, or licensing verification, in compliance with applicable business and health regulations.</li>
-          <li>You may request deletion of your data at any time by emailing
-          <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
-        </ul>
-      </section>
-      
-      <section class="mb-14">
-        <h2 class="text-2xl font-semibold text-onyx mb-4">Refund Policy</h2>
-        <p>Due to the nature of our intellectual property and the custom-built nature of our binders, all sales are final. However, Northwall offers fairness and integrity in every transaction.</p>
-        
-        <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>No refunds will be issued once a PDF binder or physical binder has been delivered or downloaded.</li>
-          <li>If a document error occurs due to our team (e.g., outdated or incorrect info, mislabeling), we will correct and resend free of charge within 5 business days.</li>
-          <li>In rare cases of duplicate charges or proven billing errors, refunds will be reviewed upon written request within 7 days of purchase.</li>
-          <li>All disputes must be submitted in writing to <a href="mailto:northwallcompliance@gmail.com" class="text-blue-600 underline">northwallcompliance@gmail.com</a>.</li>
-        </ul>
-      </section>
-
-      <div class="pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
-        <img src="images/logo.png" class="h-10 grayscale mb-4">
-        <p class="text-[8px] font-black uppercase tracking-[1em]">Verified Policy Document 2026</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  function toggleLegal(open) {
-    const modal = document.getElementById('legalModal');
-    const content = document.getElementById('legalContent');
-    
-    if (open) {
-      modal.classList.remove('hidden');
-      setTimeout(() => {
-        modal.classList.add('opacity-100');
-        content.classList.remove('translate-y-10');
-      }, 10);
-      document.body.style.overflow = 'hidden'; // Lock background scroll
-    } else {
-      modal.classList.remove('opacity-100');
-      content.classList.add('translate-y-10');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Unlock scroll
-      }, 500);
-    }
-  }
-</script>
 
 <style>
   /* Clean scrollbar for the legal window */
