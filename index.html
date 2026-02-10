@@ -46,9 +46,17 @@
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" />
   </noscript>
 
-  <!-- FIX 3+7+8: All CSS consolidated here -- no mid-body style tags, GPU layers added -->
   <style>
     *, *::before, *::after { box-sizing: border-box; }
+    
+    /* Hide the body until Tailwind is ready */
+[v-cloak], .loading-cloak {
+  opacity: 0;
+}
+body {
+  transition: opacity 0.3s ease-in;
+}
+
     body {
       margin: 0;
       background: #F8F9FA;
@@ -151,19 +159,46 @@
     .glass-tile:hover .h-px { width: 4rem; }
 
     /* Flip cards */
-    .flip-card { height: 600px; position: relative; }
-    .flip-card-inner {
-      position: relative; width: 100%; height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-    .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-    .flip-card-front, .flip-card-back {
-      position: absolute; width: 100%; height: 100%;
-      backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      border-radius: 2rem; top: 0; left: 0;
-    }
-    .flip-card-back { transform: rotateY(180deg); }
+.flip-card { 
+  height: 600px; 
+  position: relative;
+  /* ✅ When hovered or flipped, rise above siblings */
+  transition: z-index 0s 0.8s; 
+}
+
+.flip-card.is-flipped {
+  z-index: 50; /* ✅ Flipped card floats above all others */
+  transition: z-index 0s 0s;
+}
+
+.flip-card-inner {
+  position: relative; 
+  width: 100%; 
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.flip-card.is-flipped .flip-card-inner { 
+  transform: rotateY(180deg); 
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 2rem;
+  top: 0;
+  left: 0;
+}
+
+.flip-card-back { 
+  transform: rotateY(180deg); 
+}
+
 
     .metal-brushed-front {
       background: linear-gradient(135deg, #1A1A1A 0%, #111 50%, #050505 100%);
@@ -223,7 +258,22 @@
   </style>
 </head>
 
-<body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
+<script>
+  (function(){
+    var s = document.createElement('script');
+    s.src = 'https://cdn.tailwindcss.com';
+    s.async = true;
+    s.onload = function(){
+      // ... your existing tailwind config ...
+      
+      // REVEAL THE BODY
+      document.body.classList.remove('loading-cloak');
+    };
+    document.head.appendChild(s);
+  })();
+</script>
+
+<body class="loading-cloak bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
 
 <!-- HEADER -->
 <header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
@@ -841,8 +891,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
       <div class="lg:col-span-5 space-y-10">
         <div class="flex items-center space-x-4">
-          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90"
-               loading="lazy" width="120" height="48" decoding="async">
+<img src="images/logo.png" alt="Northwall Logo" 
+     class="h-12 w-auto brightness-0 invert opacity-80"
+     loading="lazy" width="120" height="48" decoding="async">
+
           <div class="text-white">
             <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
             <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
