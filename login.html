@@ -17,7 +17,15 @@
     }
   </script>
   <style>
-    /* High-Refractive Glass Physics */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+.shake-anim { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+
+
     .vault-glass {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(40px) saturate(200%);
@@ -74,6 +82,9 @@
       <div class="mb-10 text-center">
         <h1 class="text-3xl font-glam mb-2">Login</h1>
       </div>
+<div id="errorMessage" class="hidden mb-6 p-4 rounded-xl border border-red-500/20 bg-red-500/10 text-center">
+  <span class="text-[10px] font-black uppercase tracking-[0.2em] text-red-400" id="errorText"></span>
+</div>
 
       <form id="loginForm" class="space-y-8">
         <div class="space-y-3">
@@ -123,50 +134,69 @@
     <p class="text-center mt-10 text-[8px] font-black uppercase tracking-[0.8em] text-white/10">Northwall Compliance © 2026 · SSL Encrypted</p>
   </div>
 
-  <script type="module">
-    import { auth } from './firebase-config.js';
-    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Functional Eye Toggle (Global)
-    window.togglePass = function() {
-      const field = document.getElementById('passwordField');
-      field.type = field.type === 'password' ? 'text' : 'password';
-    }
+  window.togglePass = function() {
+    const field = document.getElementById('passwordField');
+    field.type = field.type === 'password' ? 'text' : 'password';
+  }
 
-    // Firebase Login Logic
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('passwordField').value;
-      const status = document.getElementById('statusArea');
-      const statusText = document.getElementById('statusText');
-      const btn = e.target.querySelector('button[type="submit"]');
-      
-      // Visual feedback
-      status.style.opacity = '1';
-      btn.style.opacity = '0.5';
-      btn.disabled = true;
-      const originalBtnText = btn.innerHTML;
-      btn.querySelector('span').innerText = 'AUTHENTICATING...';
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('passwordField').value;
+    const status = document.getElementById('statusArea');
+    const statusText = document.getElementById('statusText');
+    const errorArea = document.getElementById('errorMessage');
+    const errorText = document.getElementById('errorText');
+    const btn = e.target.querySelector('button[type="submit"]');
+    
+    // Reset UI
+    errorArea.classList.add('hidden');
+    status.style.opacity = '1';
+    btn.disabled = true;
+    btn.querySelector('span').innerText = 'AUTHENTICATING...';
 
-      // Firebase Sign In
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          statusText.innerText = "ACCESS GRANTED";
-          setTimeout(() => {
-            window.location.href = "index.html"; 
-          }, 800);
-        })
-        .catch((error) => {
-          status.style.opacity = '0';
-          btn.style.opacity = '1';
-          btn.disabled = false;
-          btn.querySelector('span').innerText = 'LOGIN';
-          alert("Login Failed: " + error.message);
-        });
-    });
-  </script>
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        statusText.innerText = "ACCESS GRANTED";
+        setTimeout(() => {
+          window.location.href = "index.html"; 
+        }, 800);
+      })
+      .catch((error) => {
+        // UI Reset
+        status.style.opacity = '0';
+        btn.disabled = false;
+        btn.querySelector('span').innerText = 'LOGIN';
+
+        // Custom Error Mapping
+        let friendlyMessage = "AUTHENTICATION FAILED";
+        
+        if (error.code === 'auth/invalid-credential') {
+          friendlyMessage = "INVALID EMAIL OR PASSWORD";
+        } else if (error.code === 'auth/user-not-found') {
+          friendlyMessage = "IDENTITY NOT RECOGNIZED";
+        } else if (error.code === 'auth/too-many-requests') {
+          friendlyMessage = "SECURITY LOCKOUT: TRY LATER";
+        }
+
+        // Show Error UI
+        errorText.innerText = friendlyMessage;
+        errorArea.classList.remove('hidden');
+        
+        // Billion Dollar Polish: Shake the vault on error
+        const vault = document.querySelector('.vault-glass');
+        vault.classList.add('shake-anim');
+        setTimeout(() => vault.classList.remove('shake-anim'), 500);
+      });
+  });
+</script>
 
 </body>
 </html>
+
+
