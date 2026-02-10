@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northwall Academy | Executive Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+   :root { 
+            --nw-blue: #2563eb; 
+            --obsidian: #050505;
+            --core-primary: #3C8DAD;
+            --core-accent: #E5EDF0;
+            /* PLATINUM PALETTE */
+            --pro-primary: #E5E4E2; /* Platinum base */
+            --pro-accent: #1A1A1A;  /* Deep contrast */
+            --pro-glow: rgba(229, 228, 226, 0.2);
+            --elite-primary: #D9A300;
+            --elite-accent: #171717;
+        }
+        body { background-color: var(--obsidian); color: white; overflow-x: hidden; }
+        
+        /* THE NEURAL BLUR */
+        .neural-glow {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none; z-index: 0;
+            transition: background 1s ease;
+        }
+
+        /* 3D KINETIC CONTAINER */
+        .terminal-container {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+        }
+
+        /* HIGH-REFRACTION GLASS */
+        .obsidian-monolith {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .obsidian-monolith:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-10px) rotateX(2deg) rotateY(-1deg);
+        }
+
+        /* CUSTOM SCROLLING */
+        .custom-scroll::-webkit-scrollbar { width: 2px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+        /* KINETIC SHINE */
+        .shine-scan {
+            position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.05) 50%, transparent 55%);
+            animation: scan 10s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes scan { from { transform: translate(-10%, -10%); } to { transform: translate(10%, 10%); } }
+
+        /* Tier Color States */
+        .tier-trigger[data-tier="core"].active {
+            background: linear-gradient(135deg, #3C8DAD, #2d6a85) !important;
+            border-color: #E5EDF0 !important;
+        }
+        /* PLATINUM FORGED STATE */
+        .tier-trigger[data-tier="pro"].active {
+            background: linear-gradient(135deg, #E5E4E2, #B7B7B7) !important;
+            border-color: #FFFFFF !important;
+            color: #000 !important;
+        }
+        .tier-trigger[data-tier="elite"].active {
+            background: linear-gradient(135deg, #D9A300, #b08700) !important;
+            border-color: #171717 !important;
+        }
+    </style>
+</head>
+<body class="font-sans selection:bg-blue-500/30">
+
+    <div class="neural-glow"></div>
+
+    <main class="relative z-10 max-w-[1600px] mx-auto px-6 py-20 min-h-screen flex flex-col justify-center">
+        
+<header class="mb-20 space-y-12">
+    <div class="w-full max-w-full overflow-hidden">
+        <img src="images/na2.png" 
+             alt="Northwall Academy" 
+             class="w-full max-w-[1200px] h-auto object-contain block -ml-4 md:-ml-8 brightness-125 contrast-110 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+    </div>
+    
+    <div class=>
+        <p class="text-3xl md:text-6xl text-white/40 font-light max-w-5xl border-l-4 border-white/10 pl-10 leading-[0.9] tracking-tighter">
+            Compliance <span class="text-yellow-600 italic font-glam">through excellence.</span>
+        </p>
+    </div>
+</header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 terminal-container">
+            
+            <div class="lg:col-span-4 flex flex-col gap-4">
+                <div onclick="switchTier('core', this)" class="tier-trigger active group p-8 rounded-3xl border border-white/5 bg-white/5 cursor-pointer transition-all duration-500 hover:bg-white/10" data-tier="core">
+                    <h3 class="text-2xl font-glam ">Core Tier</h3>
+                </div>
+                <div onclick="switchTier('pro', this)" class="tier-trigger group p-8 rounded-3xl border border-white/5 bg-white/5 cursor-pointer transition-all duration-500 hover:bg-white/10" data-tier="pro">
+                    <h3 class="text-2xl font-glam ">Pro Tier</h3>
+                </div>
+                <div onclick="switchTier('elite', this)" class="tier-trigger group p-8 rounded-3xl border border-white/5 bg-white/5 cursor-pointer transition-all duration-500 hover:bg-white/10" data-tier="elite">
+                    <h3 class="text-2xl font-glam ">Elite Tier</h3>
+                </div>
+
+
+            </div>
+
+            <div class="lg:col-span-8 relative">
+                <div class="obsidian-monolith rounded-[4rem] p-12 md:p-20 relative overflow-hidden min-h-[750px] flex flex-col justify-between">
+                    <div class="shine-scan"></div>
+                    
+                    <div id="manifest-content" class="relative z-20 transition-all duration-700">
+                        <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                            <div class="space-y-4">
+                                <h2 id="manifest-title" class="text-5xl md:text-7xl font-glam italic text-white leading-none">Core</h2>
+                                <p id="manifest-desc" class="text-xl text-white/40 font-light max-w-lg leading-snug">Perfect for small facilities that just want to "stay legal."</p>
+                            </div>
+                            <div class="text-right">
+                                <span id="manifest-price" class="text-7xl md:text-9xl font-glam" style="color: #3C8DAD;">$50</span>
+                                <span class="block text-[10px] font-black uppercase tracking-[0.5em] text-white/20">Per Month</span>
+                            </div>
+                        </div>
+
+                        <div id="manifest-features" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-h-[400px] overflow-y-auto pr-4 custom-scroll">
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-12 relative z-20">
+                        <div class="flex items-center gap-6">
+                            <div class="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center" id="secure-icon" style="color: #3C8DAD;">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <span class="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">Institutional Grade Proof Engine</span>
+                        </div>
+                        <button id="cta-button" class="w-full md:w-auto px-16 py-6 rounded-2xl text-[11px] font-[900] uppercase tracking-[0.4em] transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl" style="background: linear-gradient(135deg, #3C8DAD, #E5EDF0); color: #050505;">
+                            Enroll Facility
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script>
+    // DEFINE THE ARSENAL OF ELITE ICONS
+    const icons = {
+        dementia: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0012 18.75c-1.03 0-1.9.4-2.593 1.026l-.547.547z"/></svg>`,
+        mental: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+        pdf: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 9h1m4 0h1m-5 4h5m-5 4h5"/></svg>`,
+        cert: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`,
+        doc: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>`,
+        meds: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.641.32a2 2 0 01-1.033.22H9.5a2 2 0 01-2-2V7a2 2 0 012-2h2.828a2 2 0 011.414.586l4.757 4.757a2 2 0 01.586 1.414v2.828a2 2 0 01-.586 1.414l-.572.572a2 2 0 01-1.414.586H9"/></svg>`,
+        sync: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+        report: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+        quiz: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.641.32a2 2 0 01-1.033.22H9.5a2 2 0 01-2-2V7a2 2 0 012-2h2.828a2 2 0 011.414.586l4.757 4.757a2 2 0 01.586 1.414v2.828a2 2 0 01-.586 1.414l-.572.572a2 2 0 01-1.414.586H9"/></svg>`,
+        audit: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>`,
+        unlock: `<svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>`
+    };
+
+    const data = {
+        core: {
+            title: "Core",
+            desc: "Stay legal. Baseline MN compliance built directly into your supporting documentation. Authoritative, approachable, and zero stress.",
+            price: "$50",
+            features: [
+                { label: "144G.41 Dementia Training", icon: icons.dementia },
+                { label: "144G.45 Mental Health Training", icon: icons.mental },
+                { label: "PDF + Quiz Access", icon: icons.pdf },
+                { label: "Timestamped Certificates", icon: icons.cert }
+            ],
+            primaryColor: "#3C8DAD",
+            accentColor: "#E5EDF0"
+        },
+        pro: {
+            title: "Pro",
+            desc: "For directors serious about documentation survival. Precision, focus, and clinical-grade accountability.",
+            price: "$129",
+            features: [
+                { label: "Includes everything in Core", icon: icons.sync },
+                { label: "Documentation Survival Training", icon: icons.doc },
+                { label: "PRN + Legal Boundaries", icon: icons.meds },
+                { label: "Service Delivery + RTasks Sync", icon: icons.sync },
+                { label: "Full Quiz Suite & Report Cards", icon: icons.report },
+                { label: "Staff Compliance Summary PDF", icon: icons.pdf },
+                { label: "Northwall Help Desk Access", icon: icons.unlock }
+            ],
+            primaryColor: "#E5E4E2",
+    accentColor: "#FFFFFF",
+    glow: "rgba(229, 228, 226, 0.15)"
+        },
+        elite: {
+            title: "Elite",
+            desc: "For facilities that treat compliance like a competitive sport. Prestige, total surveillance, and no hiding.",
+            price: "$199",
+            features: [
+                { label: "Includes everything in Pro", icon: icons.sync },
+                { label: "Custom Facility Quiz Generator", icon: icons.quiz },
+                { label: "Quarterly Zoom Compliance Reviews", icon: icons.report },
+                { label: "Anonymous Staff Documentation Audit", icon: icons.audit },
+                { label: "Early Access to New Modules", icon: icons.unlock },
+                { label: "Master Risk Analytics", icon: icons.report }
+            ],
+            primaryColor: "#D9A300",
+            accentColor: "#171717"
+        }
+    };
+
+    function switchTier(tierKey, element) {
+        document.querySelectorAll('.tier-trigger').forEach(el => {
+            el.classList.remove('active');
+            el.style.opacity = "0.5";
+        });
+        element.classList.add('active');
+        element.style.opacity = "1";
+
+        const manifest = data[tierKey];
+        const content = document.getElementById('manifest-content');
+        
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(10px)';
+
+        setTimeout(() => {
+            document.getElementById('manifest-title').innerText = manifest.title;
+            document.getElementById('manifest-desc').innerText = manifest.desc;
+            document.getElementById('manifest-price').innerText = manifest.price;
+            document.getElementById('manifest-price').style.color = manifest.primaryColor;
+            document.getElementById('secure-icon').style.color = manifest.primaryColor;
+            
+            const ctaButton = document.getElementById('cta-button');
+            ctaButton.style.background = `linear-gradient(135deg, ${manifest.primaryColor}, ${manifest.accentColor})`;
+            ctaButton.style.color = tierKey === 'elite' ? '#FFFFFF' : '#050505';
+            
+            const featureContainer = document.getElementById('manifest-features');
+            featureContainer.innerHTML = '';
+            
+            manifest.features.forEach(f => {
+                featureContainer.innerHTML += `
+                    <div class="flex items-center gap-6 py-4 border-b border-white/5 animate-fade-in group/feat">
+                        <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/40 group-hover/feat:text-white transition-all duration-500" style="color: ${manifest.primaryColor}88">
+                            <div class="h-5 w-5">${f.icon}</div>
+                        </div>
+                        <span class="text-[11px] font-bold tracking-wide text-white/80 group-hover/feat:text-white transition-colors">${f.label}</span>
+                    </div>
+                `;
+            });
+
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+        }, 400);
+    }
+
+    window.onload = () => {
+        switchTier('core', document.querySelector('.tier-trigger[data-tier="core"]'));
+    }
+</script>
+</body>
+</html>
