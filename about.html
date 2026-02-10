@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Collections | Northwall Compliance Group</title>
+  <title>Northwall Compliance Group LLC</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <script>
@@ -53,14 +53,14 @@
     </a>
 
     <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
-      <a href="index.html" class="hover:text-onyx transition-all">Home</a>
-      <a href="binders.html" class="text-onyx">Products</a>
+      <a href="index.html" class="text-onyx">Home</a>
+      <a href="binders.html" class="text-onyx">Collections</a>
       <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
       <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
     </nav>
 
     <div class="flex items-center gap-5 md:gap-8">
-      <button onclick="toggleDashboard(true)" class="group flex items-center gap-2 focus:outline-none">
+<button id="accountBtn" onclick="handleAccountClick()" class="group flex items-center gap-2 focus:outline-none">
         <div class="h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-onyx transition-all">
           <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </div>
@@ -69,7 +69,7 @@
 
       <button onclick="toggleCart(true)" class="relative p-1 focus:outline-none">
         <span class="text-xl">🛒</span>
-        <span id="cartBadge" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
       </button>
 
       <button onclick="toggleMobileMenu(true)" class="lg:hidden flex flex-col gap-1.5 p-1 focus:outline-none">
@@ -91,10 +91,14 @@
     </div>
 
     <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
-      <a href="index.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Home</span>
+            <a href="index.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Home</span>
       </a>
+
       <a href="binders.html" class="flex flex-col">
+        <span class="text-3xl font-glam  transition-all">Products</span>
+      </a>
+            <a href="binders.html" class="flex flex-col">
         <span class="text-3xl font-glam  transition-all">Products</span>
       </a>
       <a href="whoweserve.html" class="flex flex-col">
@@ -104,11 +108,14 @@
       <a href="contact.html" class="flex flex-col">
         <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
       </a>
+            <a href="contact.html" class="flex flex-col">
+        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
+      </a>
     </nav>
 
     <div class="p-8 border-t border-gray-100">
       <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
-        Request System Quote
+        Request Quote
       </a>
     </div>
   </div>
@@ -154,7 +161,7 @@ function toggleMobileMenu(open) {
     <div onclick="toggleCart(false)" class="absolute inset-0"></div>
     <div id="sideCart" class="side-cart absolute top-0 right-0 w-full max-w-md h-full bg-white/90 backdrop-blur-3xl shadow-[-20px_0_50px_rgba(0,0,0,0.1)] flex flex-col translate-x-full">
       <div class="p-8 flex justify-between items-center border-b border-gray-100">
-        <h3 class="text-2xl font-glam">Your cart</h3>
+        <h3 class="text-2xl font-glam">Your Cart</h3>
         <button onclick="toggleCart(false)" class="text-2xl">&times;</button>
       </div>
       <div id="cartContent" class="flex-1 overflow-y-auto p-8 space-y-8 custom-scroll"></div>
@@ -168,14 +175,13 @@ function toggleMobileMenu(open) {
     </div>
   </div>
 
-
   <main class="relative z-10 pt-44">
     
     <section class="max-w-[1400px] mx-auto px-6 mb-32 hero-glow">
 
       <div class="max-w-4xl mx-auto glass-vessel rounded-[3rem] p-10 md:p-16 space-y-8 text-lg md:text-xl font-light leading-relaxed text-gray-700">
         <p>We built Northwall because the threats facing Minnesota assisted living facilities are rarely addressed in full. Because they are rarely ever shown the entire risk landscape, facilities run the risk of citations, lawsuits, and staff turnover. Risk isn’t just clinical, it’s operational, structural, legal, cultural, and human. Northwall was created to give directors, owners, and staff a complete map, a hardened defense system, and a way to stay ready.</p>
-        <p>Northwall is a shield against MDH tags, DHS audits, resident complaints, high staff turn-over, MAARC reports, and catastrophic oversights. It’s a rigorously built, detail-heavy system that translates statutes into structure, policies into protection, and documentation into iron-clad protection. Every page, tab and training is built for real-world scrutiny — from strict surveyors to court subpoenas.</p>
+        <p>Northwall is a shield against MDH tags, DHS audits, resident complaints, high staff turn-over, MAARC reports, and catastrophic oversights. It’s a rigorously built, detail-heavy system that translates statutes into structure, policies into protection, and documentation into iron-clad protection. Every page, tab and training is built for real-world scrutiny -- from strict surveyors to court subpoenas.</p>
         <p>After more than five years serving as a director across high-risk assisted living settings, I saw the gaps no policy manual ever addressed, the moments where paperwork failed, staff froze, or facility leadership stood alone. Northwall is the result: a system built from inside the pressure, not above it. A wall shaped by the exact failures I had to absorb, correct, and survive.</p>
       </div>
     </section>
@@ -189,7 +195,7 @@ function toggleMobileMenu(open) {
       <div class="glass-vessel rounded-[4rem] p-12 md:p-20 group relative overflow-hidden">
         <div class="flex flex-col md:flex-row items-center gap-16">
             <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl relative z-10">
-                <img src="images/IMG_4850.jpeg" alt="Said Haille" class="w-full h-full object-cover">
+                <img src="images/me.png" alt="Said Haille" class="w-full h-full object-cover">
             </div>
             <div class="space-y-6 flex-1 text-center md:text-left relative z-10">
                 <p class="text-xl font-light text-gray-500 leading-relaxed italic">I have lived through MDH surveys, some smooth, some brutal. That’s why I wrote from experience. From my director experience with colabration from health care workers and compliance advisors, I have walked the halls you walk and shared your experiences.</p>
@@ -197,7 +203,7 @@ function toggleMobileMenu(open) {
                 <div class="pt-8 border-t border-gray-100">
                     <h3 class="text-3xl font-glam text-onyx mb-1">Said Haille</h3>
                     <p class="text-[10px] font-black uppercase tracking-[0.3em] text-yellow-600 mb-6">Founder & Licensed Assisted Living Director</p>
-                    <p class="text-sm font-medium text-gray-700 leading-relaxed italic mb-6">“I don’t just sell binders. I use them, for my own facilities, my own license, and my own audits.”</p>
+                    <p class="text-sm font-medium text-gray-700 leading-relaxed italic mb-6">"I don’t just sell binders. I use them, for my own facilities, my own license, and my own audits."</p>
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold text-gray-400 uppercase tracking-widest list-none">
                         <li class="flex items-center gap-2"><span class=""></span> Multiple licensed 18–65 & 55–65 homes</li>
                         <li class="flex items-center gap-2"><span class=""></span> Multiple MDH surveys completed</li>
@@ -254,7 +260,7 @@ function toggleMobileMenu(open) {
                 <div class="group relative pt-12">
                     <div class="space-y-6">
                         <h5 class="text-[11px] font-black uppercase tracking-[0.4em] text-blue-600">Surveyor Lens Test</h5>
-                        <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-light text-left">Before shipping, we do a page-by-page review: “Would this pass with the strictest MDH inspector?”</p>
+                        <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-light text-left">Before shipping, we do a page-by-page review: "Would this pass with the strictest MDH inspector?"</p>
                     </div>
                 </div>
             </div>
@@ -315,6 +321,7 @@ function toggleMobileMenu(open) {
     </section>
   </main>
 
+  
 <footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
   
   <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -340,10 +347,8 @@ function toggleMobileMenu(open) {
 
       <div class="lg:col-span-3 space-y-10">
         <ul class="space-y-4">
-          <li><a href="index.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Home</a></li>
-          <li><a href="whoweserve.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
-          <li><a href="products.html" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
-
+          <li><a href="binders.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Products</a></li>
+          <li><a href="whoweserve.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
         </ul>
       </div>
 
@@ -351,11 +356,11 @@ function toggleMobileMenu(open) {
         <div class="space-y-6">
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
           </div>
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
-            <span class="text-sm font-bold text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
           </div>
         </div>
       </div>
@@ -382,138 +387,45 @@ function toggleMobileMenu(open) {
      class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
     </span>
     Request Quote
   </a>
 </footer>
 
-
-  <script>
-    let cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
-
-    function addToCart(name, price, img) {
-      const index = cart.findIndex(item => item.name === name);
-      if (index > -1) { cart[index].qty += 1; } 
-      else { cart.push({ name, price, img, qty: 1 }); }
-      saveCart();
-      toggleCart(true);
-    }
-
-    function removeOne(name) {
-      const index = cart.findIndex(item => item.name === name);
-      if (index > -1) {
-        if (cart[index].qty > 1) { cart[index].qty -= 1; } 
-        else { cart.splice(index, 1); }
-      }
-      saveCart();
-    }
-
-    function saveCart() {
-      localStorage.setItem('northwall_cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function toggleCart(open) {
-      const overlay = document.getElementById('cartOverlay');
-      const sideCart = document.getElementById('sideCart');
-      if (open) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => {
-          overlay.classList.add('opacity-100');
-          sideCart.classList.remove('translate-x-full');
-        }, 10);
-      } else {
-        sideCart.classList.add('translate-x-full');
-        overlay.classList.remove('opacity-100');
-        setTimeout(() => overlay.classList.add('hidden'), 500);
-      }
-    }
-
-    function renderCart() {
-      const container = document.getElementById('cartContent');
-      const badge = document.getElementById('cartBadge');
-      const subtotalEl = document.getElementById('cartSubtotal');
-      container.innerHTML = cart.length === 0 ? '<p class="text-xs text-gray-400 text-center pt-20">Your cart is empty.</p>' : '';
-      let total = 0;
-      let count = 0;
-      cart.forEach(item => {
-        total += item.price * item.qty;
-        count += item.qty;
-        container.innerHTML += `
-          <div class="flex gap-6 animate-in">
-            <div class="h-20 w-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 shrink-0"><img src="${item.img}" class="h-full w-auto"></div>
-            <div class="flex-1">
-              <h4 class="text-sm font-glam mb-1">${item.name}</h4>
-              <div class="flex items-center gap-4">
-                 <button onclick="removeOne('${item.name}')" class="text-gray-300 hover:text-onyx">-</button>
-                 <span class="text-xs font-bold">${item.qty}</span>
-                 <button onclick="addToCart('${item.name}', ${item.price}, '${item.img}')" class="text-gray-300 hover:text-onyx">+</button>
-                 <span class="text-[10px] ml-auto font-black">$${(item.price * item.qty).toFixed(2)}</span>
-              </div>
-            </div>
-          </div>`;
-      });
-      badge.innerText = count;
-      subtotalEl.innerText = `$${total.toFixed(2)}`;
-    }
-    window.onload = renderCart;
-  </script>
-  <div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
+  
+<div id="userDashboard" class="fixed inset-0 z-[300] hidden opacity-0 transition-opacity duration-500">
   <div onclick="toggleDashboard(false)" class="absolute inset-0 bg-onyx/40 backdrop-blur-md"></div>
   
-  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col">
+  <div id="dashboardPanel" class="absolute top-0 right-0 w-full max-w-xl h-full bg-white/80 backdrop-blur-3xl shadow-[-20px_0_80px_rgba(0,0,0,0.1)] translate-x-full transition-transform duration-700 flex flex-col">
     
     <div class="p-10 border-b border-gray-100 flex justify-between items-center">
       <div class="flex items-center gap-4">
-        <div class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl">JD</div>
+        <div id="userInit" class="h-12 w-12 rounded-full bg-onyx flex items-center justify-center text-white font-glam text-xl uppercase">U</div>
         <div>
-          <h3 class="text-xl font-glam text-onyx">Jane Doe</h3>
-          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Premium Member</p>
+          <h3 id="userEmail" class="text-xl font-glam text-onyx">Loading...</h3>
+          <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">Active Member</p>
         </div>
       </div>
       <button onclick="toggleDashboard(false)" class="text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
     </div>
 
     <div class="flex-1 overflow-y-auto p-10 space-y-12 custom-scroll">
-      
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Recent Orders</h4>
-        <div class="space-y-4">
-          <div class="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-4">
-              <span class="text-[10px] font-bold text-onyx uppercase tracking-widest">Order #NW-8812</span>
-              <span class="text-[9px] px-2 py-1 bg-green-100 text-green-700 rounded font-black uppercase">Delivered</span>
-            </div>
-            <p class="text-sm font-glam text-onyx">Northwall Bundle — 144G Edition</p>
-            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">Purchased Feb 02, 2026</p>
-          </div>
-        </div>
-      </section>
+<section>
+  <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
+  <nav class="space-y-2">
+    <a href="javascript:void(0)" onclick="logout()" class="flex justify-between items-center p-6 rounded-2xl bg-red-50/30 border border-red-100 hover:bg-red-50 transition-all group">
+      <span class="text-xs font-black uppercase tracking-widest text-red-500">Sign Out</span>
+      <svg class="w-4 h-4 text-red-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+    </a>
+  </nav>
+</section>
 
-      <section>
-        <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Settings</h4>
-        <nav class="space-y-2">
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group">
-            <span class="text-xs font-bold text-gray-600 group-hover:text-onyx">Facility Profile</span>
-            <span class="text-gray-300 group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-
-          <a href="#" class="flex justify-between items-center p-4 rounded-xl hover:bg-white transition-all group border border-red-50 text-red-400">
-            <span class="text-xs font-bold">Sign Out</span>
-          </a>
-        </nav>
-      </section>
-
-    </div>
-
-    <div class="p-10 border-t border-gray-100">
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-        <span class="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400">Active Secure Session</span>
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -524,6 +436,7 @@ function toggleMobileMenu(open) {
     
     if (open) {
       overlay.classList.remove('hidden');
+      // This small delay ensures the blur and slide happen smoothly
       setTimeout(() => {
         overlay.classList.add('opacity-100');
         panel.classList.remove('translate-x-full');
@@ -539,10 +452,69 @@ function toggleMobileMenu(open) {
     }
   }
 
+
   // Update your User Icon to trigger this:
   // <a href="javascript:void(0)" onclick="toggleDashboard(true)" class="group ...">
 </script>
 
+
+
+
+
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // Track state globally in the script
+  let currentUser = null;
+
+  onAuthStateChanged(auth, (user) => {
+    const accountPrompt = document.getElementById('accountPrompt');
+    currentUser = user;
+
+    if (user) {
+      // 1. User is logged in: Hide the "Already have an account" section
+      if (accountPrompt) accountPrompt.style.display = 'none';
+
+      // 2. Setup Dashboard Info
+      const userName = user.displayName || user.email;
+      document.getElementById('userEmail').innerText = userName;
+      document.getElementById('userInit').innerText = userName.charAt(0).toUpperCase();
+    } else {
+      // 3. User is logged out: Show the prompt section again
+      if (accountPrompt) accountPrompt.style.display = 'block';
+    }
+  });
+
+  // Global function to handle the icon click
+  window.handleAccountClick = function() {
+    if (currentUser) {
+      // If logged in, show the side dashboard
+      toggleDashboard(true);
+    } else {
+      // If not logged in, go to login page
+      window.location.href = "login.html";
+    }
+  }
+
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = "index.html"; // Redirect to home after logout
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+    });
+  }
+</script>
+
+
+
+
+<style>
+  /* Clean scrollbar for the legal window */
+  .custom-scroll::-webkit-scrollbar { width: 4px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #050505; border-radius: 10px; }
+</style>
 
 
 </body>
