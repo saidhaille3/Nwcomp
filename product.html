@@ -1,4 +1,13 @@
 
+
+
+
+
+
+
+
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -100,21 +109,21 @@
         <span class="text-3xl font-glam  transition-all">Products</span>
       </a>
       <a href="whoweserve.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Who We Serve</span>
       </a>
       <a href="about.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">About</span>
+        <span class="text-3xl font-glam text-onyx hover: transition-all">About</span>
       </a>
       <a href="contact.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Contact</span>
       </a>
             <a href="contact.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
+        <span class="text-3xl font-glam text-onyx hover: transition-all">Northwall Academy</span>
       </a>
     </nav>
 
     <div class="p-8 border-t border-gray-100">
-      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
+      <a href="quote.html" class="block w-full py-5 bg-[#050] text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
         Request Quote
       </a>
     </div>
@@ -247,16 +256,21 @@ function toggleMobileMenu(open) {
   
   <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
     
-    <div class="w-full lg:w-5/12 lg:sticky lg:top-40 self-start">
-      <div class="glass-vessel rounded-[4rem] p-8 md:p-16 aspect-square lg:aspect-[4/5] flex items-center justify-center relative overflow-hidden">
-        <div class="absolute -top-32 -left-32 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]"></div>
-        <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-slate-200/50 rounded-full blur-[120px]"></div>
-        
-        <div class="relative z-10 float-binder w-full flex justify-center">
-          <img id="productImage" src="" class="h-[280px] md:h-[500px] w-auto filter drop-shadow-[0_60px_100px_rgba(0,0,0,0.25)] object-contain" alt="Binder Preview">
-        </div>
-      </div>
-    </div>
+<div class="w-full lg:w-5/12 lg:sticky lg:top-40 self-start">
+<div class="glass-vessel rounded-[4rem] p-8 md:p-16 aspect-square lg:aspect-[4/5] flex items-center justify-center relative overflow-hidden" id="imageCard">
+    <div id="blobTop" class="absolute -top-32 -left-32 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]"></div>
+    <div id="blobBot" class="absolute -bottom-32 -right-32 w-80 h-80 bg-slate-200/50 rounded-full blur-[120px]"></div>
+
+<div id="imgWrapDefault" class="relative z-10 float-binder w-full flex justify-center">
+  <img id="productImage" src="" class="h-[280px] md:h-[500px] w-auto filter drop-shadow-[0_60px_100px_rgba(0,0,0,0.25)] object-contain" alt="Binder Preview">
+</div>
+<div id="imgWrapFull" style="display:none; position:absolute; inset:0;">
+  <img id="productImageFull" src="" style="width:100%; height:100%; object-fit:cover;" alt="Binder Preview">
+</div>
+
+
+  </div>
+</div>
 
     <div class="w-full lg:w-7/12 space-y-20">
       
@@ -302,7 +316,7 @@ function toggleMobileMenu(open) {
             Add to Cart
         </button>
 
-        <button id="buyNowBtn" class="flex-1 py-7 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.5em] rounded-2xl transition-all hover:bg-blue-700 hover:shadow-[0_20px_50px_rgba(37,99,235,0.3)] hover:-translate-y-1 active:scale-95 relative overflow-hidden group">
+        <button id="buyNowBtn" class="flex-1 py-7 bg-green-600 text-white text-[10px] font-black uppercase tracking-[0.5em] rounded-2xl transition-all hover:bg-blue-700 hover:shadow-[0_20px_50px_rgba(37,99,235,0.3)] hover:-translate-y-1 active:scale-95 relative overflow-hidden group">
             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
             Buy Now
         </button>
@@ -400,7 +414,7 @@ function toggleMobileMenu(open) {
             price: 500,
             img: "images/poilcy.png",
             desc: "The complete institutional defense suite. Every manual, every form, and every emergency protocol unified into a single high-performance system.",
-            license: "Master Portfolio Set",
+            license: "Master Set",
             focus: "MDH Audit"
         },
         training: {
@@ -429,37 +443,70 @@ function toggleMobileMenu(open) {
             desc: "MDH engineering checklists and all legally required facility postings.",
             license: "Facility Launch Bundle",
             focus: "Startup Compliance"
+        },
+        firewall: {
+            title: "Audit <br/><span class='text-gray-300 font-normal'>Shield</span>",
+            category: "Firewall",
+            price: 800,
+            img: "images/elite.png",
+            desc: "Mock surveys, drill scripts, pre-licensing walk-throughs, and active tag prevention maps. Full shield coverage against MDH & DHS surveyors.",
+            license: "144G Assisted Living",
+            focus: "Audit Defense & Tag Prevention"
+        },
+        "ral-licensure": {
+            title: "AL Path to <br/><span class='text-gray-300 font-normal'>Licensure</span>",
+            category: "Full-Scale Development",
+            price: 5000,
+            img: "images/con.png",
+            desc: "Complete 9–11 month guided path from regulatory strategy and zoning through license filing, NETStudy 2.0, R-3 code retrofits, and final DHS enrollment. Northwall Bundle included.",
+            license: "144G Assisted Living",
+            focus: "Full Licensure & DHS Enrollment"
         }
     };
 
-    function initProductPage() {
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-        
-        // Debug: log what we're getting
-        console.log('URL ID parameter:', id);
-        console.log('Trimmed ID:', id ? id.trim() : 'null');
-        
-        // Trim whitespace from the ID
-        const cleanId = id ? id.trim() : 'bundle';
-        const data = products[cleanId];
 
-        console.log('Looking for product:', cleanId);
-        console.log('Product data found:', data);
+function initProductPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const cleanId = id ? id.trim() : 'bundle';
+    const data = products[cleanId];
 
-        if (data) {
-            document.getElementById('productTitle').innerHTML = data.title;
-            document.getElementById('productCategory').innerText = data.category;
-            document.getElementById('productPrice').innerText = `$${data.price}.00`;
-            document.getElementById('productImage').src = data.img;
-            document.getElementById('productDescription').innerText = data.desc;
-            document.getElementById('specLicense').innerText = data.license;
-            document.getElementById('specFocus').innerText = data.focus;
-        } else {
-            console.error('Product not found for ID:', cleanId);
-            console.log('Available products:', Object.keys(products));
+    if (data) {
+        document.getElementById('productTitle').innerHTML = data.title;
+        document.getElementById('productCategory').innerText = data.category;
+        document.getElementById('productPrice').innerText = `$${data.price}.00`;
+        document.getElementById('productImage').src = data.img;
+        document.getElementById('productDescription').innerText = data.desc;
+        document.getElementById('specLicense').innerText = data.license;
+        document.getElementById('specFocus').innerText = data.focus;
+
+        // Full-bleed for firewall + ral-licensure
+        const fullBleedIds = ['firewall', 'ral-licensure'];
+        const defaultWrap = document.getElementById('imgWrapDefault');
+        const fullWrap = document.getElementById('imgWrapFull');
+        const fullImg = document.getElementById('productImageFull');
+        const card = document.getElementById('imageCard');
+
+if (fullBleedIds.includes(cleanId)) {
+    defaultWrap.style.display = 'none';
+    fullWrap.style.display = 'block';
+    fullImg.src = data.img;
+    fullImg.style.objectFit = 'cover';
+    fullImg.style.objectPosition = 'center';
+    fullImg.style.transform = 'scale(0.85)';
+    fullImg.style.borderRadius = '4rem';
+    card.style.padding = '0';
+    card.style.overflow = 'hidden';
+    card.style.display = 'block';
+}
+
+
+ else {
+            defaultWrap.classList.remove('hidden');
+            fullWrap.classList.add('hidden');
         }
     }
+}
 
     function initProductActions() {
         const params = new URLSearchParams(window.location.search);
@@ -491,6 +538,7 @@ function toggleMobileMenu(open) {
         initProductActions();
         if(typeof renderCart === 'function') {
             renderCart();
+            
         }
     });
 </script>
