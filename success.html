@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed | Northwall Group</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], glam: ['Playfair Display', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .dark-box {
+      background: #050505;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body class="bg-[#F8F9FA] font-sans min-h-screen flex items-center justify-center px-6">
+
+  <div class="dark-box rounded-[3rem] p-12 md:p-20 text-center text-white max-w-2xl w-full">
+    <div class="h-20 w-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(37,99,235,0.5)]">
+      <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-glam mb-4">Thank You.</h1>
+    <p class="text-gray-400 text-lg mb-10">Your purchase is confirmed. Check your email for a receipt and access instructions.</p>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 inline-block mb-10">
+      <span class="text-xs text-gray-500 uppercase tracking-widest block mb-2">Confirmation</span>
+      <span id="sessionDisplay" class="text-sm font-mono text-blue-400 tracking-tighter"></span>
+    </div>
+    <div class="space-y-4">
+      <a href="index.html" class="inline-block px-10 py-5 bg-white text-black rounded-xl font-bold text-xs uppercase tracking-widest">Return Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Pull session ID from URL so customer has a reference
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    if (sessionId) {
+      document.getElementById('sessionDisplay').innerText = sessionId;
+    }
+    // Clear cart on successful purchase
+    localStorage.removeItem('northwall_cart');
+  </script>
+</body>
+</html>
