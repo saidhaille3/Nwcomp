@@ -28,7 +28,7 @@ exports.handler = async (event) => {
       line_items: line_items,
       mode: 'payment',
       success_url: 'https://northwallgroup.com/success.html',
-      cancel_url: 'https://northwallgroup.com/binders.html',
+      cancel_url: 'https://northwallgroup.com/checkout.html',
     });
 
     return {
