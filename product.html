@@ -389,6 +389,7 @@ function toggleMobileMenu(open) {
 <script>
     const products = {
         emergency: {
+          name: 'Emergency Prep', 
             title: "Emergency <br/><span class='text-gray-300  font-normal'>Prep</span>",
             category: "Foundational 01",
             model: "NW-EP-100",
@@ -399,6 +400,7 @@ function toggleMobileMenu(open) {
             focus: "Life Safety & Disaster Mitigation"
         },
         policy: {
+          name: 'Policy & Procedure',
             title: "Policy & <br/><span class='text-gray-300  font-normal'>Procedure</span>",
             category: "Standard 02",
             model: "NW-PP-200",
@@ -409,6 +411,7 @@ function toggleMobileMenu(open) {
             focus: "Operational Statutory Governance"
         },
         bundle: {
+          name: 'Northwall Bundle',
             title: "Northwall <br/><span class='text-gray-300  font-normal'>Bundle</span>",
             category: "Executive Bundle",
             price: 500,
@@ -418,6 +421,7 @@ function toggleMobileMenu(open) {
             focus: "MDH Audit"
         },
         training: {
+          name: 'Staff Training',
             title: "Staff <br/><span class='text-gray-300 font-normal'>Training</span>",
             category: "Educational 03",
             price: 75,
@@ -427,6 +431,7 @@ function toggleMobileMenu(open) {
             focus: "Staff Competency Verification"
         },
         templates: {
+          name: 'Templates',
             title: "MDH <br/><span class='text-gray-300  font-normal'>Templates</span>",
             category: "Operational 04",
             price: 50,
@@ -436,6 +441,7 @@ function toggleMobileMenu(open) {
             focus: "Operational Documentation"
         },
         kit: {
+          name: 'Opening Kit',
             title: "Facility Opening <br/><span class='text-gray-300  font-normal'>Kit</span>",
             category: "Strategic 05",
             price: 50,
@@ -445,6 +451,7 @@ function toggleMobileMenu(open) {
             focus: "Startup Compliance"
         },
         firewall: {
+          name: 'Audit Shield',
             title: "Audit <br/><span class='text-gray-300 font-normal'>Shield</span>",
             category: "Firewall",
             price: 800,
@@ -454,6 +461,7 @@ function toggleMobileMenu(open) {
             focus: "Audit Defense & Tag Prevention"
         },
         "ral-licensure": {
+          name: 'RAL Path to Licensure'
             title: "AL Path to <br/><span class='text-gray-300 font-normal'>Licensure</span>",
             category: "Full-Scale Development",
             price: 5000,
@@ -518,14 +526,14 @@ if (fullBleedIds.includes(cleanId)) {
             // ADD TO CART LOGIC
             document.getElementById('addBtn').onclick = () => {
                 if(typeof addToCart === 'function') {
-                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+addToCart(data.name, data.price, data.img);
                 }
             };
 
             // BUY NOW LOGIC
             document.getElementById('buyNowBtn').onclick = () => {
                 if(typeof addToCart === 'function') {
-                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
+addToCart(data.name, data.price, data.img);
                     window.location.href = "checkout.html";
                 }
             };
