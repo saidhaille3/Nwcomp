@@ -16,25 +16,25 @@ exports.handler = async (event) => {
     const { cart } = JSON.parse(event.body);
 
     if (!cart || cart.length === 0) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Cart is empty' }) };
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Cart is empty' })
+      };
     }
 
-    // ✅ Filter out items with no matching price & log them
+    // Filter out any items that don't have a matching Stripe price ID
     const line_items = cart
-      .filter(item => {
-        if (!priceMap[item.name]) {
-          console.warn(`⚠️ No price ID found for: "${item.name}"`);
-          return false;
-        }
-        return true;
-      })
+      .filter(item => priceMap[item.name])  // ← THIS was the missing fix
       .map(item => ({
         price: priceMap[item.name],
         quantity: item.qty
       }));
 
     if (line_items.length === 0) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'No valid items in cart' }) };
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'No valid items in cart' })
+      };
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -47,7 +47,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ url: session.url }),
     };
 
