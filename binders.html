@@ -616,13 +616,17 @@ function toggleMobileMenu(open) {
   
   // ─── SAVE CART ───
   async function saveCart() {
-    if (currentUser) {
-      await db.collection('carts').doc(currentUser.uid).set({ items: window.cart });
-    } else {
-      localStorage.setItem('northwall_cart', JSON.stringify(window.cart));
-    }
-    renderCart();
+  // ALWAYS write to localStorage so checkout.html can read it
+  localStorage.setItem('northwall_cart', JSON.stringify(window.cart));
+
+  // Also save to Firebase if logged in
+  if (currentUser) {
+    await db.collection('carts').doc(currentUser.uid).set({ items: window.cart });
   }
+
+  renderCart();
+}
+
   
   // ─── ADD TO CART ───
   function addToCart(name, price, img) {
