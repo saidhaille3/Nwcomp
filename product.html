@@ -323,42 +323,6 @@ function toggleMobileMenu(open) {
     </div>
 </div>
 
-<script>
-    /**
-     * ELITE TRANSACTION LOGIC
-     */
-    function initProductActions() {
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id') || 'bundle';
-        const data = products[id];
-
-        if (data) {
-            // ADD TO CART LOGIC
-            document.getElementById('addBtn').onclick = () => {
-                if(typeof addToCart === 'function') {
-                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
-                }
-            };
-
-            // BUY NOW LOGIC (Adds to cart + Direct Redirect)
-            document.getElementById('buyNowBtn').onclick = () => {
-                if(typeof addToCart === 'function') {
-                    // Force add to cart
-                    addToCart(data.title.replace(/<[^>]*>/g, ''), data.price, data.img);
-                    // Immediate Handoff to Checkout
-                    window.location.href = "checkout.html";
-                }
-            };
-        }
-    }
-
-    // Call this inside your existing window.onload
-    const originalInit = window.onload;
-    window.onload = () => {
-        if(originalInit) originalInit();
-        initProductActions();
-    };
-</script>
 
 
       <div class="pt-16 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -461,7 +425,7 @@ function toggleMobileMenu(open) {
             focus: "Audit Defense & Tag Prevention"
         },
         "ral-licensure": {
-          name: 'RAL Path to Licensure'
+          
             title: "AL Path to <br/><span class='text-gray-300 font-normal'>Licensure</span>",
             category: "Full-Scale Development",
             price: 5000,
