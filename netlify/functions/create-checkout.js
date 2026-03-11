@@ -27,8 +27,8 @@ exports.handler = async (event) => {
       payment_method_types: ['card'],
       line_items: line_items,
       mode: 'payment',
-      success_url: 'https://northwallcompliance.com/success.html',
-      cancel_url: 'https://northwallcompliance.com/binders.html',
+      success_url: 'https://northwallgroup.com/success.html',
+      cancel_url: 'https://northwallgroup.com/binders.html',
     });
 
     return {
