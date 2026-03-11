@@ -77,7 +77,7 @@
       'Policy & Procedure':   'policy_procedure',
       'Staff Training':       'staff_training',
       'Templates':            'templates',
-      'Opening Kit': 'facility_opening',
+      'Opening Kit':          'facility_opening',
       'Northwall Bundle':     'northwall_bundle',
       'Core Tier':            'core_tier',
       'Pro Tier':             'pro_tier',
@@ -134,44 +134,44 @@
     }
 
     async function redirectToStripe() {
-  const btn = document.getElementById('checkoutBtn');
-  btn.disabled = true;
-  btn.innerText = 'Redirecting to Stripe...';
+      const btn = document.getElementById('checkoutBtn');
+      btn.disabled = true;
+      btn.innerText = 'Redirecting to Stripe...';
 
-  // ✅ Read cart directly -- no key mapping needed, server handles it
-  const cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
+      const cart = JSON.parse(localStorage.getItem('northwall_cart')) || [];
 
-  if (cart.length === 0) {
-    alert('Your cart is empty.');
-    btn.disabled = false;
-    btn.innerText = 'Proceed to Secure Payment';
-    return;
-  }
+      const items = cart.map(item => ({
+        key: item.key || KEY_MAP[item.name] || '',
+        qty: item.qty
+      })).filter(i => i.key);
 
-  try {
-    const res = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cart }) // ✅ Send cart as-is, names match priceMap
-    });
+      try {
+// ✅ CORRECT
+const res = await fetch('/.netlify/functions/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ cart: JSON.parse(localStorage.getItem('northwall_cart')) || [] })
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert('Something went wrong: ' + (data.error || 'Unknown error'));
-      btn.disabled = false;
-      btn.innerText = 'Proceed to Secure Payment';
+        if (data.url) {
+          window.location.href = data.url;
+        } else if (data.error === 'mixed_cart') {
+          document.getElementById('mixedWarning').classList.remove('hidden');
+          btn.disabled = false;
+          btn.innerText = 'Proceed to Secure Payment';
+        } else {
+          alert('Something went wrong: ' + (data.error || 'Unknown error'));
+          btn.disabled = false;
+          btn.innerText = 'Proceed to Secure Payment';
+        }
+      } catch (err) {
+        alert('Could not connect to payment server. Please try again.');
+        btn.disabled = false;
+        btn.innerText = 'Proceed to Secure Payment';
+      }
     }
-  } catch (err) {
-    console.error(err);
-    alert('Could not connect to payment server. Please try again.');
-    btn.disabled = false;
-    btn.innerText = 'Proceed to Secure Payment';
-  }
-}
-
 
     window.onload = loadItems;
   </script>
