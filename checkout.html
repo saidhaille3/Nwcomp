@@ -150,7 +150,8 @@
 
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items })
+          body: JSON.stringify({ cart: JSON.parse(localStorage.getItem('northwall_cart')) || [] })
+
         });
 
         const data = await res.json();
