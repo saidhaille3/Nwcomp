@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -616,17 +615,13 @@ function toggleMobileMenu(open) {
   
   // ─── SAVE CART ───
   async function saveCart() {
-  // ALWAYS write to localStorage so checkout.html can read it
-  localStorage.setItem('northwall_cart', JSON.stringify(window.cart));
-
-  // Also save to Firebase if logged in
-  if (currentUser) {
-    await db.collection('carts').doc(currentUser.uid).set({ items: window.cart });
+    if (currentUser) {
+      await db.collection('carts').doc(currentUser.uid).set({ items: window.cart });
+    } else {
+      localStorage.setItem('northwall_cart', JSON.stringify(window.cart));
+    }
+    renderCart();
   }
-
-  renderCart();
-}
-
   
   // ─── ADD TO CART ───
   function addToCart(name, price, img) {
