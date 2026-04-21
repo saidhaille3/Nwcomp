@@ -4,6 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Northwall Compliance Group LLC</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
@@ -52,7 +54,7 @@
     </a>
 
     <nav class="hidden lg:flex gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-gray-500">
-      <a href="binders.html" class="text-onyx">Home</a>
+      <a href="index.html" class="text-onyx">Home</a>
       <a href="whoweserve.html" class="hover:text-onyx transition-all">Who We Serve</a>
       <a href="about.html" class="hover:text-onyx transition-all">About</a>
       <a href="contact.html" class="hover:text-onyx transition-all">Contact</a>
@@ -82,39 +84,36 @@
 <div id="mobileMenuOverlay" class="fixed inset-0 z-[500] hidden opacity-0 transition-opacity duration-300">
   <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
   
-  <div id="mobilePanel" class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col">
+  <!-- UPDATED: Added metallic-glass styling -->
+  <div id="mobilePanel" 
+       class="absolute top-0 right-0 w-[85%] max-w-[350px] h-full shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col border-l border-white/20"
+       style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 240, 240, 0.4) 100%); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
     
-    <div class="p-8 flex justify-between items-center border-b border-gray-100">
+    <div class="p-8 flex justify-between items-center border-b border-black/5">
       <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600"></span>
       <button onclick="toggleMobileMenu(false)" class="text-3xl font-light text-onyx">&times;</button>
     </div>
 
     <nav class="flex-1 p-8 flex flex-col gap-8 overflow-y-auto">
+      <a href="index.html"    class="flex flex-col"><span class="text-3xl font-glam transition-all">Home</span></a>
+      <a href="whoweserve.html" class="flex flex-col"><span class="text-3xl font-glam text-onyx transition-all">Who We Serve</span></a>
+      <a href="about.html"      class="flex flex-col"><span class="text-3xl font-glam text-onyx transition-all">About</span></a>
+      <a href="contact.html"    class="flex flex-col"><span class="text-3xl font-glam text-onyx transition-all">Contact</span></a>
 
-      <a href="index.html" class="flex flex-col">
-        <span class="text-3xl font-glam  transition-all">Home</span>
-      </a>
-            <a href="binders.html" class="flex flex-col">
-        <span class="text-3xl font-glam  transition-all">Products</span>
-      </a>
-      <a href="whoweserve.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Who We Serve</span>
-      </a>
-      <a href="about.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">About</span>
-      </a>
-      <a href="contact.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Contact</span>
-      </a>
-            <a href="contact.html" class="flex flex-col">
-        <span class="text-3xl font-glam text-onyx hover:italic transition-all">Northwall Academy</span>
-      </a>
+      <!-- Academy Button: Keep exact same width/height/footprint -->
+      <div class="mt-20">
+        <a href="dementia/landing.html" class="group relative block w-full py-5 rounded-xl overflow-hidden shadow-lg transition-all active:scale-95 border border-white/40 bg-white/20">
+          <img src="images/na2.png" 
+               alt="Northwall Academy" 
+               class="pt-3 absolute inset-0 w-full h-full object-cover object-[60% 75%] group-hover:scale-105">
+          <span class="invisible block text-[10px] font-black uppercase tracking-[0.4em]">Northwall Academy</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+        </a>
+      </div>
     </nav>
 
-    <div class="p-8 border-t border-gray-100">
-      <a href="quote.html" class="block w-full py-5 bg-onyx text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl">
-        Request Quote
-      </a>
+    <div class="p-8 border-t border-black/5">
+      <a href="quote.html" class="block w-full py-5 bg-[#050] text-white text-[10px] font-black uppercase tracking-[0.4em] text-center rounded-xl shadow-lg">Request Quote</a>
     </div>
   </div>
 </div>
@@ -175,7 +174,7 @@ function toggleMobileMenu(open) {
     </div>
   </div>
 
-  <main class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+  <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
     <section class="text-center mb-24">
       <h1 class="text-5xl md:text-7xl font-glam text-onyx tracking-tighter mb-6 leading-tight">Master Compliance <br/><span class="italic text-gray-400">Collections</span></h1>
     </section>
@@ -221,7 +220,7 @@ function toggleMobileMenu(open) {
     <a href="product.html?id=policy" class="px-4 py-3 border border-gray-200 text-onyx text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 transition-all">
       Detail
     </a>
-    <button onclick="addToCart('Policy & Procedure', 250, 'images/poilcy.png')" class="px-6 py-3 bg-onyx text-white text-[9px] font-black uppercase tracking-widest rounded-xl">
+    <button onclick="addToCart('Policy & Procedure', 275, 'images/poilcy.png')" class="px-6 py-3 bg-onyx text-white text-[9px] font-black uppercase tracking-widest rounded-xl">
       Add 
     </button>
   </div>
@@ -259,7 +258,7 @@ function toggleMobileMenu(open) {
           </div>
           <span class="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-2 block">Operation</span>
           <h3 class="text-2xl font-glam mb-4">Templates</h3>
-          <p class="text-xs text-gray-400 leading-relaxed mb-8">MDH compliant templates for daily logs and data collection.</p>
+          <p class="text-xs text-gray-400 leading-relaxed mb-8">MDH compliant templates ranging from resident contracts to assessment templates and daily logs. Anything you need in your day to day operations.</p>
         </div>
 <div class="flex items-center justify-between pt-6 border-t border-gray-100 gap-3">
   <span class="text-xl font-glam">$50</span>
@@ -326,8 +325,13 @@ function toggleMobileMenu(open) {
         <div>
           <div class="relative overflow-hidden rounded-2xl mb-8 aspect-square flex items-center justify-center bg-blue-50">
              <div class="flex -space-x-8">
-               <img src="images/poilcy.png" class="h-32 w-auto filter drop-shadow-xl z-10">
-               <img src="images/emp.webp" class="h-32 w-auto filter drop-shadow-xl translate-y-4">
+<div class="relative overflow-visible rounded-2xl mb-8 aspect-square flex items-center justify-center bg-blue-50">
+  <div class="flex items-end -space-x-6">
+    <img src="images/poilcy.png" class="h-28 w-auto filter drop-shadow-xl z-10">
+    <img src="images/emp.webp" class="h-28 w-auto filter drop-shadow-xl">
+  </div>
+</div>
+
              </div>
           </div>
           <span class="text-[9px] font-black uppercase tracking-widest text-yellow-600 mb-2 block">Most Popular</span>
@@ -341,7 +345,7 @@ function toggleMobileMenu(open) {
     <a href="product.html?id=bundle" class="px-4 py-3 border border-gray-200 text-onyx text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 transition-all">
       Detail
     </a>
-    <button onclick="addToCart('Northwall Bundle', 500, 'images/poilcy.png')" class="px-6 py-3 bg-yellow-600 text-white text-[9px] font-black uppercase tracking-widest rounded-xl">
+    <button onclick="addToCart('Northwall Bundle', 510, 'images/poilcy.png')" class="px-6 py-3 bg-yellow-600 text-white text-[9px] font-black uppercase tracking-widest rounded-xl">
       Add
     </button>
   </div>
@@ -380,7 +384,7 @@ function toggleMobileMenu(open) {
         Detail
       </a>
       <button onclick="addToCart('RAL Path to Licensure', 5000, 'images/con.png')" class="px-6 py-3 bg-yellow-600 text-white text-[9px] font-black uppercase tracking-widest rounded-xl">
-        Inquire
+        Add
       </button>
     </div>
   </div>
@@ -393,68 +397,54 @@ function toggleMobileMenu(open) {
 
   
 <footer class="relative z-[100] w-full bg-[#050505] pt-24 pb-12 px-6 md:px-16 overflow-hidden border-t border-white/5">
-  
   <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
   <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-800/20 rounded-full blur-[120px] pointer-events-none"></div>
-
   <div class="max-w-[1600px] mx-auto relative z-10">
-    
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
-      
       <div class="lg:col-span-5 space-y-10">
         <div class="flex items-center space-x-4">
-          <img src="images/logo.png" alt="Northwall Logo" class="h-12 invert opacity-90">
+<img src="images/logo2.png" alt="Northwall Logo" 
+     class="h-12 w-auto "
+     loading="lazy" width="120" height="48" decoding="async">
+
           <div class="text-white">
             <span class="block text-2xl tracking-tighter font-glam">Northwall</span>
             <span class="block text-[9px] font-black uppercase tracking-[0.6em] text-blue-500">Compliance Group</span>
           </div>
         </div>
-        <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">
-          The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.
-        </p>
-
+        <p class="text-xs font-medium text-gray-400 leading-relaxed tracking-wide max-w-sm">The gold standard in Minnesota compliance. We engineer surveyor-proof frameworks for elite assisted living providers who demand zero-tag results.</p>
       </div>
-
       <div class="lg:col-span-3 space-y-10">
         <ul class="space-y-4">
-          <li><a href="dementia/landing.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Northwall Academy</a></li>
-          <li><a href="whoweserve.html" class="text-xs font- text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
+          <li><a href="index.html"    class="text-xs text-gray-300 hover:text-blue-400 transition-colors">Home</a></li>
+
+          <li><a href="contact.html"    class="text-xs text-gray-300 hover:text-blue-400 transition-colors">Contact Us</a></li>
+          <li><a href="whoweserve.html" class="text-xs text-gray-300 hover:text-blue-400 transition-colors">Who We Serve</a></li>
         </ul>
       </div>
-
       <div class="lg:col-span-4 space-y-10">
         <div class="space-y-6">
           <div class="group">
             <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Phone</span>
-            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
+            <span class="text-sm text-gray-200 group-hover:text-blue-400 transition-colors">651-200-0378</span>
           </div>
           <div class="group">
-            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">mail</span>
-            <span class="text-sm font- text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
+            <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Mail</span>
+            <span class="text-sm text-gray-200 group-hover:text-blue-400 transition-colors">northwallcompliance@gmail.com</span>
           </div>
         </div>
       </div>
     </div>
-
     <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-      <div class="space-y-2">
-        <div class="flex flex-wrap gap-6 text-[9px] font-black uppercase tracking-[0.3em] text-white/40">
-<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Privacy Policy</a>
-<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
-<a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
-        </div>
+      <div class="flex flex-wrap gap-6 text-[9px] font-black uppercase tracking-[0.3em] text-white/40">
+        <a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Terms Of Conditions</a>
+        <a href="javascript:void(0)" onclick="toggleLegal(true)" class="hover:text-onyx transition-colors">Refund Policy</a>
       </div>
-      
-
-
     </div>
-
-    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">
-© 2026 Northwall Compliance Group LLC.  </p>
+    <p class="text-[9px] mt-20 text-white/20 uppercase tracking-widest">© 2026 Northwall Compliance Group LLC. Built in MN.</p>
   </div>
-
-  <a href="quote.html"
-     class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
+  <a href="quote.html" class="fixed bottom-8 right-8 md:right-12 px-10 py-5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.5em] shadow-[0_20px_60px_rgba(0,0,0,0.5)] z-[110] transition-all duration-500 hover:scale-105 hover:bg-gray-100 flex items-center gap-4">
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
       <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
@@ -498,7 +488,62 @@ function toggleMobileMenu(open) {
 </div>
 </div>
 
+<!-- CONTRACT MODAL -->
+<div id="contractModal" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+  <div class="bg-white rounded-[3rem] max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+    <div class="p-8 border-b border-gray-100">
+      <h2 class="text-3xl font-glam">Consulting Agreement</h2>
+      <p class="text-[9px] font-black uppercase tracking-widest text-blue-600">AL Path to Licensure</p>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto p-8 md:p-12 space-y-6 text-sm text-gray-600 custom-scroll">
+      <p><strong>Consultant:</strong> Northwall Compliance Group LLC</p>
+      
+      <h4 class="font-bold text-onyx uppercase text-[10px] tracking-widest">1. Scope of Services</h4>
+      <p>Assistance in developing and launching a Residential Assisted Living (RAL) facility across four phases: Regulatory Strategy, Physical Build, Inspections, and Revenue Compliance.</p>
+      
+      <h4 class="font-bold text-onyx uppercase text-[10px] tracking-widest">2. Compensation</h4>
+      <p>Total fee: $5,000.00. <strong>Deposit of $2,500.00</strong> due upon signing. Remaining $2,500.00 due upon completion of Phase 2.</p>
+      
+      <p class="italic">By signing below, you agree to the terms including scope limitations and confidentiality.</p>
+     <!-- Inside #contractModal, before the signature pad -->
+<div class="mb-8 p-6 bg-blue-50 rounded-2xl border border-blue-100">
+  <label class="text-[10px] font-black uppercase tracking-widest text-blue-600 block mb-4">Select Payment Plan</label>
+  <div class="grid grid-cols-2 gap-4">
+    <button onclick="setPaymentPlan('deposit')" id="plan-deposit" class="p-4 rounded-xl border-2 border-onyx bg-white text-left transition-all">
+      <span class="block font-bold text-sm text-onyx">Deposit</span>
+      <span class="block text-[10px] text-gray-500">$2,500 today</span>
+    </button>
+    <button onclick="setPaymentPlan('full')" id="plan-full" class="p-4 rounded-xl border-2 border-gray-100 bg-white text-left transition-all opacity-60">
+      <span class="block font-bold text-sm text-onyx">Pay in Full</span>
+      <span class="block text-[10px] text-gray-500">$5,000 today</span>
+    </button>
+  </div>
+</div>
+ 
+      
+      
+      <div class="pt-6 space-y-4">
+        <label class="text-[10px] font-black uppercase tracking-widest">Draw Signature Below</label>
+        <div class="relative w-full h-40 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl overflow-hidden">
+          <canvas id="signature-pad" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+        </div>
+        <div class="flex justify-between items-center">
+          <button type="button" onclick="clearSignature()" class="text-[9px] font-bold uppercase text-red-500 tracking-widest">Clear / Redo</button>
+          <span class="text-[8px] text-gray-400 uppercase font-bold">Sign with finger or mouse</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-8 bg-gray-50 flex gap-4">
+      <button onclick="closeContract()" class="flex-1 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Cancel</button>
+      <button onclick="confirmContract()" class="flex-1 py-4 bg-onyx text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg">Sign & Pay Deposit</button>
+    </div>
+  </div>
+</div>
+
 <script>
+
   // DASHBOARD TOGGLE LOGIC
   function toggleDashboard(open) {
     const overlay = document.getElementById('userDashboard');
@@ -612,7 +657,50 @@ function toggleMobileMenu(open) {
       window.location.href = "index.html";
     }).catch((error) => console.error("Logout Error:", error));
   }
+  let selectedPlan = 'deposit'; // Default
+
+function setPaymentPlan(plan) {
+  selectedPlan = plan;
+  // UI feedback: Highlight the selected button
+  document.getElementById('plan-deposit').classList.toggle('border-onyx', plan === 'deposit');
+  document.getElementById('plan-deposit').classList.toggle('opacity-60', plan !== 'deposit');
+  document.getElementById('plan-full').classList.toggle('border-onyx', plan === 'full');
+  document.getElementById('plan-full').classList.toggle('opacity-60', plan !== 'full');
+}
+
+async function confirmContract() {
+  if (signaturePad.isEmpty()) return alert("Please sign first.");
+
+  const signatureImage = signaturePad.toDataURL();
+  const finalPrice = (selectedPlan === 'full') ? 5000 : 2500;
   
+  try {
+    // 1. Save to Firebase with the specific plan info
+    const contractRef = await db.collection('contracts').add({
+      client_email: currentUser ? currentUser.email : 'guest',
+      signature_image: signatureImage,
+      plan: selectedPlan,
+      amount_paid_today: finalPrice,
+      status: 'pending_payment',
+      signed_at: new Date().toLocaleString()
+    });
+
+    // 2. Prepare the cart item
+    pendingContractItem.price = finalPrice;
+    pendingContractItem.contract_id = contractRef.id;
+    pendingContractItem.useDeposit = (selectedPlan === 'deposit'); // Tells the backend which Stripe Price ID to use
+
+    window.cart.push(pendingContractItem);
+    await saveCart();
+    
+    document.getElementById('contractModal').classList.add('hidden');
+    window.location.href = "checkout.html";
+
+  } catch (error) {
+    console.error("Contract Error:", error);
+  }
+}
+
   // ─── SAVE CART ───
   async function saveCart() {
     if (currentUser) {
@@ -624,16 +712,118 @@ function toggleMobileMenu(open) {
   }
   
   // ─── ADD TO CART ───
-  function addToCart(name, price, img) {
-    const index = window.cart.findIndex(item => item.name === name);
-    if (index > -1) {
-      window.cart[index].qty += 1;
-    } else {
-      window.cart.push({ name, price, img, qty: 1 });
-    }
-    saveCart();
-    toggleCart(true);
+let pendingContractItem = null;
+
+let signaturePad;
+
+function openContract() {
+  document.getElementById('contractModal').classList.remove('hidden');
+  
+  // Tiny timeout ensures the canvas has its full width/height before we start
+  setTimeout(() => {
+    const canvas = document.getElementById('signature-pad');
+    
+    signaturePad = new SignaturePad(canvas, {
+      penColor: "rgb(5, 5, 5)",
+      backgroundColor: "rgb(250, 250, 250)"
+    });
+
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+    canvas.getContext("2d").scale(ratio, ratio);
+    signaturePad.clear(); // Start fresh
+  }, 100);
+}
+
+
+function addToCart(name, price, img) {
+  if (name === 'RAL Path to Licensure') {
+    pendingContractItem = { name, price, img, qty: 1 };
+    openContract();
+    return;
   }
+  
+  const index = window.cart.findIndex(item => item.name === name);
+  if (index > -1) {
+    window.cart[index].qty += 1;
+  } else {
+    window.cart.push({ name, price, img, qty: 1 });
+  }
+  saveCart();
+  toggleCart(true);
+}
+
+
+function clearSignature() { 
+  if (signaturePad) signaturePad.clear(); 
+}
+
+function confirmContract() {
+  if (signaturePad.isEmpty()) {
+    return alert("Please sign the contract first.");
+  }
+
+  // 1. Capture the actual drawing as a DataURL (Image)
+  const signatureImage = signaturePad.toDataURL(); 
+  const date = new Date().toLocaleString();
+  
+  // 2. We store a text token for Stripe Metadata (because images are too big for Stripe)
+  const signatureToken = `DIGITALLY SIGNED ON ${date}`;
+
+  // 3. Set the price to the $2,500 deposit
+  pendingContractItem.price = 2500; 
+  pendingContractItem.useDeposit = true;
+  pendingContractItem.signature = signatureToken;
+  pendingContractItem.rawSignature = signatureImage; // Keep the image in local cart for your records
+
+  window.cart.push(pendingContractItem);
+  saveCart();
+  
+  document.getElementById('contractModal').classList.add('hidden');
+  
+  // 4. Send them straight to checkout to finalize the deal
+  window.location.href = "checkout.html";
+}
+
+
+function closeContract() {
+  document.getElementById('contractModal').classList.add('hidden');
+  if (signaturePad) signaturePad.clear();
+}
+
+
+async function redirectToStripe() {
+  const btn = document.getElementById('checkoutBtn');
+  btn.innerText = 'Redirecting...';
+  
+  // Find licensure item to send signature to backend
+  const licensureItem = window.cart.find(i => i.name === 'RAL Path to Licensure');
+  const signatureData = licensureItem ? licensureItem.signature : null;
+  
+const contractId = licensureItem ? licensureItem.contract_id : null;
+  const paymentPlan = licensureItem ? (licensureItem.useDeposit ? 'Deposit' : 'Full') : 'Standard';
+
+  try {
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        cart: window.cart,
+        signatureData: signatureData, // Already there
+        contractId: contractId,       // ADD THIS
+        paymentPlan: paymentPlan      // ADD THIS
+      })
+    });
+    
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+  } catch (err) {
+    console.error(err);
+    btn.innerText = 'Error - Try Again';
+  }
+}
+
   
   // ─── REMOVE FROM CART ───
   function removeOne(name) {
@@ -703,8 +893,65 @@ function toggleMobileMenu(open) {
   }
   
   window.onload = renderCart;
+      function toggleLegal(open) {
+    const modal   = document.getElementById('legalModal');
+    const content = document.getElementById('legalContent');
+    if (open) {
+      modal.classList.remove('hidden');
+      setTimeout(() => { modal.classList.add('opacity-100'); content.classList.remove('translate-y-10'); }, 10);
+      document.body.style.overflow = 'hidden';
+    } else {
+      modal.classList.remove('opacity-100');
+      content.classList.add('translate-y-10');
+      setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 500);
+    }
+  }
+
 </script>
 
+<div id="legalModal" class="fixed inset-0 z-[1000] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4 md:p-10">
+  <div onclick="toggleLegal(false)" class="absolute inset-0 bg-onyx/60 backdrop-blur-xl"></div>
+  <div class="relative w-full max-w-5xl max-h-[90vh] bg-white/90 backdrop-blur-2xl rounded-[3rem] shadow-[0_50px_100px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden border border-white translate-y-10 transition-transform duration-500" id="legalContent">
+    <div class="p-8 md:p-12 border-b border-gray-100 flex justify-between items-center bg-white/50">
+      <h1 class="text-2xl md:text-4xl font-glam text-onyx">Legal & Security Policy</h1>
+      <button onclick="toggleLegal(false)" class="h-12 w-12 rounded-full border border-gray-200 flex items-center justify-center text-2xl hover:bg-onyx hover:text-white transition-all">&times;</button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-8 md:p-20 custom-scroll text-gray-800 leading-relaxed text-[17px]">
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Terms of Service</h2>
+        <p>By accessing or using any services, documents, training, or content offered by Northwall Compliance Group LLC ("Northwall"), you agree to these Terms of Service. These terms govern all purchases, communications, and website use.</p>
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>Northwall reserves the right to update or modify these terms.</li>
+          <li>All materials sold are for use by the purchasing facility and may not be redistributed, resold, or shared without explicit written permission.</li>
+        </ul>
+      </section>
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Privacy Policy</h2>
+        <p>Your privacy is extremely important to us. This policy outlines how Northwall collects, uses, and protects your data when you interact with our website or request quotes.</p>
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>We collect basic information (name, facility, email, services) through our quote form strictly for internal use in generating custom pricing and service alignment.</li>
+          <li>We do not sell, rent, or share your information with third parties.</li>
+          <li>All submissions are transmitted securely via SSL encryption. Optional uploads (e.g., MDH tag letters) are deleted after use and not stored long-term.</li>
+          <li>Your information may be retained for follow-up, invoice documentation, or licensing verification, in compliance with applicable business and health regulations.</li>
+          <li>You may request deletion of your data at any time by emailing <a href="mailto:northwallcompliance@gmail.com">northwallcompliance@gmail.com</a>.</li>
+        </ul>
+      </section>
+      <section class="mb-14">
+        <h2 class="text-2xl font-semibold text-onyx mb-4">Refund Policy</h2>
+        <p>Due to the nature of our intellectual property and the custom-built nature of our binders, all sales are final. However, Northwall offers fairness and integrity in every transaction.</p>
+        <ul class="list-disc pl-6 mt-4 space-y-2">
+          <li>No refunds will be issued once a PDF binder or physical binder has been delivered or downloaded.</li>
+          <li>If a document error occurs due to our team (e.g., outdated or incorrect info, mislabeling), we will correct and resend free of charge within 5 business days.</li>
+          <li>In rare cases of duplicate charges or proven billing errors, refunds will be reviewed upon written request within 7 days of purchase.</li>
+          <li>All disputes must be submitted in writing to <a href="mailto:northwallcompliance@gmail.com">northwallcompliance@gmail.com</a>.</li>
+        </ul>
+      </section>
+      <div class="pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
+        <img src="images/logo.png" class="h-10 grayscale mb-4" loading="lazy" width="120" height="40" decoding="async">
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
   /* Clean scrollbar for the legal window */
@@ -714,33 +961,43 @@ function toggleMobileMenu(open) {
 </style>
 
 <script>
+  // Unified Stripe Checkout Logic
   document.getElementById('stripe-checkout-btn').addEventListener('click', async () => {
-  const btn = document.getElementById('stripe-checkout-btn');
-  btn.innerText = "LOADING...";
-  btn.disabled = true;
+    const btn = document.getElementById('stripe-checkout-btn');
+    const originalText = btn.innerText;
+    btn.innerText = "LOADING...";
+    btn.disabled = true;
 
-  try {
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cart: window.cart }) // Sends your cart items
-    });
+    // 1. Extract signature if the licensure product is in the cart
+    const licensureItem = window.cart.find(i => i.name === 'RAL Path to Licensure');
+    const signatureData = licensureItem ? licensureItem.signature : null;
 
-    const session = await response.json();
-    if (session.url) {
-      window.location.href = session.url; // Sends user to Stripe
-    } else {
-      alert("Checkout error. Check your Netlify logs.");
-      btn.innerText = "PROCEED TO CHECKOUT";
+    try {
+      const response = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          cart: window.cart,
+          signatureData: signatureData // Sends the signature to Netlify/Stripe
+        })
+      });
+
+      const session = await response.json();
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        alert("Checkout error. Check your Netlify logs.");
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Connection error. Please try again.");
+      btn.innerText = originalText;
       btn.disabled = false;
     }
-  } catch (err) {
-    console.error(err);
-    btn.innerText = "PROCEED TO CHECKOUT";
-    btn.disabled = false;
-  }
-});
-
+  });
 </script>
+
 </body>
 </html>
