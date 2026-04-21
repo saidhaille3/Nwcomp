@@ -273,7 +273,13 @@ body {
 </head>
 
 <body class="bg-[#F8F9FA] text-onyx font-sans overflow-x-hidden">
-
+<script>
+  // Prevent flash of overlays before JS loads
+  document.documentElement.style.visibility = 'hidden';
+  window.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.style.visibility = '';
+  });
+</script>
 <!-- HEADER -->
 <header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
