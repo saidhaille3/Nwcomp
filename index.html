@@ -280,6 +280,7 @@ body {
     document.documentElement.style.visibility = '';
   });
 </script>
+
 <!-- HEADER -->
 <header class="fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-[1600px] mx-auto px-6 py-5 flex justify-between items-center">
@@ -566,15 +567,15 @@ body {
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
       <div class="glass-tile group">
         <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">"Our nurse said it was the cleanest emergency plan she's seen in 15 years."</p>
-        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+        <div class="h-px w-8 bg-emerald-600 transition-all group-hover:w-16"></div>
       </div>
       <div class="glass-tile group">
         <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">"Every section was exactly where the reviewer expected it to be. Precision work."</p>
-        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+        <div class="h-px w-8 bg-emerald-600 transition-all group-hover:w-16"></div>
       </div>
       <div class="glass-tile group">
         <p class="text-gray-700 italic mb-6 text-sm leading-relaxed">"Northwall made our audit feel easy. The peace of mind is worth every penny."</p>
-        <div class="h-px w-8 bg-blue-600 transition-all group-hover:w-16"></div>
+        <div class="h-px w-8 bg-emerald-600 transition-all group-hover:w-16"></div>
       </div>
     </div>
     <div class="text-center">
@@ -586,7 +587,7 @@ body {
           <span class="text-yellow-500 text-xl">★</span>
           <span class="text-yellow-500 text-xl text-opacity-50">★</span>
         </div>
-        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-900">Rated <span class="text-blue-600">4.9</span> By Licensed Directors and RNs</p>
+        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-900">Rated <span class="text-emerald-600">4.9</span> By Licensed Directors and RNs</p>
       </div>
     </div>
   </div>
@@ -963,7 +964,7 @@ body {
                         'text-amber-600': product.match < 80 && product.match >= 50,
                         'text-rose-600': product.match < 50
                      }"
-                     x-text="product.match + '% REL'">
+                     x-text="product.match + '% match'">
                 </div>
                 <h4 class="font-bold text-[12px] md:text-[13px] text-onyx mb-2" x-text="product.name"></h4>
                 <div class="font-glam text-gray-400 text-lg" x-text="product.price"></div>
